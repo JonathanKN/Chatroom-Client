@@ -98,7 +98,8 @@ namespace Chatrum
 
             Server s = new Server();
             s.port = port;
-            servers.Add(name, s);
+            s.ip = ip;
+            servers.Add(server, s);
         }
 
         private void ServerText_MouseEnter(object sender, EventArgs e)
