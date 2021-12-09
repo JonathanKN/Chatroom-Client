@@ -124,7 +124,7 @@ namespace Chatrum
                 return;
             }
             networkClient.Disconnect();
-            networkClient = new NetworkClient(name, serverText.Text, servers[serverText.Text].port);
+            networkClient = new NetworkClient(name, servers[serverText.Text].ip, servers[serverText.Text].port);
             ServerName.Text = serverText.Text;
             MessageContainer.Controls.Clear();
         }
