@@ -1,0 +1,13 @@
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe.config
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatrum.pdb
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.dll
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.pdb
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csprojAssemblyReference.cache
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.Form1.resources
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.Properties.Resources.resources
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.GenerateResource.cache
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CoreCompileInputs.cache
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CopyComplete
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.exe
+C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.pdb

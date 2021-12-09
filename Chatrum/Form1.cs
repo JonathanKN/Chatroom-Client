@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Chatroom_Client_Backend;
 
 namespace Chatrum
 {
@@ -18,14 +17,14 @@ namespace Chatrum
         public Dictionary<string, Server> servers = new Dictionary<string, Server>();
 
         private string name = "Johnny";
-        private NetworkClient networkClient;
+        private Chatroom_Client_Backend.NetworkClient networkClient;
         private Dictionary<int, string> users = new Dictionary<int, string>();
 
         public Form1()
         {
             InitializeComponent();
-            AddServer(25565, "", "Esperanto server");
-            networkClient = new NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
+            AddServer(25565, "10.29.139.215", "Esperanto server");
+            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
         }
 
         public void OnMessage(int userID, string message, long timeStamp)
@@ -123,8 +122,9 @@ namespace Chatrum
             {
                 return;
             }
+
             networkClient.Disconnect();
-            networkClient = new NetworkClient(name, servers[serverText.Text].ip, servers[serverText.Text].port);
+            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers[serverText.Text].ip, servers[serverText.Text].port);
             ServerName.Text = serverText.Text;
             MessageContainer.Controls.Clear();
         }
