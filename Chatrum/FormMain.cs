@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
+using System.Net;
+using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
 
 namespace Chatrum
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
         public Dictionary<string, Server> servers = new Dictionary<string, Server>();
 
@@ -21,11 +16,15 @@ namespace Chatrum
         private NetworkClient networkClient;
         private Dictionary<int, string> users = new Dictionary<int, string>();
 
-        public Form1()
+        public FormMain()
         {
+            // Denne "metode" må sådan set ikke bruges til andet end initialisering.
+            // Derfor bruger man OnLoad i stedet.
+            Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
-            AddServer(25565, "", "Esperanto server");
-            networkClient = new NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
+            // Resize logik
+            SetStyle(ControlStyles.ResizeRedraw, true);
+            DoubleBuffered = true;
         }
 
         public void OnMessage(int userID, string message, long timeStamp)
@@ -52,17 +51,30 @@ namespace Chatrum
 
         private void ServerMenuBtn_Click(object sender, EventArgs e)
         {
-            AddServerMenu.BringToFront();
-        }
+            AddServerPrompt prompt = new AddServerPrompt();
+            switch (prompt.ShowDialog())
+            {
+                case DialogResult.Yes:
+                    //Connect to new server
+                    //If it works, addserver(new server)
+                    if (!int.TryParse(prompt.ServerPortInput.Text, out int serverPort))
+                    {
+                        // Imparsable port.
+                        return;
+                    }
 
-        private void AddServerBtn_Click(object sender, EventArgs e)
-        {
-            AddServerMenu.SendToBack();
-            //Connect to new server
-            //If it works, addserver(new server)
-            AddServer(int.Parse(ServerPortInput.Text), ServerIPInput.Text);
-            ServerPortInput.Text = "";
-            ServerIPInput.Text = "";
+                    if (!IPAddress.TryParse(prompt.ServerIPInput.Text, out _))
+                    {
+                        // Invalid IP address.
+                        return;
+                    }
+
+                    AddServer(serverPort, prompt.ServerIPInput.Text);
+                    break;
+                default:
+                    // Anything other than yes
+                    break;
+            }
         }
 
         public void AddServer(int port, string ip, string server = "Ny server")
@@ -123,12 +135,12 @@ namespace Chatrum
             {
                 return;
             }
+
             networkClient.Disconnect();
             networkClient = new NetworkClient(name, serverText.Text, servers[serverText.Text].port);
             ServerName.Text = serverText.Text;
             MessageContainer.Controls.Clear();
         }
-
 
         public void AddMessage(string message, string sender, /*DateTime*/ long date)
         {
@@ -200,7 +212,6 @@ namespace Chatrum
             }
         }
 
-
         private void MessageBox_Enter(object sender, EventArgs e)
         {
             if (MessageBox.Text == "Skriv din besked her...")
@@ -208,7 +219,6 @@ namespace Chatrum
                 MessageBox.Text = "";
             }
         }
-
 
         private void MessageBox_Leave(object sender, EventArgs e)
         {
@@ -218,81 +228,47 @@ namespace Chatrum
             }
         }
 
-
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
-
+            AddServer(25565, "", "Esperanto server");
+            networkClient = new NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void checkBoxClose_CheckedChanged(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void checkBoxResizeFull_CheckedChanged(object sender, EventArgs e)
         {
-
+            WindowState = checkBoxResizeFull.Checked ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
-        private void label13_Click(object sender, EventArgs e)
+        private void checkBoxMinimize_CheckedChanged(object sender, EventArgs e)
         {
+            if (!checkBoxMinimize.Checked)
+            {
+                // prevent recursion.
+                return;
+            }
 
+            WindowState = FormWindowState.Minimized;
+            checkBoxMinimize.Checked = false;
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void panelTopBorderControls_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Left)
+            {
+                NativeFunctions.ReleaseCapture();
+                NativeFunctions.SendMessage(Handle, NativeFunctions.WM_NCLBUTTONDOWN, NativeFunctions.HT_CAPTION, 0);
+            }
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        private void buttonSettings_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void MessageBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void AddServerMenu_Paint(object sender, PaintEventArgs e)
-        {
-
+            SettingsWindow settings = new SettingsWindow();
+            settings.Show();
         }
     }
 }
