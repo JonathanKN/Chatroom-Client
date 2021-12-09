@@ -81,7 +81,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Downloads\Chatroom-Client-main\Chatroom-Client-main\Chatroom Client Backend\Chatroom Client Backend.csproj">
+    <ProjectReference Include="..\Chatroom-Client\Chatroom Client Backend\Chatroom Client Backend.csproj">
       <Project>{77cc37e5-9074-444f-be62-9480e7152d5e}</Project>
       <Name>Chatroom Client Backend</Name>
     </ProjectReference>

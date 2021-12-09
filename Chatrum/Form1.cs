@@ -26,8 +26,6 @@ namespace Chatrum
             InitializeComponent();
             AddServer(25565, "", "Esperanto server");
             networkClient = new NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
-
-            
         }
 
         public void OnMessage(int userID, string message, long timeStamp)
