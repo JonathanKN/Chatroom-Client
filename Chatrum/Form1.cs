@@ -59,7 +59,11 @@ namespace Chatrum
             AddServerMenu.SendToBack();
             //Connect to new server
             //If it works, addserver(new server)
-            AddServer(int.Parse(ServerPortInput.Text), ServerIPInput.Text);
+            if (ServerPortInput.Text != null && ServerIPInput.Text != null)
+            {
+                AddServer(int.Parse(ServerPortInput.Text), ServerIPInput.Text);
+            }
+            
             ServerPortInput.Text = "";
             ServerIPInput.Text = "";
         }

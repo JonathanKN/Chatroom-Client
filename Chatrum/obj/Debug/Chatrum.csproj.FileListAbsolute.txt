@@ -11,3 +11,16 @@ C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.
 C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CopyComplete
 C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.exe
 C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.pdb
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\bin\Debug\Chatrum.exe.config
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\bin\Debug\Chatrum.exe
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\bin\Debug\Chatrum.pdb
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\bin\Debug\Chatroom Client Backend.dll
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\bin\Debug\Chatroom Client Backend.pdb
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.csproj.AssemblyReference.cache
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.Form1.resources
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.Properties.Resources.resources
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.csproj.GenerateResource.cache
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.csproj.CoreCompileInputs.cache
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.csproj.CopyComplete
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.exe
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client2\Chatrum\obj\Debug\Chatrum.pdb
