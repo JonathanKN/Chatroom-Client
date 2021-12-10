@@ -46,5 +46,17 @@ namespace Chatrum.Properties {
                 this["MessageSound"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Person")]
+        public string Nickname {
+            get {
+                return ((string)(this["Nickname"]));
+            }
+            set {
+                this["Nickname"] = value;
+            }
+        }
     }
 }

@@ -8,5 +8,8 @@
     <Setting Name="MessageSound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="Nickname" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Person</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

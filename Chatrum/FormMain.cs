@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using Chatroom_Client_Backend;
 
 namespace Chatrum
 {
@@ -12,8 +11,8 @@ namespace Chatrum
     {
         public Dictionary<string, Server> servers = new Dictionary<string, Server>();
 
-        private string name = "Johnny";
-        private NetworkClient networkClient;
+        private string name = "Person";
+        private Chatroom_Client_Backend.NetworkClient networkClient;
         private Dictionary<int, string> users = new Dictionary<int, string>();
 
         public FormMain()
@@ -25,6 +24,12 @@ namespace Chatrum
             // Resize logik
             SetStyle(ControlStyles.ResizeRedraw, true);
             DoubleBuffered = true;
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            AddServer(25565, "", "Esperanto server");
+            //networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
         }
 
         public void OnMessage(int userID, string message, long timeStamp)
@@ -47,6 +52,22 @@ namespace Chatrum
         {
             RemoveOnlinePerson(users[userID]);
             users.Remove(userID);
+        }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            SettingsWindow settings = new SettingsWindow(name);
+            //settings.Show();
+            switch (settings.ShowDialog())
+            {
+                case DialogResult.Yes:
+                    networkClient.ChangeName(settings.name);
+                    name = settings.name;
+                    break;
+                default:
+                    // Anything other than yes
+                    break;
+            }
         }
 
         private void ServerMenuBtn_Click(object sender, EventArgs e)
@@ -136,8 +157,8 @@ namespace Chatrum
                 return;
             }
 
-            networkClient.Disconnect();
-            networkClient = new NetworkClient(name, serverText.Text, servers[serverText.Text].port);
+            //networkClient.Disconnect();
+            //networkClient = new Chatroom_Client_Backend.NetworkClient(name, serverText.Text, servers[serverText.Text].port);
             ServerName.Text = serverText.Text;
             MessageContainer.Controls.Clear();
         }
@@ -207,7 +228,7 @@ namespace Chatrum
             if (key.KeyCode == Keys.Enter && MessageBox.TextLength > 0)
             {
                 AddMessage(MessageBox.Text, "Johnny", (long)DateTime.Now.Ticks);
-                networkClient.SendMessage(MessageBox.Text);
+                //networkClient.SendMessage(MessageBox.Text);
                 MessageBox.Text = "";
             }
         }
@@ -226,12 +247,6 @@ namespace Chatrum
             {
                 MessageBox.Text = "Skriv din besked her...";
             }
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            AddServer(25565, "", "Esperanto server");
-            networkClient = new NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
         }
 
         private void checkBoxClose_CheckedChanged(object sender, EventArgs e)
@@ -265,10 +280,5 @@ namespace Chatrum
             }
         }
 
-        private void buttonSettings_Click(object sender, EventArgs e)
-        {
-            SettingsWindow settings = new SettingsWindow();
-            settings.Show();
-        }
     }
 }

@@ -7,8 +7,11 @@ namespace Chatrum
 {
     public partial class SettingsWindow : Form
     {
-        public SettingsWindow()
+        public string name;
+
+        public SettingsWindow(string userName)
         {
+            name = userName;
             Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
         }
@@ -20,6 +23,8 @@ namespace Chatrum
 
         private void AddServerPrompt_Load(object sender, EventArgs e)
         {
+            NameTextBox.Text = name;
+
             // populate language selection
             comboBoxLanguageSelection.Items.Clear();
             comboBoxLanguageSelection.Items.Add("Dansk");
@@ -40,6 +45,7 @@ namespace Chatrum
 
         private void AddServerBtn_Click(object sender, EventArgs e)
         {
+            name = NameTextBox.Text;
             Close();
         }
 
@@ -80,6 +86,11 @@ namespace Chatrum
         private void checkBoxMessageSound_CheckedChanged(object sender, EventArgs e)
         {
             UpdateMessageSoundSetting(checkBoxMessageSound.Checked);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

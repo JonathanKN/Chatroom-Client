@@ -135,50 +135,11 @@
   <data name="splitContainer2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="splitContainer2.IsSplitterFixed" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="splitContainer2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="splitContainer2.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
-  </data>
-  <data name="buttonSettings.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="buttonSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="buttonSettings.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
-  </data>
-  <data name="buttonSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="buttonSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 34</value>
-  </data>
-  <data name="buttonSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="buttonSettings.Text" xml:space="preserve">
-    <value>&amp;Indstilling</value>
-  </data>
-  <data name="&gt;&gt;buttonSettings.Name" xml:space="preserve">
-    <value>buttonSettings</value>
-  </data>
-  <data name="&gt;&gt;buttonSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonSettings.Parent" xml:space="preserve">
-    <value>splitContainer2.Panel1</value>
-  </data>
-  <data name="&gt;&gt;buttonSettings.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="ServerList.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom</value>
@@ -190,13 +151,13 @@
     <value>TopDown</value>
   </data>
   <data name="ServerList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 70</value>
+    <value>33, 70</value>
   </data>
   <data name="ServerList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 14, 3</value>
   </data>
   <data name="ServerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 134</value>
+    <value>166, 139</value>
   </data>
   <data name="ServerList.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -214,7 +175,7 @@
     <value>splitContainer2.Panel1</value>
   </data>
   <data name="&gt;&gt;ServerList.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="ServerMenuBtn.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -226,7 +187,7 @@
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="ServerMenuBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 16</value>
+    <value>50, 13</value>
   </data>
   <data name="ServerMenuBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 34</value>
@@ -247,7 +208,7 @@
     <value>splitContainer2.Panel1</value>
   </data>
   <data name="&gt;&gt;ServerMenuBtn.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;splitContainer2.Panel1.Name" xml:space="preserve">
     <value>splitContainer2.Panel1</value>
@@ -259,6 +220,42 @@
     <value>splitContainer2</value>
   </data>
   <data name="&gt;&gt;splitContainer2.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonSettings.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="buttonSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="buttonSettings.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="buttonSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 72</value>
+  </data>
+  <data name="buttonSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 34</value>
+  </data>
+  <data name="buttonSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonSettings.Text" xml:space="preserve">
+    <value>&amp;Indstilling</value>
+  </data>
+  <data name="&gt;&gt;buttonSettings.Name" xml:space="preserve">
+    <value>buttonSettings</value>
+  </data>
+  <data name="&gt;&gt;buttonSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSettings.Parent" xml:space="preserve">
+    <value>splitContainer2.Panel2</value>
+  </data>
+  <data name="&gt;&gt;buttonSettings.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;splitContainer2.Panel2.Name" xml:space="preserve">
@@ -277,7 +274,7 @@
     <value>233, 357</value>
   </data>
   <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
-    <value>207</value>
+    <value>212</value>
   </data>
   <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>

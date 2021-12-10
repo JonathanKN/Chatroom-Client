@@ -32,6 +32,7 @@ namespace Chatrum
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.ServerList = new System.Windows.Forms.FlowLayoutPanel();
             this.ServerMenuBtn = new System.Windows.Forms.Button();
             this.MessageContainer = new System.Windows.Forms.FlowLayoutPanel();
@@ -44,17 +45,17 @@ namespace Chatrum
             this.ServerNameHeader = new System.Windows.Forms.Panel();
             this.ServerName = new System.Windows.Forms.Label();
             this.panelTopBorderControls = new System.Windows.Forms.Panel();
+            this.flowLayoutPanelWindowButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBoxMinimize = new System.Windows.Forms.CheckBox();
             this.checkBoxResizeFull = new System.Windows.Forms.CheckBox();
             this.checkBoxClose = new System.Windows.Forms.CheckBox();
-            this.buttonSettings = new System.Windows.Forms.Button();
-            this.flowLayoutPanelWindowButtons = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -89,9 +90,24 @@ namespace Chatrum
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.buttonSettings);
             this.splitContainer2.Panel1.Controls.Add(this.ServerList);
             this.splitContainer2.Panel1.Controls.Add(this.ServerMenuBtn);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.buttonSettings);
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.BackColor = System.Drawing.Color.DarkGray;
+            resources.ApplyResources(this.buttonSettings, "buttonSettings");
+            this.buttonSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.UseVisualStyleBackColor = false;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // ServerList
             // 
@@ -181,6 +197,14 @@ namespace Chatrum
             this.panelTopBorderControls.Name = "panelTopBorderControls";
             this.panelTopBorderControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDown);
             // 
+            // flowLayoutPanelWindowButtons
+            // 
+            this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxMinimize);
+            this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxResizeFull);
+            this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxClose);
+            resources.ApplyResources(this.flowLayoutPanelWindowButtons, "flowLayoutPanelWindowButtons");
+            this.flowLayoutPanelWindowButtons.Name = "flowLayoutPanelWindowButtons";
+            // 
             // checkBoxMinimize
             // 
             resources.ApplyResources(this.checkBoxMinimize, "checkBoxMinimize");
@@ -202,26 +226,6 @@ namespace Chatrum
             this.checkBoxClose.UseVisualStyleBackColor = true;
             this.checkBoxClose.CheckedChanged += new System.EventHandler(this.checkBoxClose_CheckedChanged);
             // 
-            // buttonSettings
-            // 
-            this.buttonSettings.BackColor = System.Drawing.Color.DarkGray;
-            resources.ApplyResources(this.buttonSettings, "buttonSettings");
-            this.buttonSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.buttonSettings.FlatAppearance.BorderSize = 0;
-            this.buttonSettings.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.UseVisualStyleBackColor = false;
-            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
-            // flowLayoutPanelWindowButtons
-            // 
-            this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxMinimize);
-            this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxResizeFull);
-            this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxClose);
-            resources.ApplyResources(this.flowLayoutPanelWindowButtons, "flowLayoutPanelWindowButtons");
-            this.flowLayoutPanelWindowButtons.Name = "flowLayoutPanelWindowButtons";
-            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -237,6 +241,7 @@ namespace Chatrum
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
