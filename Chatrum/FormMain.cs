@@ -31,6 +31,11 @@ namespace Chatrum
         {
             AddServer(25565, "10.29.139.215", "Esperanto server");
             networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
+            while (true)
+            {
+                networkClient.Update();
+                System.Threading.Thread.Sleep(1000 / 60);
+            }
         }
 
         public void OnMessage(int userID, string message, DateTime timeStamp)
