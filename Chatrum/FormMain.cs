@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Threading;
@@ -31,11 +32,7 @@ namespace Chatrum
         {
             AddServer(25565, "10.29.139.215", "Esperanto server");
             networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
-            while (true)
-            {
-                networkClient.Update();
-                System.Threading.Thread.Sleep(1000 / 60);
-            }
+            backgroundWorkerMessagePull.RunWorkerAsync();
         }
 
         public void OnMessage(int userID, string message, DateTime timeStamp)
@@ -107,19 +104,22 @@ namespace Chatrum
 
         public void AddServer(int port, string ip, string server = "Ny server")
         {
-            Panel serverBox = new Panel();
-            Label serverText = new Label();
-            serverText.Text = server;
-            serverText.Dock = DockStyle.Fill;
-            serverText.TextAlign = ContentAlignment.MiddleLeft;
-            serverText.Padding = new Padding(12, 0, 0, 0);
-            serverText.Font = new Font("Microsoft Sans Serif", 11);
+            Label serverText = new Label
+            {
+                Text = server,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(12, 0, 0, 0),
+                Font = new Font("Microsoft Sans Serif", 11)
+            };
 
+            Panel serverBox = new Panel
+            {
+                Width = ServerList.Width - 17,
+                Height = 40,
+                Margin = new Padding(0)
+            };
             serverBox.Controls.Add(serverText);
-
-            serverBox.Width = ServerList.Width-17;
-            serverBox.Height = 40;
-            serverBox.Margin = new Padding(0);
 
             ServerList.Controls.Add(serverBox);
 
@@ -287,5 +287,9 @@ namespace Chatrum
             }
         }
 
+        private void backgroundWorkerMessagePull_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+        }
     }
 }

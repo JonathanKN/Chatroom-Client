@@ -103,6 +103,7 @@ namespace Chatrum
             resources.ApplyResources(this.ServerList, "ServerList");
             this.ServerList.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ServerList.Name = "ServerList";
+            this.ServerList.TabStop = true;
             // 
             // ServerMenuBtn
             // 
@@ -145,7 +146,9 @@ namespace Chatrum
             // OnlineList
             // 
             resources.ApplyResources(this.OnlineList, "OnlineList");
+            this.OnlineList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OnlineList.Name = "OnlineList";
+            this.OnlineList.TabStop = true;
             // 
             // label2
             // 
@@ -165,6 +168,7 @@ namespace Chatrum
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
             this.panel4.Controls.Add(this.MessageBox);
+            this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel4.Name = "panel4";
             // 
             // MessageBox
@@ -194,6 +198,7 @@ namespace Chatrum
             // panelTopBorderControls
             // 
             resources.ApplyResources(this.panelTopBorderControls, "panelTopBorderControls");
+            this.panelTopBorderControls.BackColor = System.Drawing.SystemColors.Control;
             this.panelTopBorderControls.Controls.Add(this.flowLayoutPanelWindowButtons);
             this.panelTopBorderControls.Name = "panelTopBorderControls";
             this.panelTopBorderControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDown);

@@ -126,13 +126,10 @@
     <value>NoControl</value>
   </data>
   <data name="AddServerBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 247</value>
-  </data>
-  <data name="AddServerBtn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>43, 201</value>
   </data>
   <data name="AddServerBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 55</value>
+    <value>131, 45</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AddServerBtn.TabIndex" type="System.Int32, mscorlib">
@@ -160,13 +157,13 @@
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="ServerPortInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 12</value>
+    <value>5, 10</value>
   </data>
   <data name="ServerPortInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 12, 7, 6</value>
+    <value>5, 10, 5, 5</value>
   </data>
   <data name="ServerPortInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 29</value>
+    <value>181, 23</value>
   </data>
   <data name="ServerPortInput.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -184,16 +181,13 @@
     <value>0</value>
   </data>
   <data name="panel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 169</value>
-  </data>
-  <data name="panel5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>17, 137</value>
   </data>
   <data name="panel5.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 12, 0, 0</value>
+    <value>5, 10, 0, 0</value>
   </data>
   <data name="panel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 52</value>
+    <value>186, 42</value>
   </data>
   <data name="panel5.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -220,13 +214,10 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 132</value>
-  </data>
-  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>12, 107</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 31</value>
+    <value>125, 26</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -253,13 +244,13 @@
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="ServerIPInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 12</value>
+    <value>5, 10</value>
   </data>
   <data name="ServerIPInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 12, 7, 6</value>
+    <value>5, 10, 5, 5</value>
   </data>
   <data name="ServerIPInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>241, 29</value>
+    <value>181, 23</value>
   </data>
   <data name="ServerIPInput.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -277,16 +268,13 @@
     <value>0</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 58</value>
-  </data>
-  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>17, 47</value>
   </data>
   <data name="panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 12, 0, 0</value>
+    <value>5, 10, 0, 0</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 52</value>
+    <value>186, 42</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -313,13 +301,10 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 22</value>
-  </data>
-  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
+    <value>12, 18</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 31</value>
+    <value>109, 26</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -349,16 +334,13 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="buttonClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 1</value>
-  </data>
-  <data name="buttonClose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>199, 1</value>
   </data>
   <data name="buttonClose.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="buttonClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 31</value>
+    <value>25, 25</value>
   </data>
   <data name="buttonClose.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -382,13 +364,10 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>299, 321</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>224, 261</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
