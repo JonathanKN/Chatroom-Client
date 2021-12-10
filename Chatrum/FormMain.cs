@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using Chatroom_Client_Backend;
 
 namespace Chatrum
 {
