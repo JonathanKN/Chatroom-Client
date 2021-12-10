@@ -33,7 +33,7 @@ namespace Chatrum
             //networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
         }
 
-        public void OnMessage(int userID, string message, long timeStamp)
+        public void OnMessage(int userID, string message, DateTime timeStamp)
         {
             AddMessage(message, users[userID], timeStamp);
         }
@@ -62,7 +62,7 @@ namespace Chatrum
             switch (settings.ShowDialog())
             {
                 case DialogResult.Yes:
-                    networkClient.ChangeName(settings.name);
+                    //networkClient.ChangeName(settings.name);
                     name = settings.name;
                     break;
                 default:
@@ -82,15 +82,17 @@ namespace Chatrum
                     if (!int.TryParse(prompt.ServerPortInput.Text, out int serverPort))
                     {
                         // Imparsable port.
+                        Console.WriteLine("Imparsable port");
                         return;
                     }
 
                     if (!IPAddress.TryParse(prompt.ServerIPInput.Text, out _))
                     {
                         // Invalid IP address.
+                        Console.WriteLine("Invalid IP address");
                         return;
                     }
-
+                    Console.WriteLine("Ny server");
                     AddServer(serverPort, prompt.ServerIPInput.Text);
                     break;
                 default:
@@ -164,7 +166,7 @@ namespace Chatrum
             MessageContainer.Controls.Clear();
         }
 
-        public void AddMessage(string message, string sender, /*DateTime*/ long date)
+        public void AddMessage(string message, string sender, DateTime date)
         {
             MessageContainer.SuspendLayout();
             Label messageLabel = new Label();
@@ -228,7 +230,7 @@ namespace Chatrum
         {
             if (key.KeyCode == Keys.Enter && MessageBox.TextLength > 0)
             {
-                AddMessage(MessageBox.Text, "Johnny", (long)DateTime.Now.Ticks);
+                AddMessage(MessageBox.Text, name, DateTime.Now);
                 //networkClient.SendMessage(MessageBox.Text);
                 MessageBox.Text = "";
             }

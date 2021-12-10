@@ -32,9 +32,9 @@ namespace Chatrum
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.buttonSettings = new System.Windows.Forms.Button();
             this.ServerList = new System.Windows.Forms.FlowLayoutPanel();
             this.ServerMenuBtn = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
             this.MessageContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.OnlineList = new System.Windows.Forms.FlowLayoutPanel();
@@ -97,18 +97,6 @@ namespace Chatrum
             // 
             this.splitContainer2.Panel2.Controls.Add(this.buttonSettings);
             // 
-            // buttonSettings
-            // 
-            this.buttonSettings.BackColor = System.Drawing.Color.DarkGray;
-            resources.ApplyResources(this.buttonSettings, "buttonSettings");
-            this.buttonSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.buttonSettings.FlatAppearance.BorderSize = 0;
-            this.buttonSettings.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.UseVisualStyleBackColor = false;
-            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
-            // 
             // ServerList
             // 
             resources.ApplyResources(this.ServerList, "ServerList");
@@ -126,6 +114,18 @@ namespace Chatrum
             this.ServerMenuBtn.Name = "ServerMenuBtn";
             this.ServerMenuBtn.UseVisualStyleBackColor = false;
             this.ServerMenuBtn.Click += new System.EventHandler(this.ServerMenuBtn_Click);
+            // 
+            // buttonSettings
+            // 
+            resources.ApplyResources(this.buttonSettings, "buttonSettings");
+            this.buttonSettings.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSettings.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.UseVisualStyleBackColor = false;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // MessageContainer
             // 

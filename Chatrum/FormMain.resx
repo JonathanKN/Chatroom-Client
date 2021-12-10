@@ -135,6 +135,9 @@
   <data name="splitContainer2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="splitContainer2.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="splitContainer2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -151,13 +154,13 @@
     <value>TopDown</value>
   </data>
   <data name="ServerList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>33, 70</value>
+    <value>34, 70</value>
   </data>
   <data name="ServerList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 14, 3</value>
   </data>
   <data name="ServerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 139</value>
+    <value>166, 134</value>
   </data>
   <data name="ServerList.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -187,7 +190,7 @@
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="ServerMenuBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>50, 13</value>
+    <value>52, 13</value>
   </data>
   <data name="ServerMenuBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 34</value>
@@ -222,6 +225,9 @@
   <data name="&gt;&gt;splitContainer2.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="buttonSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="buttonSettings.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
@@ -235,10 +241,10 @@
     <value>NoControl</value>
   </data>
   <data name="buttonSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 72</value>
+    <value>64, 41</value>
   </data>
   <data name="buttonSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 34</value>
+    <value>98, 36</value>
   </data>
   <data name="buttonSettings.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -274,7 +280,7 @@
     <value>233, 357</value>
   </data>
   <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
-    <value>212</value>
+    <value>207</value>
   </data>
   <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -472,7 +478,7 @@
     <value>150</value>
   </data>
   <data name="MessageBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>682, 22</value>
+    <value>363, 22</value>
   </data>
   <data name="MessageBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -502,7 +508,7 @@
     <value>5, 6, 5, 5</value>
   </data>
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>692, 36</value>
+    <value>373, 36</value>
   </data>
   <data name="panel4.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

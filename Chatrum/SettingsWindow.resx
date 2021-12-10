@@ -193,7 +193,7 @@
     <value>Popup</value>
   </data>
   <data name="comboBoxLanguageSelection.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 12pt</value>
+    <value>Microsoft Sans Serif, 14pt</value>
   </data>
   <data name="comboBoxLanguageSelection.Items" xml:space="preserve">
     <value>Dansk</value>
@@ -205,7 +205,7 @@
     <value>17, 138</value>
   </data>
   <data name="comboBoxLanguageSelection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 28</value>
+    <value>186, 32</value>
   </data>
   <data name="comboBoxLanguageSelection.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -232,7 +232,7 @@
     <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="checkBoxMessageSound.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 191</value>
+    <value>12, 200</value>
   </data>
   <data name="checkBoxMessageSound.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 33</value>
@@ -289,7 +289,7 @@
     <value>1</value>
   </data>
   <data name="NameTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 17pt</value>
+    <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="NameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 56</value>
@@ -298,7 +298,7 @@
     <value>32</value>
   </data>
   <data name="NameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 33</value>
+    <value>185, 30</value>
   </data>
   <data name="NameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
