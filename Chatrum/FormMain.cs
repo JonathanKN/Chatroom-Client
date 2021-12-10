@@ -31,6 +31,7 @@ namespace Chatrum
         private void FormMain_Load(object sender, EventArgs e)
         {
             AddServer(25565, "10.29.139.215", "Esperanto server");
+            AddServer(25565, "10.29.139.215", "Esperanto server2");
             networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
             backgroundWorkerMessagePull.RunWorkerAsync();
         }
@@ -102,71 +103,32 @@ namespace Chatrum
             }
         }
 
-        public void AddServer(int port, string ip, string server = "Ny server")
+        public void AddServer(int port, string ip, string servername = "Ny server")
         {
-            Label serverText = new Label
-            {
-                Text = server,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(12, 0, 0, 0),
-                Font = new Font("Microsoft Sans Serif", 11)
-            };
+            ServerListEntry listEntry = new ServerListEntry(
+                ServerList.Width - 17,
+                servername,
+                ServerListEntry_Clicked,
+                ServerList);
 
-            Panel serverBox = new Panel
-            {
-                Width = ServerList.Width - 17,
-                Height = 40,
-                Margin = new Padding(0)
-            };
-            serverBox.Controls.Add(serverText);
-
-            ServerList.Controls.Add(serverBox);
-
-            if (ServerList.Controls.IndexOf(serverBox) % 2 == 0)
-            {
-                serverBox.BackColor = Color.DarkGray;
-            }
-            else
-            {
-                serverBox.BackColor = Color.Gray;
-            }
-
-            serverText.MouseEnter += ServerText_MouseEnter;
-            serverText.MouseLeave += ServerText_MouseLeave;
-            serverText.MouseClick += ServerText_MouseClick;
+            ServerList.Controls.Add(listEntry);
 
             Server s = new Server();
             s.port = port;
             s.ip = ip;
-            servers.Add(server, s);
+            servers.Add(servername, s);
         }
 
-        private void ServerText_MouseEnter(object sender, EventArgs e)
+        private void ServerListEntry_Clicked(string servername)
         {
-            Label serverText = sender as Label;
-            Panel serverBox = serverText.Parent as Panel;
-            serverBox.BackColor = Color.FromArgb(serverBox.BackColor.R - 20, serverBox.BackColor.R - 20, serverBox.BackColor.R - 20);
-        }
-
-        private void ServerText_MouseLeave(object sender, EventArgs e)
-        {
-            Label serverText = sender as Label;
-            Panel serverBox = serverText.Parent as Panel;
-            serverBox.BackColor = Color.FromArgb(serverBox.BackColor.R + 20, serverBox.BackColor.R + 20, serverBox.BackColor.R + 20);
-        }
-
-        private void ServerText_MouseClick(object sender, EventArgs e)
-        {
-            Label serverText = sender as Label;
-            if (ServerName.Text == serverText.Text)
+            if (ServerName.Text == servername)
             {
                 return;
             }
 
             networkClient.Disconnect();
-            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers[serverText.Text].ip, servers[serverText.Text].port);
-            ServerName.Text = serverText.Text;
+            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers[servername].ip, servers[servername].port);
+            ServerName.Text = servername;
             MessageContainer.Controls.Clear();
         }
 
