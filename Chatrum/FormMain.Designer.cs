@@ -49,6 +49,7 @@ namespace Chatrum
             this.checkBoxMinimize = new System.Windows.Forms.CheckBox();
             this.checkBoxResizeFull = new System.Windows.Forms.CheckBox();
             this.checkBoxClose = new System.Windows.Forms.CheckBox();
+            this.backgroundWorkerMessagePull = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -226,6 +227,10 @@ namespace Chatrum
             this.checkBoxClose.UseVisualStyleBackColor = true;
             this.checkBoxClose.CheckedChanged += new System.EventHandler(this.checkBoxClose_CheckedChanged);
             // 
+            // backgroundWorkerMessagePull
+            // 
+            this.backgroundWorkerMessagePull.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMessagePull_DoWork);
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -277,6 +282,7 @@ namespace Chatrum
         private System.Windows.Forms.CheckBox checkBoxMinimize;
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWindowButtons;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerMessagePull;
     }
 }
 
