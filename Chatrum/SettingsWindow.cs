@@ -61,11 +61,13 @@ namespace Chatrum
         private void UpdateLanguageSetting(CultureInfo cultureInfo)
         {
             Properties.Settings.Default.Language = cultureInfo;
+            Properties.Settings.Default.Save();
         }
 
         private void UpdateMessageSoundSetting(bool setting)
         {
             Properties.Settings.Default.MessageSound = setting;
+            Properties.Settings.Default.Save();
         }
 
         private void comboBoxLanguageSelection_SelectedIndexChanged(object sender, EventArgs e)
