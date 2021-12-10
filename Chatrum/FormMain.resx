@@ -154,13 +154,13 @@
     <value>TopDown</value>
   </data>
   <data name="ServerList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 67</value>
+    <value>12, 75</value>
   </data>
   <data name="ServerList.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 14, 3</value>
   </data>
   <data name="ServerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 255</value>
+    <value>195, 246</value>
   </data>
   <data name="ServerList.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -241,7 +241,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 48</value>
+    <value>10, 47</value>
   </data>
   <data name="buttonSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 36</value>
@@ -280,7 +280,7 @@
     <value>220, 425</value>
   </data>
   <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
-    <value>325</value>
+    <value>324</value>
   </data>
   <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -459,6 +459,39 @@
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="pictureBoxPendingMessageIcon.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="pictureBoxPendingMessageIcon.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="pictureBoxPendingMessageIcon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 20</value>
+  </data>
+  <data name="pictureBoxPendingMessageIcon.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="pictureBoxPendingMessageIcon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 28</value>
+  </data>
+  <data name="pictureBoxPendingMessageIcon.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="pictureBoxPendingMessageIcon.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxPendingMessageIcon.Name" xml:space="preserve">
+    <value>pictureBoxPendingMessageIcon</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxPendingMessageIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxPendingMessageIcon.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxPendingMessageIcon.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="panel4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -478,7 +511,7 @@
     <value>150</value>
   </data>
   <data name="MessageBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>594, 22</value>
+    <value>593, 22</value>
   </data>
   <data name="MessageBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -508,7 +541,7 @@
     <value>5, 6, 5, 5</value>
   </data>
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>604, 36</value>
+    <value>603, 36</value>
   </data>
   <data name="panel4.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -523,7 +556,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
@@ -815,6 +848,9 @@
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>56</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

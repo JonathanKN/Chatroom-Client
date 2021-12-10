@@ -38,14 +38,18 @@ namespace Chatrum
             this.ServerIPInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.ServerNicknameInput = new System.Windows.Forms.TextBox();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddServerBtn
             // 
-            this.AddServerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.AddServerBtn, "AddServerBtn");
+            this.AddServerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddServerBtn.Name = "AddServerBtn";
             this.AddServerBtn.UseVisualStyleBackColor = true;
             this.AddServerBtn.Click += new System.EventHandler(this.AddServerBtn_Click);
@@ -97,11 +101,32 @@ namespace Chatrum
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.ServerNicknameInput);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
+            // ServerNicknameInput
+            // 
+            this.ServerNicknameInput.BackColor = System.Drawing.Color.Silver;
+            this.ServerNicknameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.ServerNicknameInput, "ServerNicknameInput");
+            this.ServerNicknameInput.Name = "ServerNicknameInput";
+            // 
             // AddServerPrompt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -119,6 +144,8 @@ namespace Chatrum
             this.panel5.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,5 +161,8 @@ namespace Chatrum
         private System.Windows.Forms.Button buttonClose;
         public System.Windows.Forms.TextBox ServerIPInput;
         public System.Windows.Forms.TextBox ServerPortInput;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.TextBox ServerNicknameInput;
     }
 }

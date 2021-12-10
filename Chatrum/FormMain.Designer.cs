@@ -40,6 +40,7 @@ namespace Chatrum
             this.OnlineList = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBoxPendingMessageIcon = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.MessageBox = new System.Windows.Forms.TextBox();
             this.ServerNameHeader = new System.Windows.Forms.Panel();
@@ -60,6 +61,7 @@ namespace Chatrum
             this.splitContainer2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).BeginInit();
             this.panel4.SuspendLayout();
             this.ServerNameHeader.SuspendLayout();
             this.panelTopBorderControls.SuspendLayout();
@@ -159,9 +161,17 @@ namespace Chatrum
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panel2.Controls.Add(this.pictureBoxPendingMessageIcon);
             this.panel2.Controls.Add(this.panel4);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // pictureBoxPendingMessageIcon
+            // 
+            resources.ApplyResources(this.pictureBoxPendingMessageIcon, "pictureBoxPendingMessageIcon");
+            this.pictureBoxPendingMessageIcon.BackgroundImage = global::Chatrum.Properties.Resources.PendingMessageIcon;
+            this.pictureBoxPendingMessageIcon.Name = "pictureBoxPendingMessageIcon";
+            this.pictureBoxPendingMessageIcon.TabStop = false;
             // 
             // panel4
             // 
@@ -201,6 +211,7 @@ namespace Chatrum
             this.panelTopBorderControls.BackColor = System.Drawing.SystemColors.Control;
             this.panelTopBorderControls.Controls.Add(this.flowLayoutPanelWindowButtons);
             this.panelTopBorderControls.Name = "panelTopBorderControls";
+            this.panelTopBorderControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDoubleClick);
             this.panelTopBorderControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDown);
             // 
             // flowLayoutPanelWindowButtons
@@ -257,6 +268,7 @@ namespace Chatrum
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ServerNameHeader.ResumeLayout(false);
@@ -288,6 +300,7 @@ namespace Chatrum
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWindowButtons;
         private System.ComponentModel.BackgroundWorker backgroundWorkerMessagePull;
+        private System.Windows.Forms.PictureBox pictureBoxPendingMessageIcon;
     }
 }
 

@@ -11,11 +11,23 @@ namespace Chatrum
 {
     public partial class FormMain : Form
     {
-        public Dictionary<string, Server> servers = new Dictionary<string, Server>();
+        public Dictionary<string, Server> Servers = new Dictionary<string, Server>();
 
         private string name = "Person";
+        private Server recentConnectedServer;
         private Chatroom_Client_Backend.NetworkClient networkClient;
         private Dictionary<int, string> users = new Dictionary<int, string>();
+        private byte selfID;
+
+        private byte _pendingMessages;
+        private byte pendingMessages {
+            get => _pendingMessages;
+            set
+            {
+                _pendingMessages = value;
+                pictureBoxPendingMessageIcon.Visible = _pendingMessages > 0;
+            }
+        }
 
         public FormMain()
         {
@@ -30,32 +42,122 @@ namespace Chatrum
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            AddServer(25565, "10.29.139.215", "Esperanto server");
+            AddServer(25565, "127.0.0.1", "Esperanto server");
             AddServer(25565, "10.29.139.215", "Esperanto server2");
-            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
             backgroundWorkerMessagePull.RunWorkerAsync();
+            ConnectToServer("Esperanto server");
         }
 
-        public void OnMessage(int userID, string message, DateTime timeStamp)
+        private void ConnectToServer(string servername)
         {
-            AddMessage(message, users[userID], timeStamp);
+            if (!Servers.TryGetValue(servername, out Server targetServer))
+            {
+                Console.WriteLine($"'{servername}' doesn't exist");
+                return;
+            }
+
+            if (recentConnectedServer == targetServer)
+            {
+                Console.WriteLine("Already connected to server");
+                return;
+            }
+
+            if (!(networkClient is null))
+            {
+                UnregisterServerEvents(networkClient);
+                networkClient.Disconnect();
+            }
+
+            pendingMessages = 0;
+
+            networkClient = new Chatroom_Client_Backend.NetworkClient(
+                name, 
+                targetServer.ip,
+                targetServer.port);
+            RegisterServerEvents(networkClient);
+
+            recentConnectedServer = targetServer;
+
+            ServerName.Text = servername;
+            MessageContainer.Controls.Clear();
+        }
+
+        private void RegisterServerEvents(NetworkClient networkClient)
+        {
+            networkClient.onMessage += OnMessage;
+            networkClient.onUserIDReceived += OnUserIDRecieved;
+            networkClient.onUserInfoReceived += OnUserInfoRecieved;
+            networkClient.onUserLeft += OnUserLeft;
+            networkClient.onLogMessage += OnLogMessage;
+        }
+
+        private void UnregisterServerEvents(NetworkClient networkClient)
+        {
+            networkClient.onMessage -= OnMessage;
+            networkClient.onUserIDReceived -= OnUserIDRecieved;
+            networkClient.onUserInfoReceived -= OnUserInfoRecieved;
+            networkClient.onUserLeft -= OnUserLeft;
+            networkClient.onLogMessage -= OnLogMessage;
+        }
+
+        private void OnLogMessage((string message, DateTime timeStamp) e)
+        {
+            (string message, DateTime timeStamp) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                OnMessage((0, message, timeStamp));
+            });
+
+        }
+
+        public void OnMessage((int userID, string message, DateTime timeStamp) e)
+        {
+            (int userID, string message, DateTime timeStamp) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                string sendername;
+                if (userID == 0)
+                {
+                    sendername = "[Server]";
+                }
+                else if (userID == selfID)
+                {
+                    sendername = name;
+                    pendingMessages--;
+                }
+                else if (!users.TryGetValue(userID, out sendername))
+                {
+                    sendername = "[Invalid name]";
+                }
+
+                AddMessage(message, sendername, timeStamp);
+            });
         }
 
         public void OnUserIDRecieved(int userID)
         {
-            users.Add(userID, "Anonym person");
+            selfID = (byte)userID;
         }
 
-        public void OnUserInfoRecieved(int userID, string userName)
+        public void OnUserInfoRecieved((int userID, string userName) e)
         {
-            users[userID] = userName;
-            AddOnlinePerson(userName);
+            (int userID, string userName) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                // TODO: Dette kommer til at skabe en fejl, når brugerens information
+                // bliver opdateret mere end én gang.
+                users[userID] = userName;
+                AddOnlinePerson(userName);
+            });
         }
 
         public void OnUserLeft(int userID)
         {
-            RemoveOnlinePerson(users[userID]);
-            users.Remove(userID);
+            this.Invoke((MethodInvoker)delegate
+            {
+                RemoveOnlinePerson(users[userID]);
+                users.Remove(userID);
+            });
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -94,8 +196,8 @@ namespace Chatrum
                         Console.WriteLine("Invalid IP address");
                         return;
                     }
-                    Console.WriteLine("Ny server");
-                    AddServer(serverPort, prompt.ServerIPInput.Text);
+
+                    AddServer(serverPort, prompt.ServerIPInput.Text, prompt.ServerNicknameInput.Text);
                     break;
                 default:
                     // Anything other than yes
@@ -103,7 +205,7 @@ namespace Chatrum
             }
         }
 
-        public void AddServer(int port, string ip, string servername = "Ny server")
+        public void AddServer(int port, string ip, string servername)
         {
             ServerListEntry listEntry = new ServerListEntry(
                 ServerList.Width - 17,
@@ -113,93 +215,98 @@ namespace Chatrum
 
             ServerList.Controls.Add(listEntry);
 
-            Server s = new Server();
-            s.port = port;
-            s.ip = ip;
-            servers.Add(servername, s);
+            Server s = new Server
+            {
+                port = port,
+                ip = ip
+            };
+            Servers.Add(servername, s);
         }
 
         private void ServerListEntry_Clicked(string servername)
         {
-            if (ServerName.Text == servername)
-            {
-                return;
-            }
-
-            networkClient.Disconnect();
-            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers[servername].ip, servers[servername].port);
-            ServerName.Text = servername;
-            MessageContainer.Controls.Clear();
+            ConnectToServer(servername);
         }
 
         public void AddMessage(string message, string sender, DateTime date)
         {
             MessageContainer.SuspendLayout();
-            Label messageLabel = new Label();
-            Label senderLebal = new Label();
-            Label dateLabel = new Label();
 
-            messageLabel.Text = message;
-            senderLebal.Text = sender;
-            dateLabel.Text = date.ToString();
+            Label messageLabel = new Label
+            {
+                Text = message,
+                ForeColor = Color.LightGray,
+                Font = new Font("Microsoft Sans Serif", 13),
+                AutoSize = true,
+                Margin = new Padding(20, 0, 0, 10),
+                Width = MessageContainer.Width - OnlineList.Width - 40
+            };
+            MessageContainer.Controls.Add(messageLabel);
 
-            messageLabel.ForeColor = Color.LightGray;
-            senderLebal.ForeColor = Color.LightGray;
-            dateLabel.ForeColor = Color.Gray;
+            FlowLayoutPanel messageSender = new FlowLayoutPanel
+            {
+                AutoSize = true,
+                Margin = new Padding(20, 0, 0, 0)
+            };
 
-            messageLabel.Font = new Font("Microsoft Sans Serif", 13);
-            senderLebal.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold);
-            dateLabel.Font = new Font("Microsoft Sans Serif", 11);
+            Label senderLabel = new Label
+            {
+                ForeColor = Color.LightGray,
+                Text = sender,
+                Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
+                AutoSize = true
+            };
+            messageSender.Controls.Add(senderLabel);
 
-            messageLabel.AutoSize = true;
-            senderLebal.AutoSize = true;
-            dateLabel.AutoSize = true;
-
-            messageLabel.Margin = new Padding(20, 0, 0, 10);
-            messageLabel.Width = MessageContainer.Width - OnlineList.Width - 40;
-
-            FlowLayoutPanel messageSender = new FlowLayoutPanel();
-            messageSender.AutoSize = true;
-            messageSender.Margin = new Padding(20, 0, 0, 0);
-            messageSender.Controls.Add(senderLebal);
+            Label dateLabel = new Label
+            {
+                Text = date.ToString(),
+                ForeColor = Color.Gray,
+                Font = new Font("Microsoft Sans Serif", 11),
+                AutoSize = true
+            };
             messageSender.Controls.Add(dateLabel);
 
-            MessageContainer.Controls.Add(messageLabel);
             MessageContainer.Controls.Add(messageSender);
 
             MessageContainer.Controls.SetChildIndex(messageSender, 0);
             MessageContainer.Controls.SetChildIndex(messageLabel, 0);
             MessageContainer.ResumeLayout();
 
-
             MessageContainer.AutoScrollPosition = new Point(splitContainer1.Panel1.Width, int.MaxValue);
         }
 
         public void AddOnlinePerson(string name)
         {
-            Label person = new Label();
-            person.Text = name;
-            person.Name = name;
-            person.ForeColor = Color.LightGray;
-            person.Font = new Font("Microsoft Sans Serif", 13);
-            person.Margin = new Padding(0,0,0,2);
-            person.AutoSize = true;
+            Label person = new Label
+            {
+                Text = name,
+                Name = $"NameLabel{name}",
+                ForeColor = Color.LightGray,
+                Font = new Font("Microsoft Sans Serif", 13),
+                Margin = new Padding(0, 0, 0, 2),
+                AutoSize = true
+            };
             OnlineList.Controls.Add(person);
         }
 
         public void RemoveOnlinePerson(string name)
         {
-            OnlineList.Controls.Remove(OnlineList.Controls.Find(name, false)[0]);
+            OnlineList.Controls.Remove(OnlineList.Controls.Find($"NameLabel{name}", false)[0]);
         }
 
         private void MessageBox_KeyDown(object sender, KeyEventArgs key)
         {
-            if (key.KeyCode == Keys.Enter && MessageBox.TextLength > 0)
+            if (key.KeyCode != Keys.Enter || MessageBox.TextLength == 0 || networkClient is null)
             {
-                AddMessage(MessageBox.Text, name, DateTime.Now);
-                networkClient.SendMessage(MessageBox.Text);
-                MessageBox.Text = "";
+                return;
             }
+
+            key.Handled = true;
+            //AddMessage(MessageBox.Text, name, DateTime.Now);
+            networkClient.SendMessage(MessageBox.Text);
+            MessageBox.Text = "";
+            pendingMessages++;
         }
 
         private void MessageBox_Enter(object sender, EventArgs e)
@@ -242,16 +349,39 @@ namespace Chatrum
 
         private void panelTopBorderControls_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button != MouseButtons.Left)
             {
-                NativeFunctions.ReleaseCapture();
-                NativeFunctions.SendMessage(Handle, NativeFunctions.WM_NCLBUTTONDOWN, NativeFunctions.HT_CAPTION, 0);
+                return;
             }
+
+            NativeFunctions.ReleaseCapture();
+            NativeFunctions.SendMessage(Handle, NativeFunctions.WM_NCLBUTTONDOWN, NativeFunctions.HT_CAPTION, 0);
         }
 
         private void backgroundWorkerMessagePull_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
+            while (true)
+            {
+                while (sw.ElapsedMilliseconds < 1000 / 10)
+                    Thread.Sleep(0);
+                
+                sw.Restart();
+
+                if (networkClient is null)
+                {
+                    continue;
+                }
+
+                networkClient.Update();
+            }
+        }
+
+        private void panelTopBorderControls_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            checkBoxResizeFull.Checked = !checkBoxResizeFull.Checked;
         }
     }
 }
