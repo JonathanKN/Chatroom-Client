@@ -1,27 +1,8 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe.config
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatrum.pdb
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\eo\Chatrum.resources.dll
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.dll
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.pdb
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csprojAssemblyReference.cache
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.SettingsWindow.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.AddServerPrompt.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.FormMain.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.Properties.Resources.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.SettingsWindow.eo.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.AddServerPrompt.eo.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.FormMain.eo.resources
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.GenerateResource.cache
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CoreCompileInputs.cache
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\eo\Chatrum.resources.dll
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CopyComplete
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.exe
-C:\Users\payth\Documents\GitHub\Chatrum-Client\Chatrum\obj\Debug\Chatrum.pdb
-=======
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatrum.exe.config
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatrum.exe
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatrum.pdb
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\eo\Chatrum.resources.dll
+C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatroom Client Backend.pdb
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.csproj.AssemblyReference.cache
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.SettingsWindow.resources
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.AddServerPrompt.resources
@@ -32,34 +13,7 @@ C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chat
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.FormMain.eo.resources
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.csproj.GenerateResource.cache
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.csproj.CoreCompileInputs.cache
-C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatrum.exe.config
-C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatrum.exe
-C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatrum.pdb
-C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\eo\Chatrum.resources.dll
-C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatroom Client Backend.pdb
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\eo\Chatrum.resources.dll
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.csproj.CopyComplete
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.exe
 C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\obj\Debug\Chatrum.pdb
->>>>>>> Stashed changes
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe.config
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatrum.pdb
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\eo\Chatrum.resources.dll
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.dll
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.pdb
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.AssemblyReference.cache
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.SettingsWindow.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.AddServerPrompt.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.FormMain.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.Properties.Resources.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.SettingsWindow.eo.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.AddServerPrompt.eo.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.FormMain.eo.resources
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.GenerateResource.cache
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CoreCompileInputs.cache
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\eo\Chatrum.resources.dll
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.exe
-C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.pdb
-C:\Users\jakob\OneDrive\Dokumenter\GitHub\Chatrum-Client3\Chatrum\bin\Debug\Chatroom Client Backend.dll
->>>>>>> Stashed changes

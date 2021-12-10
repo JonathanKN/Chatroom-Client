@@ -18,7 +18,9 @@ namespace Chatrum
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            name = NameTextBox.Text;
+            this.DialogResult = DialogResult.Yes;
+            Close();
         }
 
         private void AddServerPrompt_Load(object sender, EventArgs e)
@@ -43,11 +45,6 @@ namespace Chatrum
             checkBoxMessageSound.Checked = Properties.Settings.Default.MessageSound;
         }
 
-        private void AddServerBtn_Click(object sender, EventArgs e)
-        {
-            name = NameTextBox.Text;
-            Close();
-        }
 
         private void AddServerPrompt_MouseDown(object sender, MouseEventArgs e)
         {

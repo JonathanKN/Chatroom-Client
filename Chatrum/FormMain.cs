@@ -29,8 +29,8 @@ namespace Chatrum
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            AddServer(25565, "", "Esperanto server");
-            //networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
+            AddServer(25565, "10.29.139.215", "Esperanto server");
+            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers["Esperanto server"].ip, servers["Esperanto server"].port);
         }
 
         public void OnMessage(int userID, string message, DateTime timeStamp)
@@ -58,11 +58,10 @@ namespace Chatrum
         private void buttonSettings_Click(object sender, EventArgs e)
         {
             SettingsWindow settings = new SettingsWindow(name);
-            //settings.Show();
             switch (settings.ShowDialog())
             {
                 case DialogResult.Yes:
-                    //networkClient.ChangeName(settings.name);
+                    networkClient.ChangeName(settings.name);
                     name = settings.name;
                     break;
                 default:
@@ -160,8 +159,8 @@ namespace Chatrum
                 return;
             }
 
-            //networkClient.Disconnect();
-            //networkClient = new Chatroom_Client_Backend.NetworkClient(name, serverText.Text, servers[serverText.Text].port);
+            networkClient.Disconnect();
+            networkClient = new Chatroom_Client_Backend.NetworkClient(name, servers[serverText.Text].ip, servers[serverText.Text].port);
             ServerName.Text = serverText.Text;
             MessageContainer.Controls.Clear();
         }
@@ -231,7 +230,7 @@ namespace Chatrum
             if (key.KeyCode == Keys.Enter && MessageBox.TextLength > 0)
             {
                 AddMessage(MessageBox.Text, name, DateTime.Now);
-                //networkClient.SendMessage(MessageBox.Text);
+                networkClient.SendMessage(MessageBox.Text);
                 MessageBox.Text = "";
             }
         }

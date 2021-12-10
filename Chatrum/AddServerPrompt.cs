@@ -26,6 +26,7 @@ namespace Chatrum
 
         private void AddServerBtn_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
