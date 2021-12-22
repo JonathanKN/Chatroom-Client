@@ -131,6 +131,9 @@ namespace Chatrum
                 }
 
                 AddMessage(message, sendername, timeStamp);
+                notifyIconMain.BalloonTipTitle = sendername;
+                notifyIconMain.BalloonTipText = message;
+                notifyIconMain.ShowBalloonTip(500);
             });
         }
 
@@ -382,6 +385,32 @@ namespace Chatrum
         private void panelTopBorderControls_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             checkBoxResizeFull.Checked = !checkBoxResizeFull.Checked;
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIconMain.Visible = true;
+            }
+        }
+
+        private void ShowFormAfterMinimized()
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIconMain.Visible = false;
+        }
+
+        private void notifyIconMain_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ShowFormAfterMinimized();
+        }
+
+        private void åbenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowFormAfterMinimized();
         }
     }
 }

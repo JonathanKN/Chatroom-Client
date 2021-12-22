@@ -1,0 +1,21 @@
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.AssemblyReference.cache
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.ServerListEntry.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.SettingsWindow.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.AddServerPrompt.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.FormMain.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.Properties.Resources.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.SettingsWindow.eo.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.AddServerPrompt.eo.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.FormMain.eo.resources
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.GenerateResource.cache
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CoreCompileInputs.cache
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe.config
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatrum.exe
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatrum.pdb
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\eo\Chatrum.resources.dll
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.dll
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\bin\Debug\Chatroom Client Backend.pdb
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\eo\Chatrum.resources.dll
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.exe
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.pdb
+C:\Users\kress\source\repos\Chatrum-Client\Chatrum\obj\Debug\Chatrum.csproj.CopyComplete

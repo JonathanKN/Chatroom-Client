@@ -29,6 +29,7 @@ namespace Chatrum
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -51,6 +52,11 @@ namespace Chatrum
             this.checkBoxResizeFull = new System.Windows.Forms.CheckBox();
             this.checkBoxClose = new System.Windows.Forms.CheckBox();
             this.backgroundWorkerMessagePull = new System.ComponentModel.BackgroundWorker();
+            this.notifyIconMain = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStripNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.åbenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,6 +72,7 @@ namespace Chatrum
             this.ServerNameHeader.SuspendLayout();
             this.panelTopBorderControls.SuspendLayout();
             this.flowLayoutPanelWindowButtons.SuspendLayout();
+            this.contextMenuStripNotifyIcon.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -169,7 +176,6 @@ namespace Chatrum
             // pictureBoxPendingMessageIcon
             // 
             resources.ApplyResources(this.pictureBoxPendingMessageIcon, "pictureBoxPendingMessageIcon");
-            this.pictureBoxPendingMessageIcon.BackgroundImage = global::Chatrum.Properties.Resources.PendingMessageIcon;
             this.pictureBoxPendingMessageIcon.Name = "pictureBoxPendingMessageIcon";
             this.pictureBoxPendingMessageIcon.TabStop = false;
             // 
@@ -247,6 +253,39 @@ namespace Chatrum
             // 
             this.backgroundWorkerMessagePull.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMessagePull_DoWork);
             // 
+            // notifyIconMain
+            // 
+            this.notifyIconMain.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            resources.ApplyResources(this.notifyIconMain, "notifyIconMain");
+            this.notifyIconMain.ContextMenuStrip = this.contextMenuStripNotifyIcon;
+            this.notifyIconMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconMain_MouseDoubleClick);
+            // 
+            // contextMenuStripNotifyIcon
+            // 
+            this.contextMenuStripNotifyIcon.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripNotifyIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.åbenToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.lukToolStripMenuItem});
+            this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
+            resources.ApplyResources(this.contextMenuStripNotifyIcon, "contextMenuStripNotifyIcon");
+            // 
+            // åbenToolStripMenuItem
+            // 
+            this.åbenToolStripMenuItem.Name = "åbenToolStripMenuItem";
+            resources.ApplyResources(this.åbenToolStripMenuItem, "åbenToolStripMenuItem");
+            this.åbenToolStripMenuItem.Click += new System.EventHandler(this.åbenToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // lukToolStripMenuItem
+            // 
+            this.lukToolStripMenuItem.Name = "lukToolStripMenuItem";
+            resources.ApplyResources(this.lukToolStripMenuItem, "lukToolStripMenuItem");
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -256,6 +295,7 @@ namespace Chatrum
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -275,6 +315,7 @@ namespace Chatrum
             this.ServerNameHeader.PerformLayout();
             this.panelTopBorderControls.ResumeLayout(false);
             this.flowLayoutPanelWindowButtons.ResumeLayout(false);
+            this.contextMenuStripNotifyIcon.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -301,6 +342,11 @@ namespace Chatrum
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWindowButtons;
         private System.ComponentModel.BackgroundWorker backgroundWorkerMessagePull;
         private System.Windows.Forms.PictureBox pictureBoxPendingMessageIcon;
+        private System.Windows.Forms.NotifyIcon notifyIconMain;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripNotifyIcon;
+        private System.Windows.Forms.ToolStripMenuItem åbenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem lukToolStripMenuItem;
     }
 }
 
