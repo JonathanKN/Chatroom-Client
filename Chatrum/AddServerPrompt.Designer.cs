@@ -41,6 +41,9 @@ namespace Chatrum
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ServerNicknameInput = new System.Windows.Forms.TextBox();
+            this.labelInvalidIP = new System.Windows.Forms.Label();
+            this.labelInvalidPort = new System.Windows.Forms.Label();
+            this.labelInvalidServerNickname = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,9 +59,9 @@ namespace Chatrum
             // 
             // panel5
             // 
+            resources.ApplyResources(this.panel5, "panel5");
             this.panel5.BackColor = System.Drawing.Color.Silver;
             this.panel5.Controls.Add(this.ServerPortInput);
-            resources.ApplyResources(this.panel5, "panel5");
             this.panel5.Name = "panel5";
             // 
             // ServerPortInput
@@ -75,9 +78,9 @@ namespace Chatrum
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.Controls.Add(this.ServerIPInput);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // ServerIPInput
@@ -108,9 +111,9 @@ namespace Chatrum
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.Color.Silver;
             this.panel2.Controls.Add(this.ServerNicknameInput);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // ServerNicknameInput
@@ -120,11 +123,32 @@ namespace Chatrum
             resources.ApplyResources(this.ServerNicknameInput, "ServerNicknameInput");
             this.ServerNicknameInput.Name = "ServerNicknameInput";
             // 
+            // labelInvalidIP
+            // 
+            resources.ApplyResources(this.labelInvalidIP, "labelInvalidIP");
+            this.labelInvalidIP.ForeColor = System.Drawing.Color.Brown;
+            this.labelInvalidIP.Name = "labelInvalidIP";
+            // 
+            // labelInvalidPort
+            // 
+            resources.ApplyResources(this.labelInvalidPort, "labelInvalidPort");
+            this.labelInvalidPort.ForeColor = System.Drawing.Color.Brown;
+            this.labelInvalidPort.Name = "labelInvalidPort";
+            // 
+            // labelInvalidServerNickname
+            // 
+            resources.ApplyResources(this.labelInvalidServerNickname, "labelInvalidServerNickname");
+            this.labelInvalidServerNickname.ForeColor = System.Drawing.Color.Brown;
+            this.labelInvalidServerNickname.Name = "labelInvalidServerNickname";
+            // 
             // AddServerPrompt
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.Controls.Add(this.labelInvalidServerNickname);
+            this.Controls.Add(this.labelInvalidPort);
+            this.Controls.Add(this.labelInvalidIP);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.buttonClose);
@@ -159,10 +183,13 @@ namespace Chatrum
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonClose;
-        public System.Windows.Forms.TextBox ServerIPInput;
-        public System.Windows.Forms.TextBox ServerPortInput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.TextBox ServerNicknameInput;
+        private System.Windows.Forms.Label labelInvalidIP;
+        private System.Windows.Forms.Label labelInvalidPort;
+        private System.Windows.Forms.Label labelInvalidServerNickname;
+        private System.Windows.Forms.TextBox ServerIPInput;
+        private System.Windows.Forms.TextBox ServerPortInput;
+        private System.Windows.Forms.TextBox ServerNicknameInput;
     }
 }

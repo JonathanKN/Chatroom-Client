@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -6,12 +7,19 @@ namespace Chatrum
 {
     public partial class AddServerPrompt : Form
     {
+        public string IP;
+        public int Port;
+        public string ServerNickname;
+
         public AddServerPrompt()
         {
             Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
             this.AcceptButton = AddServerBtn;
             this.CancelButton = buttonClose;
+            labelInvalidIP.Visible = false;
+            labelInvalidPort.Visible = false;
+            labelInvalidServerNickname.Visible = false;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -26,6 +34,17 @@ namespace Chatrum
 
         private void AddServerBtn_Click(object sender, EventArgs e)
         {
+            labelInvalidPort.Visible = !int.TryParse(ServerPortInput.Text, out Port);
+            labelInvalidIP.Visible = !IPAddress.TryParse(ServerIPInput.Text, out _);
+
+            if (labelInvalidPort.Visible || labelInvalidIP.Visible || labelInvalidServerNickname.Visible)
+            {
+                return;
+            }
+
+            IP = ServerIPInput.Text;
+            ServerNickname = ServerNicknameInput.Text;
+
             this.DialogResult = DialogResult.Yes;
             this.Close();
         }

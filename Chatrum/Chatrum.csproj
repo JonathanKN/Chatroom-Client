@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Chatroom Client Backend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Chatroom Client Backend.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +71,8 @@
     <Compile Include="Controls\ServerListEntry.Designer.cs">
       <DependentUpon>ServerListEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageController.cs" />
+    <Compile Include="ServerListController.cs" />
     <Compile Include="SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>

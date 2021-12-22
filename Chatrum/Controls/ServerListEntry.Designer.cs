@@ -31,6 +31,7 @@ namespace Chatrum
         {
             this.ServernameLabel = new System.Windows.Forms.Label();
             this.ContainerPanel = new System.Windows.Forms.Panel();
+            this.checkBoxConnected = new System.Windows.Forms.CheckBox();
             this.ContainerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +54,7 @@ namespace Chatrum
             // 
             // ContainerPanel
             // 
+            this.ContainerPanel.Controls.Add(this.checkBoxConnected);
             this.ContainerPanel.Controls.Add(this.ServernameLabel);
             this.ContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContainerPanel.Location = new System.Drawing.Point(0, 0);
@@ -60,6 +62,18 @@ namespace Chatrum
             this.ContainerPanel.Name = "ContainerPanel";
             this.ContainerPanel.Size = new System.Drawing.Size(150, 40);
             this.ContainerPanel.TabIndex = 1;
+            // 
+            // checkBoxConnected
+            // 
+            this.checkBoxConnected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxConnected.AutoCheck = false;
+            this.checkBoxConnected.AutoSize = true;
+            this.checkBoxConnected.Location = new System.Drawing.Point(123, 15);
+            this.checkBoxConnected.Name = "checkBoxConnected";
+            this.checkBoxConnected.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxConnected.TabIndex = 1;
+            this.checkBoxConnected.UseVisualStyleBackColor = true;
             // 
             // ServerListEntry
             // 
@@ -70,6 +84,7 @@ namespace Chatrum
             this.Name = "ServerListEntry";
             this.Size = new System.Drawing.Size(150, 40);
             this.ContainerPanel.ResumeLayout(false);
+            this.ContainerPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -77,5 +92,6 @@ namespace Chatrum
         #endregion
         private System.Windows.Forms.Panel ContainerPanel;
         public System.Windows.Forms.Label ServernameLabel;
+        private System.Windows.Forms.CheckBox checkBoxConnected;
     }
 }

@@ -1,33 +1,23 @@
-﻿using System;
+﻿using Chatroom_Client_Backend;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using Chatroom_Client_Backend;
 
 namespace Chatrum
 {
     public partial class FormMain : Form
     {
-        public Dictionary<string, Server> Servers = new Dictionary<string, Server>();
-
         private string name = "Person";
         private Server recentConnectedServer;
-        private Chatroom_Client_Backend.NetworkClient networkClient;
+        private NetworkClient networkClient;
         private Dictionary<int, string> users = new Dictionary<int, string>();
         private byte selfID;
-
-        private byte _pendingMessages;
-        private byte pendingMessages {
-            get => _pendingMessages;
-            set
-            {
-                _pendingMessages = value;
-                pictureBoxPendingMessageIcon.Visible = _pendingMessages > 0;
-            }
-        }
+        private ServerListController serverListController;
+        private MessageController messageController;
 
         public FormMain()
         {
@@ -42,15 +32,18 @@ namespace Chatrum
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            AddServer(25565, "127.0.0.1", "Esperanto server");
-            AddServer(25565, "10.29.139.215", "Esperanto server2");
+            serverListController = new ServerListController(ServerList);
+            messageController = new MessageController(MessageContainer, OnlineList, splitContainer1, pictureBoxPendingMessageIcon, notifyIconMain);
+            
+            serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
+            serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
             backgroundWorkerMessagePull.RunWorkerAsync();
             ConnectToServer("Esperanto server");
         }
 
         private void ConnectToServer(string servername)
         {
-            if (!Servers.TryGetValue(servername, out Server targetServer))
+            if (!serverListController.TryGetServer(servername, out Server targetServer))
             {
                 Console.WriteLine($"'{servername}' doesn't exist");
                 return;
@@ -68,99 +61,14 @@ namespace Chatrum
                 networkClient.Disconnect();
             }
 
-            pendingMessages = 0;
+            networkClient = new NetworkClient(name, targetServer.ip, targetServer.port);
 
-            networkClient = new Chatroom_Client_Backend.NetworkClient(
-                name, 
-                targetServer.ip,
-                targetServer.port);
             RegisterServerEvents(networkClient);
 
             recentConnectedServer = targetServer;
 
             ServerName.Text = servername;
-            MessageContainer.Controls.Clear();
-        }
-
-        private void RegisterServerEvents(NetworkClient networkClient)
-        {
-            networkClient.onMessage += OnMessage;
-            networkClient.onUserIDReceived += OnUserIDRecieved;
-            networkClient.onUserInfoReceived += OnUserInfoRecieved;
-            networkClient.onUserLeft += OnUserLeft;
-            networkClient.onLogMessage += OnLogMessage;
-        }
-
-        private void UnregisterServerEvents(NetworkClient networkClient)
-        {
-            networkClient.onMessage -= OnMessage;
-            networkClient.onUserIDReceived -= OnUserIDRecieved;
-            networkClient.onUserInfoReceived -= OnUserInfoRecieved;
-            networkClient.onUserLeft -= OnUserLeft;
-            networkClient.onLogMessage -= OnLogMessage;
-        }
-
-        private void OnLogMessage((string message, DateTime timeStamp) e)
-        {
-            (string message, DateTime timeStamp) = e;
-            this.Invoke((MethodInvoker)delegate
-            {
-                OnMessage((0, message, timeStamp));
-            });
-
-        }
-
-        public void OnMessage((int userID, string message, DateTime timeStamp) e)
-        {
-            (int userID, string message, DateTime timeStamp) = e;
-            this.Invoke((MethodInvoker)delegate
-            {
-                string sendername;
-                if (userID == 0)
-                {
-                    sendername = "[Server]";
-                }
-                else if (userID == selfID)
-                {
-                    sendername = name;
-                    pendingMessages--;
-                }
-                else if (!users.TryGetValue(userID, out sendername))
-                {
-                    sendername = "[Invalid name]";
-                }
-
-                AddMessage(message, sendername, timeStamp);
-                notifyIconMain.BalloonTipTitle = sendername;
-                notifyIconMain.BalloonTipText = message;
-                notifyIconMain.ShowBalloonTip(500);
-            });
-        }
-
-        public void OnUserIDRecieved(int userID)
-        {
-            selfID = (byte)userID;
-        }
-
-        public void OnUserInfoRecieved((int userID, string userName) e)
-        {
-            (int userID, string userName) = e;
-            this.Invoke((MethodInvoker)delegate
-            {
-                // TODO: Dette kommer til at skabe en fejl, når brugerens information
-                // bliver opdateret mere end én gang.
-                users[userID] = userName;
-                AddOnlinePerson(userName);
-            });
-        }
-
-        public void OnUserLeft(int userID)
-        {
-            this.Invoke((MethodInvoker)delegate
-            {
-                RemoveOnlinePerson(users[userID]);
-                users.Remove(userID);
-            });
+            messageController.ClearMessages();
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -185,98 +93,12 @@ namespace Chatrum
             {
                 case DialogResult.Yes:
                     //Connect to new server
-                    //If it works, addserver(new server)
-                    if (!int.TryParse(prompt.ServerPortInput.Text, out int serverPort))
-                    {
-                        // Imparsable port.
-                        Console.WriteLine("Imparsable port");
-                        return;
-                    }
-
-                    if (!IPAddress.TryParse(prompt.ServerIPInput.Text, out _))
-                    {
-                        // Invalid IP address.
-                        Console.WriteLine("Invalid IP address");
-                        return;
-                    }
-
-                    AddServer(serverPort, prompt.ServerIPInput.Text, prompt.ServerNicknameInput.Text);
+                    serverListController.AddServer(prompt.Port, prompt.IP, prompt.ServerNickname);
                     break;
                 default:
                     // Anything other than yes
                     break;
             }
-        }
-
-        public void AddServer(int port, string ip, string servername)
-        {
-            ServerListEntry listEntry = new ServerListEntry(
-                ServerList.Width - 17,
-                servername,
-                ServerListEntry_Clicked,
-                ServerList);
-
-            ServerList.Controls.Add(listEntry);
-
-            Server s = new Server
-            {
-                port = port,
-                ip = ip
-            };
-            Servers.Add(servername, s);
-        }
-
-        private void ServerListEntry_Clicked(string servername)
-        {
-            ConnectToServer(servername);
-        }
-
-        public void AddMessage(string message, string sender, DateTime date)
-        {
-            MessageContainer.SuspendLayout();
-
-            Label messageLabel = new Label
-            {
-                Text = message,
-                ForeColor = Color.LightGray,
-                Font = new Font("Microsoft Sans Serif", 13),
-                AutoSize = true,
-                Margin = new Padding(20, 0, 0, 10),
-                Width = MessageContainer.Width - OnlineList.Width - 40
-            };
-            MessageContainer.Controls.Add(messageLabel);
-
-            FlowLayoutPanel messageSender = new FlowLayoutPanel
-            {
-                AutoSize = true,
-                Margin = new Padding(20, 0, 0, 0)
-            };
-
-            Label senderLabel = new Label
-            {
-                ForeColor = Color.LightGray,
-                Text = sender,
-                Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
-                AutoSize = true
-            };
-            messageSender.Controls.Add(senderLabel);
-
-            Label dateLabel = new Label
-            {
-                Text = date.ToString(),
-                ForeColor = Color.Gray,
-                Font = new Font("Microsoft Sans Serif", 11),
-                AutoSize = true
-            };
-            messageSender.Controls.Add(dateLabel);
-
-            MessageContainer.Controls.Add(messageSender);
-
-            MessageContainer.Controls.SetChildIndex(messageSender, 0);
-            MessageContainer.Controls.SetChildIndex(messageLabel, 0);
-            MessageContainer.ResumeLayout();
-
-            MessageContainer.AutoScrollPosition = new Point(splitContainer1.Panel1.Width, int.MaxValue);
         }
 
         public void AddOnlinePerson(string name)
@@ -305,11 +127,10 @@ namespace Chatrum
                 return;
             }
 
-            key.Handled = true;
             //AddMessage(MessageBox.Text, name, DateTime.Now);
             networkClient.SendMessage(MessageBox.Text);
             MessageBox.Text = "";
-            pendingMessages++;
+            messageController.MessageSent();
         }
 
         private void MessageBox_Enter(object sender, EventArgs e)
@@ -411,6 +232,86 @@ namespace Chatrum
         private void åbenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowFormAfterMinimized();
+        }
+
+
+        // NETWORK EVENT HANDLING BELOW
+
+
+        private void RegisterServerEvents(NetworkClient networkClient)
+        {
+            networkClient.onMessage += OnMessage;
+            networkClient.onUserIDReceived += OnUserIDRecieved;
+            networkClient.onUserInfoReceived += OnUserInfoRecieved;
+            networkClient.onUserLeft += OnUserLeft;
+            networkClient.onLogMessage += OnLogMessage;
+        }
+
+        private void UnregisterServerEvents(NetworkClient networkClient)
+        {
+            networkClient.onMessage -= OnMessage;
+            networkClient.onUserIDReceived -= OnUserIDRecieved;
+            networkClient.onUserInfoReceived -= OnUserInfoRecieved;
+            networkClient.onUserLeft -= OnUserLeft;
+            networkClient.onLogMessage -= OnLogMessage;
+        }
+
+        private void OnLogMessage((string message, DateTime timeStamp) e)
+        {
+            (string message, DateTime timeStamp) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                OnMessage((0, message, timeStamp));
+            });
+        }
+
+        public void OnMessage((int userID, string message, DateTime timeStamp) e)
+        {
+            (int userID, string message, DateTime timeStamp) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                string sendername;
+                if (userID == 0)
+                {
+                    sendername = "[Server]";
+                }
+                else if (userID == selfID)
+                {
+                    sendername = name;
+                }
+                else if (!users.TryGetValue(userID, out sendername))
+                {
+                    sendername = "[Invalid name]";
+                }
+
+                messageController.ReceivedMessage(userID == selfID, sendername, message, timeStamp);
+            });
+        }
+
+        public void OnUserIDRecieved(int userID)
+        {
+            selfID = (byte)userID;
+        }
+
+        public void OnUserInfoRecieved((int userID, string userName) e)
+        {
+            (int userID, string userName) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                // TODO: Dette kommer til at skabe en fejl, når brugerens information
+                // bliver opdateret mere end én gang.
+                users[userID] = userName;
+                AddOnlinePerson(userName);
+            });
+        }
+
+        public void OnUserLeft(int userID)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                RemoveOnlinePerson(users[userID]);
+                users.Remove(userID);
+            });
         }
     }
 }

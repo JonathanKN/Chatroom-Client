@@ -34,6 +34,8 @@ namespace Chatrum
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ServerList = new System.Windows.Forms.FlowLayoutPanel();
+            this.contextMenuStripServerList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.fjernServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerMenuBtn = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.MessageContainer = new System.Windows.Forms.FlowLayoutPanel();
@@ -65,6 +67,7 @@ namespace Chatrum
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.contextMenuStripServerList.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).BeginInit();
@@ -111,8 +114,21 @@ namespace Chatrum
             // 
             resources.ApplyResources(this.ServerList, "ServerList");
             this.ServerList.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ServerList.ContextMenuStrip = this.contextMenuStripServerList;
             this.ServerList.Name = "ServerList";
             this.ServerList.TabStop = true;
+            // 
+            // contextMenuStripServerList
+            // 
+            this.contextMenuStripServerList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fjernServerToolStripMenuItem});
+            this.contextMenuStripServerList.Name = "contextMenuStripServerList";
+            resources.ApplyResources(this.contextMenuStripServerList, "contextMenuStripServerList");
+            // 
+            // fjernServerToolStripMenuItem
+            // 
+            this.fjernServerToolStripMenuItem.Name = "fjernServerToolStripMenuItem";
+            resources.ApplyResources(this.fjernServerToolStripMenuItem, "fjernServerToolStripMenuItem");
             // 
             // ServerMenuBtn
             // 
@@ -305,6 +321,7 @@ namespace Chatrum
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.contextMenuStripServerList.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -347,6 +364,8 @@ namespace Chatrum
         private System.Windows.Forms.ToolStripMenuItem åbenToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem lukToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripServerList;
+        private System.Windows.Forms.ToolStripMenuItem fjernServerToolStripMenuItem;
     }
 }
 
