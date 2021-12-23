@@ -150,24 +150,6 @@
   <data name="ServerList.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <metadata name="contextMenuStripServerList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>655, 17</value>
-  </metadata>
-  <data name="fjernServerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 22</value>
-  </data>
-  <data name="fjernServerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fjern server</value>
-  </data>
-  <data name="contextMenuStripServerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 26</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripServerList.Name" xml:space="preserve">
-    <value>contextMenuStripServerList</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripServerList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="ServerList.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
   </data>
@@ -208,10 +190,10 @@
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="ServerMenuBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 13</value>
+    <value>12, 13</value>
   </data>
   <data name="ServerMenuBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 34</value>
+    <value>195, 34</value>
   </data>
   <data name="ServerMenuBtn.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1054,13 +1036,13 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="ServerName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>381, 54</value>
+    <value>346, 54</value>
   </data>
   <data name="ServerName.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="ServerName.Text" xml:space="preserve">
-    <value>Esperanto server</value>
+    <value>[Ikke forbundet]</value>
   </data>
   <data name="&gt;&gt;ServerName.Name" xml:space="preserve">
     <value>ServerName</value>
@@ -1135,7 +1117,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;splitContainer1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <metadata name="panelTopBorderControls.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1294,7 +1276,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelTopBorderControls.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="backgroundWorkerMessagePull.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -3345,12 +3327,6 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Chatrum</value>
-  </data>
-  <data name="&gt;&gt;fjernServerToolStripMenuItem.Name" xml:space="preserve">
-    <value>fjernServerToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;fjernServerToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;backgroundWorkerMessagePull.Name" xml:space="preserve">
     <value>backgroundWorkerMessagePull</value>

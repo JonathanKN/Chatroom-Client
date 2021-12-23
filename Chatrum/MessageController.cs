@@ -10,11 +10,11 @@ namespace Chatrum
 {
     public class MessageController
     {
-        private FlowLayoutPanel messageContainer;
-        private SplitContainer splitContainer1;
-        private FlowLayoutPanel onlineList;
-        private PictureBox pendingMessageIcon;
-        private NotifyIcon messageNotifications;
+        private readonly FlowLayoutPanel messageContainer;
+        private readonly SplitContainer splitContainer1;
+        private readonly FlowLayoutPanel onlineList;
+        private readonly PictureBox pendingMessageIcon;
+        private readonly NotifyIcon messageNotifications;
 
         private byte _pendingMessages;
         private byte pendingMessages
@@ -33,6 +33,7 @@ namespace Chatrum
             this.messageContainer = messageContainer;
             this.splitContainer1 = splitContainer1;
             this.pendingMessageIcon = pendingMessageIcon;
+            this.messageNotifications = messageNotifications;
         }
 
         public void MessageSent()

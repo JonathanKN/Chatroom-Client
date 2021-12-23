@@ -11,13 +11,16 @@ namespace Chatrum
 {
     public partial class FormMain : Form
     {
-        private string name = "Person";
+        private const string DefaultUsername = "Person";
+
+        private readonly Dictionary<int, string> users = new Dictionary<int, string>();
+        private string name = DefaultUsername;
         private Server recentConnectedServer;
         private NetworkClient networkClient;
-        private Dictionary<int, string> users = new Dictionary<int, string>();
         private byte selfID;
         private ServerListController serverListController;
         private MessageController messageController;
+        private readonly System.ComponentModel.ComponentResourceManager resources;
 
         public FormMain()
         {
@@ -25,15 +28,28 @@ namespace Chatrum
             // Derfor bruger man OnLoad i stedet.
             Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
-            // Resize logik
+
+            // Resize logic
             SetStyle(ControlStyles.ResizeRedraw, true);
             DoubleBuffered = true;
+
+            // Language logic
+            resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            serverListController = new ServerListController(ServerList);
-            messageController = new MessageController(MessageContainer, OnlineList, splitContainer1, pictureBoxPendingMessageIcon, notifyIconMain);
+            serverListController = new ServerListController(
+                ServerList,
+                (info, name) => ConnectToServer(info, name)
+                );
+
+            messageController = new MessageController(
+                MessageContainer,
+                OnlineList,
+                splitContainer1,
+                pictureBoxPendingMessageIcon,
+                notifyIconMain);
             
             serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
             serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
@@ -49,6 +65,11 @@ namespace Chatrum
                 return;
             }
 
+            ConnectToServer(targetServer, servername);
+        }
+
+        private void ConnectToServer(Server targetServer, string servername)
+        {
             if (recentConnectedServer == targetServer)
             {
                 Console.WriteLine("Already connected to server");
@@ -129,23 +150,25 @@ namespace Chatrum
 
             //AddMessage(MessageBox.Text, name, DateTime.Now);
             networkClient.SendMessage(MessageBox.Text);
-            MessageBox.Text = "";
+            MessageBox.Text = string.Empty;
             messageController.MessageSent();
         }
 
         private void MessageBox_Enter(object sender, EventArgs e)
         {
-            if (MessageBox.Text == "Skriv din besked her...")
+            // If text is default, empty box.
+            if (MessageBox.Text == resources.GetString($"{nameof(MessageBox)}.Text"))
             {
-                MessageBox.Text = "";
+                MessageBox.Text = string.Empty;
             }
         }
 
         private void MessageBox_Leave(object sender, EventArgs e)
         {
-            if (MessageBox.Text == "")
+            // If box is empty, fill box with default text for corresponding language.
+            if (MessageBox.Text == string.Empty)
             {
-                MessageBox.Text = "Skriv din besked her...";
+                MessageBox.Text = resources.GetString($"{nameof(MessageBox)}.Text");
             }
         }
 

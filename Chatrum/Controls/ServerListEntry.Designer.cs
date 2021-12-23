@@ -29,14 +29,19 @@ namespace Chatrum
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ServernameLabel = new System.Windows.Forms.Label();
+            this.contextMenuStripServerList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.fjernServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContainerPanel = new System.Windows.Forms.Panel();
             this.checkBoxConnected = new System.Windows.Forms.CheckBox();
+            this.contextMenuStripServerList.SuspendLayout();
             this.ContainerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ServernameLabel
             // 
+            this.ServernameLabel.ContextMenuStrip = this.contextMenuStripServerList;
             this.ServernameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ServernameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ServernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
@@ -51,6 +56,20 @@ namespace Chatrum
             this.ServernameLabel.Click += new System.EventHandler(this.ServernameLabel_Click);
             this.ServernameLabel.MouseEnter += new System.EventHandler(this.ServernameLabel_MouseEnter);
             this.ServernameLabel.MouseLeave += new System.EventHandler(this.ServernameLabel_MouseLeave);
+            // 
+            // contextMenuStripServerList
+            // 
+            this.contextMenuStripServerList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fjernServerToolStripMenuItem});
+            this.contextMenuStripServerList.Name = "contextMenuStripServerList";
+            this.contextMenuStripServerList.Size = new System.Drawing.Size(135, 26);
+            // 
+            // fjernServerToolStripMenuItem
+            // 
+            this.fjernServerToolStripMenuItem.Name = "fjernServerToolStripMenuItem";
+            this.fjernServerToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.fjernServerToolStripMenuItem.Text = "Fjern server";
+            this.fjernServerToolStripMenuItem.Click += new System.EventHandler(this.fjernServerToolStripMenuItem_Click);
             // 
             // ContainerPanel
             // 
@@ -69,10 +88,12 @@ namespace Chatrum
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxConnected.AutoCheck = false;
             this.checkBoxConnected.AutoSize = true;
-            this.checkBoxConnected.Location = new System.Drawing.Point(123, 15);
+            this.checkBoxConnected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.checkBoxConnected.Location = new System.Drawing.Point(125, 15);
             this.checkBoxConnected.Name = "checkBoxConnected";
-            this.checkBoxConnected.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxConnected.Size = new System.Drawing.Size(13, 12);
             this.checkBoxConnected.TabIndex = 1;
+            this.checkBoxConnected.ThreeState = true;
             this.checkBoxConnected.UseVisualStyleBackColor = true;
             // 
             // ServerListEntry
@@ -83,6 +104,7 @@ namespace Chatrum
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ServerListEntry";
             this.Size = new System.Drawing.Size(150, 40);
+            this.contextMenuStripServerList.ResumeLayout(false);
             this.ContainerPanel.ResumeLayout(false);
             this.ContainerPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -93,5 +115,7 @@ namespace Chatrum
         private System.Windows.Forms.Panel ContainerPanel;
         public System.Windows.Forms.Label ServernameLabel;
         private System.Windows.Forms.CheckBox checkBoxConnected;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripServerList;
+        private System.Windows.Forms.ToolStripMenuItem fjernServerToolStripMenuItem;
     }
 }

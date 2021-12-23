@@ -9,12 +9,14 @@ namespace Chatrum
 {
     public class ServerListController
     {
-        private Dictionary<string, Server> servers = new Dictionary<string, Server>();
-        private FlowLayoutPanel listPanel;
+        private readonly Dictionary<string, Server> servers = new Dictionary<string, Server>();
+        private readonly FlowLayoutPanel listPanel;
+        private readonly Action<string> serverEntryClicked;
 
-        public ServerListController(FlowLayoutPanel serverListPanel)
+        public ServerListController(FlowLayoutPanel serverListPanel, Action<Server, string> serverEntryClicked)
         {
             listPanel = serverListPanel;
+            this.serverEntryClicked = (servername) => serverEntryClicked(servers[servername], servername);
         }
 
         public bool TryGetServer(string servername, out Server server)
@@ -27,10 +29,11 @@ namespace Chatrum
             ServerListEntry listEntry = new ServerListEntry(
                 listPanel.Width - 17,
                 servername,
-                ServerListEntry_Clicked,
                 listPanel);
-
             listPanel.Controls.Add(listEntry);
+
+            listEntry.RemoveServer += () => RemoveServer(listEntry, servername);
+            listEntry.SwitchToServer += () => serverEntryClicked(servername);
 
             Server s = new Server
             {
@@ -40,9 +43,10 @@ namespace Chatrum
             servers.Add(servername, s);
         }
 
-        private void ServerListEntry_Clicked(string servername)
+        private void RemoveServer(ServerListEntry serverEntry, string server)
         {
-            ConnectToServer(servername);
+            servers.Remove(server);
+            listPanel.Controls.Remove(serverEntry);
         }
     }
 }

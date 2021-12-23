@@ -12,16 +12,21 @@ namespace Chatrum
 {
     public partial class ServerListEntry : UserControl
     {
-        private Action<string> switchToServer;
+        public event Action SwitchToServer;
+        public event Action RemoveServer;
 
-        public ServerListEntry(int width, string servername, Action<string> switchToServer, FlowLayoutPanel parent)
+        public ServerListEntry(int width, string servername, FlowLayoutPanel parent)
         {
             InitializeComponent();
             this.Width = width;
             this.ServernameLabel.Text = servername;
-            this.switchToServer = switchToServer;
             parent.ControlRemoved += SiblingControlRemovedOrAdded;
             parent.ControlAdded += SiblingControlRemovedOrAdded;
+        }
+
+        public void UpdateConnectedState(CheckState connectionState)
+        {
+            checkBoxConnected.CheckState = connectionState;
         }
 
         private void UpdateAppearenceByParent(FlowLayoutPanel parent)
@@ -44,7 +49,12 @@ namespace Chatrum
 
         private void ServernameLabel_Click(object sender, EventArgs e)
         {
-            switchToServer(ServernameLabel.Text);
+            SwitchToServer?.Invoke();
+        }
+
+        private void fjernServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveServer?.Invoke();
         }
 
         private void ServernameLabel_MouseEnter(object sender, EventArgs e)

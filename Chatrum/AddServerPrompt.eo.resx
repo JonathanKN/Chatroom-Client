@@ -133,4 +133,28 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Servilo IP:</value>
   </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 26</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Servilo kromnomo:</value>
+  </data>
+  <data name="labelInvalidIP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 15</value>
+  </data>
+  <data name="labelInvalidIP.Text" xml:space="preserve">
+    <value>Malvalida IP</value>
+  </data>
+  <data name="labelInvalidPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 15</value>
+  </data>
+  <data name="labelInvalidPort.Text" xml:space="preserve">
+    <value>Malvalida konektejo</value>
+  </data>
+  <data name="labelInvalidServerNickname.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 15</value>
+  </data>
+  <data name="labelInvalidServerNickname.Text" xml:space="preserve">
+    <value>Malvalida kromnomo</value>
+  </data>
 </root>

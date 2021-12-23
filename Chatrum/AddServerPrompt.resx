@@ -462,11 +462,14 @@
   <data name="labelInvalidIP.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelInvalidIP.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="labelInvalidIP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 5</value>
+    <value>19, 4</value>
   </data>
   <data name="labelInvalidIP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
+    <value>59, 15</value>
   </data>
   <data name="labelInvalidIP.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -489,14 +492,17 @@
   <data name="labelInvalidPort.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelInvalidPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="labelInvalidPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelInvalidPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 94</value>
+    <value>19, 92</value>
   </data>
   <data name="labelInvalidPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
+    <value>69, 15</value>
   </data>
   <data name="labelInvalidPort.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -519,14 +525,17 @@
   <data name="labelInvalidServerNickname.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelInvalidServerNickname.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9pt</value>
+  </data>
   <data name="labelInvalidServerNickname.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelInvalidServerNickname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 184</value>
+    <value>19, 182</value>
   </data>
   <data name="labelInvalidServerNickname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 13</value>
+    <value>110, 15</value>
   </data>
   <data name="labelInvalidServerNickname.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -554,9 +563,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>264, 357</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
