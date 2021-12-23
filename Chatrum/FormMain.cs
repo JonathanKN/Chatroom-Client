@@ -16,6 +16,7 @@ namespace Chatrum
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
         private string name = DefaultUsername;
         private Server recentConnectedServer;
+        private string recentConnectedServername;
         private NetworkClient networkClient;
         private byte selfID;
         private ServerListController serverListController;
@@ -87,6 +88,7 @@ namespace Chatrum
             RegisterServerEvents(networkClient);
 
             recentConnectedServer = targetServer;
+            recentConnectedServername = name;
 
             ServerName.Text = servername;
             messageController.ClearMessages();
@@ -219,6 +221,8 @@ namespace Chatrum
 
                 if (networkClient is null)
                 {
+                    recentConnectedServer = null;
+                    recentConnectedServername = null;
                     continue;
                 }
 
@@ -335,6 +339,40 @@ namespace Chatrum
                 RemoveOnlinePerson(users[userID]);
                 users.Remove(userID);
             });
+        }
+
+        private void contextMenuStripNotifyIcon_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            /*
+            toolStripComboBoxSelectedServer.Items.Clear();
+            toolStripComboBoxSelectedServer.Items.Add("(ikke forbundet)");
+            toolStripComboBoxSelectedServer.Items.AddRange(serverListController.GetServerNames());*/
+        }
+
+        private void toolStripComboBoxSelectedServer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemConnectedServer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemConnectedServer_DropDownOpening(object sender, EventArgs e)
+        {
+            toolStripMenuItemConnectedServer.DropDownItems.Clear();
+            ToolStripMenuItem emptyServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add("(ikke forbundet)");
+            if (recentConnectedServername is null)
+            {
+                emptyServerItem.Checked = true;
+            }
+            
+            foreach (var servername in serverListController.GetServerNames())
+            {
+                ToolStripMenuItem newServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add(servername);
+                newServerItem.Checked = servername == recentConnectedServername;
+            }
         }
     }
 }

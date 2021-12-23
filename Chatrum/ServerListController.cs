@@ -19,6 +19,8 @@ namespace Chatrum
             this.serverEntryClicked = (servername) => serverEntryClicked(servers[servername], servername);
         }
 
+        public string[] GetServerNames() => servers.Keys.ToArray();
+
         public bool TryGetServer(string servername, out Server server)
         {
             return servers.TryGetValue(servername, out server);

@@ -57,6 +57,9 @@ namespace Chatrum
             this.åbenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemConnectedServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -265,10 +268,13 @@ namespace Chatrum
             this.contextMenuStripNotifyIcon.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripNotifyIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.åbenToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.toolStripMenuItemConnectedServer,
             this.toolStripSeparator1,
             this.lukToolStripMenuItem});
             this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
             resources.ApplyResources(this.contextMenuStripNotifyIcon, "contextMenuStripNotifyIcon");
+            this.contextMenuStripNotifyIcon.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripNotifyIcon_Opening);
             // 
             // åbenToolStripMenuItem
             // 
@@ -285,6 +291,25 @@ namespace Chatrum
             // 
             this.lukToolStripMenuItem.Name = "lukToolStripMenuItem";
             resources.ApplyResources(this.lukToolStripMenuItem, "lukToolStripMenuItem");
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // toolStripMenuItemConnectedServer
+            // 
+            this.toolStripMenuItemConnectedServer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.toolStripMenuItemConnectedServer.Name = "toolStripMenuItemConnectedServer";
+            resources.ApplyResources(this.toolStripMenuItemConnectedServer, "toolStripMenuItemConnectedServer");
+            this.toolStripMenuItemConnectedServer.DropDownOpening += new System.EventHandler(this.toolStripMenuItemConnectedServer_DropDownOpening);
+            this.toolStripMenuItemConnectedServer.Click += new System.EventHandler(this.toolStripMenuItemConnectedServer_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // FormMain
             // 
@@ -347,6 +372,9 @@ namespace Chatrum
         private System.Windows.Forms.ToolStripMenuItem åbenToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem lukToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConnectedServer;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 
