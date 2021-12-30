@@ -1,27 +1,26 @@
-﻿using Chatroom_Client_Backend;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using Chatroom_Client_Backend;
 
 namespace Chatrum
 {
     public partial class FormMain : Form
-    {
-        private const string DefaultUsername = "Person";
-
+    {        
+        private readonly System.ComponentModel.ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
-        private string name = DefaultUsername;
-        private Server recentConnectedServer;
-        private string recentConnectedServername;
+        private ServerEntryInfo connectedServer;
+        private string connectedServername;
         private NetworkClient networkClient;
         private byte selfID;
+
+        // UI Logic controllers
         private ServerListController serverListController;
         private MessageController messageController;
-        private readonly System.ComponentModel.ComponentResourceManager resources;
+        private UserListController userListController;
 
         public FormMain()
         {
@@ -38,6 +37,12 @@ namespace Chatrum
             resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
         }
 
+        /// <summary>
+        /// Initialiserer Controller-klasser, som står for at styre UI.
+        /// Starter tråden som lytter efter beskeder, når den er forbundet.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_Load(object sender, EventArgs e)
         {
             serverListController = new ServerListController(
@@ -51,16 +56,32 @@ namespace Chatrum
                 splitContainer1,
                 pictureBoxPendingMessageIcon,
                 notifyIconMain);
-            
+
+            userListController = new UserListController(OnlineList);
+
+            backgroundWorkerMessagePull.RunWorkerAsync();
+
+            TestIndstillingerStart();
+        }
+
+        /// <summary>
+        /// Kaldes når Windows Forms er færdig med at loade.
+        /// TODO: Fjern i det endelige program.
+        /// </summary>
+        private void TestIndstillingerStart()
+        {
             serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
             serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
-            backgroundWorkerMessagePull.RunWorkerAsync();
             ConnectToServer("Esperanto server");
         }
 
+        /// <summary>
+        /// Forbind til server ved hjælp af navnet på den i serverlisten.
+        /// </summary>
+        /// <param name="servername">Navnet på serveren.</param>
         private void ConnectToServer(string servername)
         {
-            if (!serverListController.TryGetServer(servername, out Server targetServer))
+            if (!serverListController.TryGetServer(servername, out ServerEntryInfo targetServer))
             {
                 Console.WriteLine($"'{servername}' doesn't exist");
                 return;
@@ -69,26 +90,52 @@ namespace Chatrum
             ConnectToServer(targetServer, servername);
         }
 
-        private void ConnectToServer(Server targetServer, string servername)
+        /// <summary>
+        /// Forbind til server ved hjælp af liste-element informationen.
+        /// Dvs. IP og port.
+        /// </summary>
+        /// <param name="targetServer"></param>
+        /// <param name="servername"></param>
+        private void ConnectToServer(ServerEntryInfo targetServer, string servername)
         {
-            if (recentConnectedServer == targetServer)
+            // Annuller forbindelses forsøget hvis den allerede er forbundet til serveren
+            // TODO: Man kan ikke forbinde hvis man blev disconnected.
+            // TODO: Implementér custom sammenligning, da den sammenligner referencen, ikke IP og port.
+            if (connectedServer == targetServer)
             {
                 Console.WriteLine("Already connected to server");
                 return;
             }
 
+            // Frakobl nuværende server, hvis den er forbundet
             if (!(networkClient is null))
             {
                 UnregisterServerEvents(networkClient);
                 networkClient.Disconnect();
             }
 
-            networkClient = new NetworkClient(name, targetServer.ip, targetServer.port);
+            networkClient = new NetworkClient(
+                Properties.Settings.Default.Nickname,
+                targetServer.ip,
+                targetServer.port);
 
+            // Lyt efter de event listeners der er opstillet i Patricks API
             RegisterServerEvents(networkClient);
 
-            recentConnectedServer = targetServer;
-            recentConnectedServername = name;
+            // TODO: Kald først denne når serveren er forbundet, kan først gøres
+            // når Patrick har implementeret den manglende 'OnConnected' API.
+            FinishedConnectingToServer(targetServer, servername);
+        }
+
+        /// <summary>
+        /// Denne kaldes når der er etableret forbindelse til en chatserver.
+        /// </summary>
+        /// <param name="targetServer"></param>
+        /// <param name="servername"></param>
+        private void FinishedConnectingToServer(ServerEntryInfo targetServer, string servername)
+        {
+            connectedServer = targetServer;
+            connectedServername = servername;
 
             ServerName.Text = servername;
             messageController.ClearMessages();
@@ -96,12 +143,18 @@ namespace Chatrum
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
-            SettingsWindow settings = new SettingsWindow(name);
+            string previousName = Properties.Settings.Default.Nickname;
+            SettingsWindow settings = new SettingsWindow();
+            
             switch (settings.ShowDialog())
             {
                 case DialogResult.Yes:
-                    networkClient.ChangeName(settings.name);
-                    name = settings.name;
+                    // Kig efter ændringer i brugernavn
+                    string newName = Properties.Settings.Default.Nickname;
+                    if (newName != previousName)
+                    {
+                        networkClient.ChangeName(newName);
+                    }
                     break;
                 default:
                     // Anything other than yes
@@ -124,25 +177,6 @@ namespace Chatrum
             }
         }
 
-        public void AddOnlinePerson(string name)
-        {
-            Label person = new Label
-            {
-                Text = name,
-                Name = $"NameLabel{name}",
-                ForeColor = Color.LightGray,
-                Font = new Font("Microsoft Sans Serif", 13),
-                Margin = new Padding(0, 0, 0, 2),
-                AutoSize = true
-            };
-            OnlineList.Controls.Add(person);
-        }
-
-        public void RemoveOnlinePerson(string name)
-        {
-            OnlineList.Controls.Remove(OnlineList.Controls.Find($"NameLabel{name}", false)[0]);
-        }
-
         private void MessageBox_KeyDown(object sender, KeyEventArgs key)
         {
             if (key.KeyCode != Keys.Enter || MessageBox.TextLength == 0 || networkClient is null)
@@ -150,9 +184,12 @@ namespace Chatrum
                 return;
             }
 
-            //AddMessage(MessageBox.Text, name, DateTime.Now);
-            networkClient.SendMessage(MessageBox.Text);
+            // TODO: man kan sende beskeder selvom man ikke er forbundet.
+            string messageText = MessageBox.Text;
             MessageBox.Text = string.Empty;
+
+            messageController.AddOwnMessage(messageText);
+            networkClient.SendMessage(messageText);
             messageController.MessageSent();
         }
 
@@ -221,8 +258,8 @@ namespace Chatrum
 
                 if (networkClient is null)
                 {
-                    recentConnectedServer = null;
-                    recentConnectedServername = null;
+                    connectedServer = null;
+                    connectedServername = null;
                     continue;
                 }
 
@@ -262,8 +299,43 @@ namespace Chatrum
         }
 
 
-        // NETWORK EVENT HANDLING BELOW
 
+        private void contextMenuStripNotifyIcon_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            /*
+            toolStripComboBoxSelectedServer.Items.Clear();
+            toolStripComboBoxSelectedServer.Items.Add("(ikke forbundet)");
+            toolStripComboBoxSelectedServer.Items.AddRange(serverListController.GetServerNames());*/
+        }
+
+        private void toolStripComboBoxSelectedServer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemConnectedServer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemConnectedServer_DropDownOpening(object sender, EventArgs e)
+        {
+            toolStripMenuItemConnectedServer.DropDownItems.Clear();
+            ToolStripMenuItem emptyServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add("(ikke forbundet)");
+            if (connectedServername is null)
+            {
+                emptyServerItem.Checked = true;
+            }
+
+            foreach (var servername in serverListController.GetServerNames())
+            {
+                ToolStripMenuItem newServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add(servername);
+                newServerItem.Checked = servername == connectedServername;
+            }
+        }
+
+
+        // NETWORK EVENT HANDLING BELOW
 
         private void RegisterServerEvents(NetworkClient networkClient)
         {
@@ -304,11 +376,11 @@ namespace Chatrum
                 }
                 else if (userID == selfID)
                 {
-                    sendername = name;
+                    sendername = Properties.Settings.Default.Nickname;
                 }
                 else if (!users.TryGetValue(userID, out sendername))
                 {
-                    sendername = "[Invalid name]";
+                    sendername = "[Navn ikke fundet]";
                 }
 
                 messageController.ReceivedMessage(userID == selfID, sendername, message, timeStamp);
@@ -327,8 +399,13 @@ namespace Chatrum
             {
                 // TODO: Dette kommer til at skabe en fejl, når brugerens information
                 // bliver opdateret mere end én gang.
+                if (users.TryGetValue(userID, out string oldName))
+                {
+                    userListController.RemovePerson(users[userID]);
+                }
+
                 users[userID] = userName;
-                AddOnlinePerson(userName);
+                userListController.AddPerson(userName);
             });
         }
 
@@ -336,43 +413,9 @@ namespace Chatrum
         {
             this.Invoke((MethodInvoker)delegate
             {
-                RemoveOnlinePerson(users[userID]);
+                userListController.RemovePerson(users[userID]);
                 users.Remove(userID);
             });
-        }
-
-        private void contextMenuStripNotifyIcon_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            /*
-            toolStripComboBoxSelectedServer.Items.Clear();
-            toolStripComboBoxSelectedServer.Items.Add("(ikke forbundet)");
-            toolStripComboBoxSelectedServer.Items.AddRange(serverListController.GetServerNames());*/
-        }
-
-        private void toolStripComboBoxSelectedServer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItemConnectedServer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItemConnectedServer_DropDownOpening(object sender, EventArgs e)
-        {
-            toolStripMenuItemConnectedServer.DropDownItems.Clear();
-            ToolStripMenuItem emptyServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add("(ikke forbundet)");
-            if (recentConnectedServername is null)
-            {
-                emptyServerItem.Checked = true;
-            }
-            
-            foreach (var servername in serverListController.GetServerNames())
-            {
-                ToolStripMenuItem newServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add(servername);
-                newServerItem.Checked = servername == recentConnectedServername;
-            }
         }
     }
 }

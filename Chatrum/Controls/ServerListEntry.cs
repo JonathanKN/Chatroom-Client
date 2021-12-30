@@ -14,6 +14,7 @@ namespace Chatrum
     {
         public event Action SwitchToServer;
         public event Action RemoveServer;
+        public event Action CopyServer;
 
         public ServerListEntry(int width, string servername, FlowLayoutPanel parent)
         {
@@ -55,6 +56,11 @@ namespace Chatrum
         private void fjernServerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RemoveServer?.Invoke();
+        }
+
+        private void kopierServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopyServer?.Invoke();
         }
 
         private void ServernameLabel_MouseEnter(object sender, EventArgs e)

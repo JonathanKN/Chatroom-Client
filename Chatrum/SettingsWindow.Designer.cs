@@ -30,18 +30,18 @@ namespace Chatrum
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsWindow));
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelUILanguage = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.comboBoxLanguageSelection = new System.Windows.Forms.ComboBox();
             this.checkBoxMessageSound = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.labelUsername = new System.Windows.Forms.Label();
+            this.NicknameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
+            // labelUILanguage
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.labelUILanguage, "labelUILanguage");
+            this.labelUILanguage.Name = "labelUILanguage";
             // 
             // buttonClose
             // 
@@ -70,27 +70,28 @@ namespace Chatrum
             this.checkBoxMessageSound.UseVisualStyleBackColor = true;
             this.checkBoxMessageSound.CheckedChanged += new System.EventHandler(this.checkBoxMessageSound_CheckedChanged);
             // 
-            // label2
+            // labelUsername
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.labelUsername, "labelUsername");
+            this.labelUsername.Name = "labelUsername";
             // 
-            // NameTextBox
+            // NicknameTextBox
             // 
-            resources.ApplyResources(this.NameTextBox, "NameTextBox");
-            this.NameTextBox.Name = "NameTextBox";
+            resources.ApplyResources(this.NicknameTextBox, "NicknameTextBox");
+            this.NicknameTextBox.Name = "NicknameTextBox";
+            this.NicknameTextBox.TextChanged += new System.EventHandler(this.NicknameTextBox_TextChanged);
             // 
             // SettingsWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
-            this.Controls.Add(this.NameTextBox);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.NicknameTextBox);
+            this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.checkBoxMessageSound);
             this.Controls.Add(this.comboBoxLanguageSelection);
             this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelUILanguage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -104,11 +105,11 @@ namespace Chatrum
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelUILanguage;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.ComboBox comboBoxLanguageSelection;
         private System.Windows.Forms.CheckBox checkBoxMessageSound;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox NameTextBox;
+        private System.Windows.Forms.Label labelUsername;
+        private System.Windows.Forms.TextBox NicknameTextBox;
     }
 }

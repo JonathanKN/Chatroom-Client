@@ -27,11 +27,11 @@ namespace Chatrum
             }
         }
 
-        public MessageController(FlowLayoutPanel messageContainer, FlowLayoutPanel onlineList, SplitContainer splitContainer1, PictureBox pendingMessageIcon, NotifyIcon messageNotifications)
+        public MessageController(FlowLayoutPanel messageContainer, FlowLayoutPanel onlineListLayout, SplitContainer splitContainer1Layout, PictureBox pendingMessageIcon, NotifyIcon messageNotifications)
         {
-            this.onlineList = onlineList;
+            this.onlineList = onlineListLayout;
             this.messageContainer = messageContainer;
-            this.splitContainer1 = splitContainer1;
+            this.splitContainer1 = splitContainer1Layout;
             this.pendingMessageIcon = pendingMessageIcon;
             this.messageNotifications = messageNotifications;
         }
@@ -47,19 +47,24 @@ namespace Chatrum
             pendingMessages = 0;
         }
 
-        public void ReceivedMessage(bool isSelf, string sendername, string message, DateTime timestamp)
+        public void ReceivedMessage(bool isSelf, string sendername, string message, DateTime date)
         {
             if (isSelf)
             {
                 pendingMessages--;
+                // Skriv ikke egen besked igen.
+                return;
             }
 
-            AddMessage(message, sendername, timestamp);
+            AddMessage(message, sendername, date);
             messageNotifications.BalloonTipTitle = sendername;
             messageNotifications.BalloonTipText = message;
             messageNotifications.ShowBalloonTip(500);
+        }
 
-            AddMessage(message, sendername, timestamp);
+        public void AddOwnMessage(string message)
+        {
+            AddMessage(message, Properties.Settings.Default.Nickname, DateTime.Now);
         }
 
         private void AddMessage(string message, string sender, DateTime date)

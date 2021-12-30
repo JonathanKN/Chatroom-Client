@@ -15,6 +15,7 @@ namespace Chatrum
         {
             Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
+
             this.AcceptButton = AddServerBtn;
             this.CancelButton = buttonClose;
             labelInvalidIP.Visible = false;

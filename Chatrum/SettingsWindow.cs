@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -7,44 +8,54 @@ namespace Chatrum
 {
     public partial class SettingsWindow : Form
     {
-        public string name;
+        private CultureInfo[] supportedLanguages;
+        /// <summary>
+        /// Ignores calls to <c>UpdatedIndex</c> during population.
+        /// </summary>
+        private bool populatingCombobox;
 
-        public SettingsWindow(string userName)
+        public SettingsWindow()
         {
-            name = userName;
             Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            name = NameTextBox.Text;
             this.DialogResult = DialogResult.Yes;
             Close();
         }
 
         private void AddServerPrompt_Load(object sender, EventArgs e)
         {
-            NameTextBox.Text = name;
-
             // populate language selection
-            comboBoxLanguageSelection.Items.Clear();
-            comboBoxLanguageSelection.Items.Add("Dansk");
-            comboBoxLanguageSelection.Items.Add("Esperanto");
+            supportedLanguages = new CultureInfo[]
+            {
+                new CultureInfo("da"), // default
+                new CultureInfo("eo")
+            };
 
-            if (Properties.Settings.Default.Language.TwoLetterISOLanguageName.ToLower() == "eo")
+            populatingCombobox = true;
+            var selectedLanguage = Properties.Settings.Default.Language;
+            comboBoxLanguageSelection.Items.Clear();
+            foreach (var language in supportedLanguages)
             {
-                comboBoxLanguageSelection.SelectedIndex = 1;
+                int index = comboBoxLanguageSelection.Items.Add(language.DisplayName);
+
+                if (language.Name == selectedLanguage.Name)
+                {
+                    comboBoxLanguageSelection.SelectedIndex = index;
+                }
             }
-            else
-            {
-                comboBoxLanguageSelection.SelectedIndex = 0;
-            }
+
+            populatingCombobox = false;
+
+            // update nickname input
+            NicknameTextBox.Text = Properties.Settings.Default.Nickname;
 
             // update message sound button
             checkBoxMessageSound.Checked = Properties.Settings.Default.MessageSound;
         }
-
 
         private void AddServerPrompt_MouseDown(object sender, MouseEventArgs e)
         {
@@ -54,11 +65,21 @@ namespace Chatrum
                 NativeFunctions.SendMessage(Handle, NativeFunctions.WM_NCLBUTTONDOWN, NativeFunctions.HT_CAPTION, 0);
             }
         }
-
+        
         private void UpdateLanguageSetting(CultureInfo cultureInfo)
         {
             Properties.Settings.Default.Language = cultureInfo;
             Properties.Settings.Default.Save();
+        }
+
+        private void comboBoxLanguageSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (populatingCombobox)
+            {
+                return;
+            }
+
+            UpdateLanguageSetting(supportedLanguages[comboBoxLanguageSelection.SelectedIndex]);
         }
 
         private void UpdateMessageSoundSetting(bool setting)
@@ -67,29 +88,15 @@ namespace Chatrum
             Properties.Settings.Default.Save();
         }
 
-        private void comboBoxLanguageSelection_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch ((string)comboBoxLanguageSelection.SelectedItem)
-            {
-                case "Dansk":
-                    UpdateLanguageSetting(new CultureInfo("da"));
-                    break;
-                case "Esperanto":
-                    UpdateLanguageSetting(new CultureInfo("eo"));
-                    break;
-                default:
-                    break;
-            }
-        }
-
         private void checkBoxMessageSound_CheckedChanged(object sender, EventArgs e)
         {
             UpdateMessageSoundSetting(checkBoxMessageSound.Checked);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void NicknameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default.Nickname = NicknameTextBox.Text;
+            Properties.Settings.Default.Save();
         }
     }
 }

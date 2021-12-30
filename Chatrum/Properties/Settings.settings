@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Nickname" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Person</Value>
+      <Value Profile="(Default)">Anonym person</Value>
     </Setting>
   </Settings>
 </SettingsFile>

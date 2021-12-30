@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chatrum
 {
-    public class Server
+    public class ServerEntryInfo
     {
         public int port;
         public string ip;

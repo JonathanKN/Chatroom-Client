@@ -94,7 +94,8 @@
     <Compile Include="NativeFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="ServerEntryInfo.cs" />
+    <Compile Include="UserListController.cs" />
     <EmbeddedResource Include="Controls\ServerListEntry.resx">
       <DependentUpon>ServerListEntry.cs</DependentUpon>
     </EmbeddedResource>

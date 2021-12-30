@@ -9,11 +9,11 @@ namespace Chatrum
 {
     public class ServerListController
     {
-        private readonly Dictionary<string, Server> servers = new Dictionary<string, Server>();
+        private readonly Dictionary<string, ServerEntryInfo> servers = new Dictionary<string, ServerEntryInfo>();
         private readonly FlowLayoutPanel listPanel;
         private readonly Action<string> serverEntryClicked;
 
-        public ServerListController(FlowLayoutPanel serverListPanel, Action<Server, string> serverEntryClicked)
+        public ServerListController(FlowLayoutPanel serverListPanel, Action<ServerEntryInfo, string> serverEntryClicked)
         {
             listPanel = serverListPanel;
             this.serverEntryClicked = (servername) => serverEntryClicked(servers[servername], servername);
@@ -21,7 +21,7 @@ namespace Chatrum
 
         public string[] GetServerNames() => servers.Keys.ToArray();
 
-        public bool TryGetServer(string servername, out Server server)
+        public bool TryGetServer(string servername, out ServerEntryInfo server)
         {
             return servers.TryGetValue(servername, out server);
         }
@@ -36,8 +36,12 @@ namespace Chatrum
 
             listEntry.RemoveServer += () => RemoveServer(listEntry, servername);
             listEntry.SwitchToServer += () => serverEntryClicked(servername);
+            listEntry.CopyServer += () =>
+            {
+                Clipboard.SetText($"{ip}:{port}");
+            };
 
-            Server s = new Server
+            ServerEntryInfo s = new ServerEntryInfo
             {
                 port = port,
                 ip = ip

@@ -49,7 +49,7 @@ namespace Chatrum.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Person")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Anonym person")]
         public string Nickname {
             get {
                 return ((string)(this["Nickname"]));
