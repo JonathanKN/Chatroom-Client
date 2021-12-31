@@ -71,8 +71,9 @@
     <Compile Include="Controls\ServerListEntry.Designer.cs">
       <DependentUpon>ServerListEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageController.cs" />
-    <Compile Include="ServerListController.cs" />
+    <Compile Include="LogicControllers\MessageController.cs" />
+    <Compile Include="LogicControllers\ServerListController.cs" />
+    <Compile Include="LogicControllers\UserListController.cs" />
     <Compile Include="SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,7 +96,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerEntryInfo.cs" />
-    <Compile Include="UserListController.cs" />
     <EmbeddedResource Include="Controls\ServerListEntry.resx">
       <DependentUpon>ServerListEntry.cs</DependentUpon>
     </EmbeddedResource>

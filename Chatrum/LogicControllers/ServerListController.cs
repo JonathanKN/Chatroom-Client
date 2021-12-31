@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chatrum
+namespace Chatrum.LogicControllers
 {
     public class ServerListController
     {
         private readonly Dictionary<string, ServerEntryInfo> servers = new Dictionary<string, ServerEntryInfo>();
         private readonly FlowLayoutPanel listPanel;
         private readonly Action<string> serverEntryClicked;
+        private readonly ToolTip serverEntryTooltip;
 
-        public ServerListController(FlowLayoutPanel serverListPanel, Action<ServerEntryInfo, string> serverEntryClicked)
+        public ServerListController(FlowLayoutPanel serverListPanel, Action<ServerEntryInfo, string> serverEntryClicked, ToolTip serverEntryTooltip)
         {
             listPanel = serverListPanel;
             this.serverEntryClicked = (servername) => serverEntryClicked(servers[servername], servername);
+            this.serverEntryTooltip = serverEntryTooltip;
         }
 
         public string[] GetServerNames() => servers.Keys.ToArray();
@@ -33,6 +33,8 @@ namespace Chatrum
                 servername,
                 listPanel);
             listPanel.Controls.Add(listEntry);
+
+            serverEntryTooltip.SetToolTip(listEntry.ServernameLabel, $"Server information: {ip}:{port}");
 
             listEntry.RemoveServer += () => RemoveServer(listEntry, servername);
             listEntry.SwitchToServer += () => serverEntryClicked(servername);

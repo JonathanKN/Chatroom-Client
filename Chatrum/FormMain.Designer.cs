@@ -60,6 +60,8 @@ namespace Chatrum
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelCustomTitle = new System.Windows.Forms.Label();
+            this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -218,6 +220,7 @@ namespace Chatrum
             // 
             resources.ApplyResources(this.panelTopBorderControls, "panelTopBorderControls");
             this.panelTopBorderControls.BackColor = System.Drawing.SystemColors.Control;
+            this.panelTopBorderControls.Controls.Add(this.labelCustomTitle);
             this.panelTopBorderControls.Controls.Add(this.flowLayoutPanelWindowButtons);
             this.panelTopBorderControls.Name = "panelTopBorderControls";
             this.panelTopBorderControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDoubleClick);
@@ -310,6 +313,13 @@ namespace Chatrum
             // 
             this.lukToolStripMenuItem.Name = "lukToolStripMenuItem";
             resources.ApplyResources(this.lukToolStripMenuItem, "lukToolStripMenuItem");
+            this.lukToolStripMenuItem.Click += new System.EventHandler(this.lukToolStripMenuItem_Click);
+            // 
+            // labelCustomTitle
+            // 
+            resources.ApplyResources(this.labelCustomTitle, "labelCustomTitle");
+            this.labelCustomTitle.Name = "labelCustomTitle";
+            this.labelCustomTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCustomTitle_MouseDown);
             // 
             // FormMain
             // 
@@ -320,6 +330,7 @@ namespace Chatrum
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.TextChanged += new System.EventHandler(this.FormMain_TextChanged);
             this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -339,6 +350,7 @@ namespace Chatrum
             this.ServerNameHeader.ResumeLayout(false);
             this.ServerNameHeader.PerformLayout();
             this.panelTopBorderControls.ResumeLayout(false);
+            this.panelTopBorderControls.PerformLayout();
             this.flowLayoutPanelWindowButtons.ResumeLayout(false);
             this.contextMenuStripNotifyIcon.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -375,6 +387,8 @@ namespace Chatrum
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConnectedServer;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.Label labelCustomTitle;
+        private System.Windows.Forms.ToolTip toolTipServerEntry;
     }
 }
 

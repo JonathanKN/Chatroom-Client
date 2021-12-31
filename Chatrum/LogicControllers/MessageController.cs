@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Chatrum
+namespace Chatrum.LogicControllers
 {
     public class MessageController
     {
@@ -29,6 +25,8 @@ namespace Chatrum
 
         public MessageController(FlowLayoutPanel messageContainer, FlowLayoutPanel onlineListLayout, SplitContainer splitContainer1Layout, PictureBox pendingMessageIcon, NotifyIcon messageNotifications)
         {
+            // TODO: Forstå hvorfor man skal bruge onlineListLayout og splitcontainer1
+            // de burde ikke være vigtige. 
             this.onlineList = onlineListLayout;
             this.messageContainer = messageContainer;
             this.splitContainer1 = splitContainer1Layout;
@@ -57,9 +55,8 @@ namespace Chatrum
             }
 
             AddMessage(message, sendername, date);
-            messageNotifications.BalloonTipTitle = sendername;
             messageNotifications.BalloonTipText = message;
-            messageNotifications.ShowBalloonTip(500);
+            messageNotifications.ShowBalloonTip(FormMain.BalloonTimeout);
         }
 
         public void AddOwnMessage(string message)
@@ -78,7 +75,7 @@ namespace Chatrum
                 Font = new Font("Microsoft Sans Serif", 13),
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 10),
-                Width = messageContainer.Width - onlineList.Width - 40
+                Width = messageContainer.Width - onlineList.Width - 40 // TODO: bør ikke være afhængig af onlinelist.
             };
             messageContainer.Controls.Add(messageLabel);
 

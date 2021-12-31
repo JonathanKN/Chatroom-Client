@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chatrum
@@ -71,6 +65,10 @@ namespace Chatrum
         private void ServernameLabel_MouseLeave(object sender, EventArgs e)
         {
             ContainerPanel.BackColor = Color.FromArgb(ContainerPanel.BackColor.R + 20, ContainerPanel.BackColor.R + 20, ContainerPanel.BackColor.R + 20);
+        }
+
+        private void ServerListEntry_Load(object sender, EventArgs e)
+        {
         }
     }
 }

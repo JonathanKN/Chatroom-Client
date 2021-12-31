@@ -33,9 +33,10 @@ namespace Chatrum
             this.ServernameLabel = new System.Windows.Forms.Label();
             this.contextMenuStripServerList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fjernServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kopierServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContainerPanel = new System.Windows.Forms.Panel();
             this.checkBoxConnected = new System.Windows.Forms.CheckBox();
-            this.kopierServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStripServerList.SuspendLayout();
             this.ContainerPanel.SuspendLayout();
             this.SuspendLayout();
@@ -49,8 +50,8 @@ namespace Chatrum
             this.ServernameLabel.Location = new System.Drawing.Point(0, 0);
             this.ServernameLabel.Margin = new System.Windows.Forms.Padding(0);
             this.ServernameLabel.Name = "ServernameLabel";
-            this.ServernameLabel.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.ServernameLabel.Size = new System.Drawing.Size(200, 49);
+            this.ServernameLabel.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.ServernameLabel.Size = new System.Drawing.Size(150, 40);
             this.ServernameLabel.TabIndex = 0;
             this.ServernameLabel.Text = "label1";
             this.ServernameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -65,14 +66,21 @@ namespace Chatrum
             this.fjernServerToolStripMenuItem,
             this.kopierServerToolStripMenuItem});
             this.contextMenuStripServerList.Name = "contextMenuStripServerList";
-            this.contextMenuStripServerList.Size = new System.Drawing.Size(211, 80);
+            this.contextMenuStripServerList.Size = new System.Drawing.Size(143, 48);
             // 
             // fjernServerToolStripMenuItem
             // 
             this.fjernServerToolStripMenuItem.Name = "fjernServerToolStripMenuItem";
-            this.fjernServerToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.fjernServerToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.fjernServerToolStripMenuItem.Text = "Fjern server";
             this.fjernServerToolStripMenuItem.Click += new System.EventHandler(this.fjernServerToolStripMenuItem_Click);
+            // 
+            // kopierServerToolStripMenuItem
+            // 
+            this.kopierServerToolStripMenuItem.Name = "kopierServerToolStripMenuItem";
+            this.kopierServerToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.kopierServerToolStripMenuItem.Text = "Kopier server";
+            this.kopierServerToolStripMenuItem.Click += new System.EventHandler(this.kopierServerToolStripMenuItem_Click);
             // 
             // ContainerPanel
             // 
@@ -82,7 +90,7 @@ namespace Chatrum
             this.ContainerPanel.Location = new System.Drawing.Point(0, 0);
             this.ContainerPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ContainerPanel.Name = "ContainerPanel";
-            this.ContainerPanel.Size = new System.Drawing.Size(200, 49);
+            this.ContainerPanel.Size = new System.Drawing.Size(150, 40);
             this.ContainerPanel.TabIndex = 1;
             // 
             // checkBoxConnected
@@ -92,29 +100,22 @@ namespace Chatrum
             this.checkBoxConnected.AutoCheck = false;
             this.checkBoxConnected.AutoSize = true;
             this.checkBoxConnected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBoxConnected.Location = new System.Drawing.Point(169, 18);
-            this.checkBoxConnected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxConnected.Location = new System.Drawing.Point(125, 15);
             this.checkBoxConnected.Name = "checkBoxConnected";
-            this.checkBoxConnected.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxConnected.Size = new System.Drawing.Size(13, 12);
             this.checkBoxConnected.TabIndex = 1;
             this.checkBoxConnected.ThreeState = true;
             this.checkBoxConnected.UseVisualStyleBackColor = true;
             // 
-            // kopierServerToolStripMenuItem
-            // 
-            this.kopierServerToolStripMenuItem.Name = "kopierServerToolStripMenuItem";
-            this.kopierServerToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.kopierServerToolStripMenuItem.Text = "Kopier server";
-            this.kopierServerToolStripMenuItem.Click += new System.EventHandler(this.kopierServerToolStripMenuItem_Click);
-            // 
             // ServerListEntry
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ContainerPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ServerListEntry";
-            this.Size = new System.Drawing.Size(200, 49);
+            this.Size = new System.Drawing.Size(150, 40);
+            this.Load += new System.EventHandler(this.ServerListEntry_Load);
             this.contextMenuStripServerList.ResumeLayout(false);
             this.ContainerPanel.ResumeLayout(false);
             this.ContainerPanel.PerformLayout();
@@ -129,5 +130,6 @@ namespace Chatrum
         private System.Windows.Forms.ContextMenuStrip contextMenuStripServerList;
         private System.Windows.Forms.ToolStripMenuItem fjernServerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kopierServerToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTipServerEntry;
     }
 }

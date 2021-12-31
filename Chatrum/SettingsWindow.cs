@@ -98,5 +98,14 @@ namespace Chatrum
             Properties.Settings.Default.Nickname = NicknameTextBox.Text;
             Properties.Settings.Default.Save();
         }
+
+        private void buttonColophon_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Lavet af Patrick, Kresten og Jonathan.\n" +
+                "- Protokol designet af Patrick, revideret af Daniel og Kresten\n" +
+                "- Brugerflade designet og implementeret af Jonathan, ekstra funktionaliter implementeret af Kresten\n" +
+                "- Backend implementeret af Patrick\n" +
+                "- Server implementeret af Kresten");
+        }
     }
 }

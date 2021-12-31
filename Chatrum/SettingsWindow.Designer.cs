@@ -36,6 +36,7 @@ namespace Chatrum
             this.checkBoxMessageSound = new System.Windows.Forms.CheckBox();
             this.labelUsername = new System.Windows.Forms.Label();
             this.NicknameTextBox = new System.Windows.Forms.TextBox();
+            this.buttonColophon = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelUILanguage
@@ -81,11 +82,19 @@ namespace Chatrum
             this.NicknameTextBox.Name = "NicknameTextBox";
             this.NicknameTextBox.TextChanged += new System.EventHandler(this.NicknameTextBox_TextChanged);
             // 
+            // buttonColophon
+            // 
+            resources.ApplyResources(this.buttonColophon, "buttonColophon");
+            this.buttonColophon.Name = "buttonColophon";
+            this.buttonColophon.UseVisualStyleBackColor = true;
+            this.buttonColophon.Click += new System.EventHandler(this.buttonColophon_Click);
+            // 
             // SettingsWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.Controls.Add(this.buttonColophon);
             this.Controls.Add(this.NicknameTextBox);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.checkBoxMessageSound);
@@ -111,5 +120,6 @@ namespace Chatrum
         private System.Windows.Forms.CheckBox checkBoxMessageSound;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.TextBox NicknameTextBox;
+        private System.Windows.Forms.Button buttonColophon;
     }
 }

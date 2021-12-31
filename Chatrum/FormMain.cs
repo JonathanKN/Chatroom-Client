@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
+using Chatrum.LogicControllers;
 
 namespace Chatrum
 {
     public partial class FormMain : Form
-    {        
+    {
+        public const int BalloonTimeout = 500;
+
         private readonly System.ComponentModel.ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
         private ServerEntryInfo connectedServer;
@@ -47,7 +49,8 @@ namespace Chatrum
         {
             serverListController = new ServerListController(
                 ServerList,
-                (info, name) => ConnectToServer(info, name)
+                (info, name) => ConnectToServer(info, name),
+                toolTipServerEntry
                 );
 
             messageController = new MessageController(
@@ -60,7 +63,11 @@ namespace Chatrum
             userListController = new UserListController(OnlineList);
 
             backgroundWorkerMessagePull.RunWorkerAsync();
-
+            
+            // Form title
+            Text = "Chatrum";
+            labelCustomTitle.Text = "Chatrum";
+            
             TestIndstillingerStart();
         }
 
@@ -75,12 +82,22 @@ namespace Chatrum
             ConnectToServer("Esperanto server");
         }
 
+        private void DisconnectServer()
+        {
+            UnregisterServerEvents(networkClient);
+            networkClient.Disconnect();
+            networkClient = null;
+            connectedServer = null;
+            connectedServername = null;
+        }
+
         /// <summary>
         /// Forbind til server ved hjælp af navnet på den i serverlisten.
         /// </summary>
         /// <param name="servername">Navnet på serveren.</param>
         private void ConnectToServer(string servername)
         {
+            Text = $"Chatrum — {servername}";
             if (!serverListController.TryGetServer(servername, out ServerEntryInfo targetServer))
             {
                 Console.WriteLine($"'{servername}' doesn't exist");
@@ -110,8 +127,7 @@ namespace Chatrum
             // Frakobl nuværende server, hvis den er forbundet
             if (!(networkClient is null))
             {
-                UnregisterServerEvents(networkClient);
-                networkClient.Disconnect();
+                DisconnectServer();
             }
 
             networkClient = new NetworkClient(
@@ -124,7 +140,8 @@ namespace Chatrum
 
             // TODO: Kald først denne når serveren er forbundet, kan først gøres
             // når Patrick har implementeret den manglende 'OnConnected' API.
-            FinishedConnectingToServer(targetServer, servername);
+            // Der findes også en FinishedConnectingToServerTimeout(...), til hvis det sker.
+            FinishedConnectingToServerSuccess(targetServer, servername);
         }
 
         /// <summary>
@@ -132,13 +149,30 @@ namespace Chatrum
         /// </summary>
         /// <param name="targetServer"></param>
         /// <param name="servername"></param>
-        private void FinishedConnectingToServer(ServerEntryInfo targetServer, string servername)
+        private void FinishedConnectingToServerSuccess(ServerEntryInfo targetServer, string servername)
         {
             connectedServer = targetServer;
             connectedServername = servername;
 
             ServerName.Text = servername;
             messageController.ClearMessages();
+
+            // If minified, show balloon message.
+            if (WindowState == FormWindowState.Minimized)
+            {
+                notifyIconMain.BalloonTipText = $"Forbandt til {servername}";
+                notifyIconMain.ShowBalloonTip(BalloonTimeout);
+            }
+        }
+
+        private void FinishedConnectingToServerTimeout(ServerEntryInfo targetServer, string servername)
+        {
+            // If minified, show balloon message.
+            if (WindowState == FormWindowState.Minimized)
+            {
+                notifyIconMain.BalloonTipText = $"Kunne ikke forbinde til {servername}";
+                notifyIconMain.ShowBalloonTip(BalloonTimeout);
+            }
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -185,6 +219,8 @@ namespace Chatrum
             }
 
             // TODO: man kan sende beskeder selvom man ikke er forbundet.
+            // tænker man kunne lave så den sender en besked som altid siger "Du er ikke forbundet"
+            // eller noget i den stil.
             string messageText = MessageBox.Text;
             MessageBox.Text = string.Empty;
 
@@ -246,24 +282,31 @@ namespace Chatrum
 
         private void backgroundWorkerMessagePull_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            while (true)
+            try
             {
-                while (sw.ElapsedMilliseconds < 1000 / 10)
-                    Thread.Sleep(0);
-                
-                sw.Restart();
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
-                if (networkClient is null)
+                while (true)
                 {
-                    connectedServer = null;
-                    connectedServername = null;
-                    continue;
-                }
+                    while (sw.ElapsedMilliseconds < 1000 / 10)
+                        Thread.Sleep(0);
 
-                networkClient.Update();
+                    sw.Restart();
+
+                    if (networkClient is null)
+                    {
+                        connectedServer = null;
+                        connectedServername = null;
+                        continue;
+                    }
+
+                    networkClient.Update();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -298,8 +341,6 @@ namespace Chatrum
             ShowFormAfterMinimized();
         }
 
-
-
         private void contextMenuStripNotifyIcon_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             /*
@@ -321,17 +362,52 @@ namespace Chatrum
         private void toolStripMenuItemConnectedServer_DropDownOpening(object sender, EventArgs e)
         {
             toolStripMenuItemConnectedServer.DropDownItems.Clear();
-            ToolStripMenuItem emptyServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add("(ikke forbundet)");
-            if (connectedServername is null)
+            var emptyServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add("(ikke forbundet)");
+            emptyServerItem.Click += toolStripMenuItemDisconnect_Click;
+
+            if (connectedServer is null)
             {
                 emptyServerItem.Checked = true;
             }
 
-            foreach (var servername in serverListController.GetServerNames())
+            foreach (string servername in serverListController.GetServerNames())
             {
-                ToolStripMenuItem newServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add(servername);
+                var newServerItem = (ToolStripMenuItem)toolStripMenuItemConnectedServer.DropDownItems.Add(servername);
                 newServerItem.Checked = servername == connectedServername;
+
+                newServerItem.Click += toolStripMenuItemServerEntry_Click;
             }
+        }
+
+        private void toolStripMenuItemDisconnect_Click(object sender, EventArgs e)
+        {
+            DisconnectServer();
+        }
+
+        private void toolStripMenuItemServerEntry_Click(object sender, EventArgs e)
+        {
+            var toolstripMenuItem = (ToolStripMenuItem)sender;
+            ConnectToServer(toolstripMenuItem.Text);
+        }
+
+        private void FormMain_TextChanged(object sender, EventArgs e)
+        {
+            // Update custom title.
+            labelCustomTitle.Text = this.Text;
+            notifyIconMain.BalloonTipTitle = this.Text;
+            notifyIconMain.Text = this.Text;
+        }
+
+        private void labelCustomTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Bubble up event to parent.
+            panelTopBorderControls_MouseDown(sender, e);
+        }
+
+        private void lukToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisconnectServer();
+            Close();
         }
 
 
