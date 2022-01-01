@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
@@ -37,6 +38,20 @@ namespace Chatrum
 
             // Language logic
             resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            NativeFunctions.ResizableWindow.WndProc(this, ref m);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            NativeFunctions.ResizableWindow.OnPaint(this, e);
+
+            //base.OnPaint(e);
         }
 
         /// <summary>
