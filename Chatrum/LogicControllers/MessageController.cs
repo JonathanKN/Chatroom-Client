@@ -7,10 +7,10 @@ namespace Chatrum.LogicControllers
     public class MessageController
     {
         private readonly FlowLayoutPanel messageContainer;
-        private readonly SplitContainer splitContainer1;
-        private readonly FlowLayoutPanel onlineList;
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
+        private readonly SplitContainer splitContainer1Layout;
+        private readonly Control onlineListLayout;
 
         private byte _pendingMessages;
         private byte pendingMessages
@@ -23,15 +23,15 @@ namespace Chatrum.LogicControllers
             }
         }
 
-        public MessageController(FlowLayoutPanel messageContainer, FlowLayoutPanel onlineListLayout, SplitContainer splitContainer1Layout, PictureBox pendingMessageIcon, NotifyIcon messageNotifications)
+        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, SplitContainer splitContainer1Layout, Control onlineListLayout)
         {
             // TODO: Forstå hvorfor man skal bruge onlineListLayout og splitcontainer1
             // de burde ikke være vigtige. 
-            this.onlineList = onlineListLayout;
             this.messageContainer = messageContainer;
-            this.splitContainer1 = splitContainer1Layout;
             this.pendingMessageIcon = pendingMessageIcon;
             this.messageNotifications = messageNotifications;
+            this.splitContainer1Layout = splitContainer1Layout;
+            this.onlineListLayout = onlineListLayout;
         }
 
         public void MessageSent()
@@ -68,24 +68,24 @@ namespace Chatrum.LogicControllers
         {
             messageContainer.SuspendLayout();
 
-            Label messageLabel = new Label
+            var messageLabel = new Label
             {
                 Text = message,
                 ForeColor = Color.LightGray,
                 Font = new Font("Microsoft Sans Serif", 13),
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 10),
-                Width = messageContainer.Width - onlineList.Width - 40 // TODO: bør ikke være afhængig af onlinelist.
+                Width = messageContainer.Width - onlineListLayout.Width - 40 // TODO: bør ikke være afhængig af onlinelist.
             };
             messageContainer.Controls.Add(messageLabel);
 
-            FlowLayoutPanel messageSender = new FlowLayoutPanel
+            var messageSender = new FlowLayoutPanel
             {
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 0)
             };
 
-            Label senderLabel = new Label
+            var senderLabel = new Label
             {
                 ForeColor = Color.LightGray,
                 Text = sender,
@@ -94,7 +94,7 @@ namespace Chatrum.LogicControllers
             };
             messageSender.Controls.Add(senderLabel);
 
-            Label dateLabel = new Label
+            var dateLabel = new Label
             {
                 Text = date.ToString(),
                 ForeColor = Color.Gray,
@@ -109,7 +109,7 @@ namespace Chatrum.LogicControllers
             messageContainer.Controls.SetChildIndex(messageLabel, 0);
             messageContainer.ResumeLayout();
 
-            messageContainer.AutoScrollPosition = new Point(splitContainer1.Panel1.Width, int.MaxValue);
+            messageContainer.AutoScrollPosition = new Point(splitContainer1Layout.Panel1.Width, int.MaxValue);
         }
     }
 }
