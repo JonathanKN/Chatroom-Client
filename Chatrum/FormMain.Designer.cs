@@ -47,6 +47,7 @@ namespace Chatrum
             this.ServerNameHeader = new System.Windows.Forms.Panel();
             this.ServerName = new System.Windows.Forms.Label();
             this.panelTopBorderControls = new System.Windows.Forms.Panel();
+            this.labelCustomTitle = new System.Windows.Forms.Label();
             this.flowLayoutPanelWindowButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBoxMinimize = new System.Windows.Forms.CheckBox();
             this.checkBoxResizeFull = new System.Windows.Forms.CheckBox();
@@ -60,7 +61,6 @@ namespace Chatrum
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelCustomTitle = new System.Windows.Forms.Label();
             this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -226,6 +226,12 @@ namespace Chatrum
             this.panelTopBorderControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDoubleClick);
             this.panelTopBorderControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDown);
             // 
+            // labelCustomTitle
+            // 
+            resources.ApplyResources(this.labelCustomTitle, "labelCustomTitle");
+            this.labelCustomTitle.Name = "labelCustomTitle";
+            this.labelCustomTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCustomTitle_MouseDown);
+            // 
             // flowLayoutPanelWindowButtons
             // 
             this.flowLayoutPanelWindowButtons.Controls.Add(this.checkBoxMinimize);
@@ -314,12 +320,6 @@ namespace Chatrum
             this.lukToolStripMenuItem.Name = "lukToolStripMenuItem";
             resources.ApplyResources(this.lukToolStripMenuItem, "lukToolStripMenuItem");
             this.lukToolStripMenuItem.Click += new System.EventHandler(this.lukToolStripMenuItem_Click);
-            // 
-            // labelCustomTitle
-            // 
-            resources.ApplyResources(this.labelCustomTitle, "labelCustomTitle");
-            this.labelCustomTitle.Name = "labelCustomTitle";
-            this.labelCustomTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCustomTitle_MouseDown);
             // 
             // FormMain
             // 

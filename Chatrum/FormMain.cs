@@ -55,10 +55,10 @@ namespace Chatrum
 
             messageController = new MessageController(
                 MessageContainer,
-                OnlineList,
-                splitContainer1,
                 pictureBoxPendingMessageIcon,
-                notifyIconMain);
+                notifyIconMain,
+                splitContainer1,
+                OnlineList);
 
             userListController = new UserListController(OnlineList);
 
