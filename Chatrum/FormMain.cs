@@ -545,7 +545,13 @@ namespace Chatrum
         {
             this.Invoke((MethodInvoker)delegate
             {
-                userListController.RemovePerson(users[userID]);
+                if (!users.TryGetValue(userID, out string username))
+                {
+                    // TODO: Sjælden fejl, hvor en hvor disconnecter, før de forbandt.
+                    return;
+                }
+
+                userListController.RemovePerson(username);
                 users.Remove(userID);
             });
         }

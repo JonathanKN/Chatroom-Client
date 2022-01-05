@@ -56,8 +56,11 @@ namespace Chatrum.LogicControllers
             }
 
             AddMessage(message, sendername, date);
+            string previousTitle = messageNotifications.BalloonTipTitle;
+            messageNotifications.BalloonTipTitle = sendername;
             messageNotifications.BalloonTipText = message;
             messageNotifications.ShowBalloonTip(FormMain.BalloonTimeout);
+            messageNotifications.BalloonTipTitle = previousTitle;
         }
 
         public void AddOwnMessage(string message)
