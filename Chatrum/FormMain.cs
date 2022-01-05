@@ -92,9 +92,9 @@ namespace Chatrum
         /// </summary>
         private void TestIndstillingerStart()
         {
-            serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
-            serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
-            ConnectToServer("Esperanto server");
+            //serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
+            //serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
+            //ConnectToServer("Esperanto server");
         }
 
         private void DisconnectServer()

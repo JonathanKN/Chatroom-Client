@@ -66,7 +66,7 @@ namespace Chatrum.LogicControllers
 
         private void AddMessage(string message, string sender, DateTime date)
         {
-            messageContainer.SuspendLayout();
+            //messageContainer.SuspendLayout();
 
             var messageLabel = new Label
             {
@@ -107,7 +107,7 @@ namespace Chatrum.LogicControllers
 
             messageContainer.Controls.SetChildIndex(messageSender, 0);
             messageContainer.Controls.SetChildIndex(messageLabel, 0);
-            messageContainer.ResumeLayout();
+            //messageContainer.ResumeLayout();
 
             messageContainer.AutoScrollPosition = new Point(splitContainer1Layout.Panel1.Width, int.MaxValue);
         }
