@@ -36,11 +36,6 @@ namespace Chatrum
                 Rectangle Bottom = new Rectangle(cornerSize, _this.ClientSize.Height - cornerSize, _this.ClientSize.Width - cornerSize, cornerSize);
                 Rectangle Right = new Rectangle(_this.ClientSize.Width - cornerSize, cornerSize, cornerSize, _this.ClientSize.Height - cornerSize);
 
-                Rectangle TopLeft = new Rectangle(0, 0, cornerSize, cornerSize);
-                Rectangle TopRight = new Rectangle(_this.ClientSize.Width - cornerSize, 0, cornerSize, cornerSize);
-                Rectangle BottomLeft = new Rectangle(0, _this.ClientSize.Height - cornerSize, cornerSize, cornerSize);
-                Rectangle BottomRight = new Rectangle(_this.ClientSize.Width - cornerSize, _this.ClientSize.Height - cornerSize, cornerSize, cornerSize);
-
                 e.Graphics.FillRectangle(Brushes.Green, Top);
                 e.Graphics.FillRectangle(Brushes.Green, Left);
                 e.Graphics.FillRectangle(Brushes.Green, Right);

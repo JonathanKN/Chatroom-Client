@@ -136,7 +136,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AddServerBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="AddServerBtn.Text" xml:space="preserve">
     <value>Tilføj server</value>
@@ -168,11 +168,14 @@
   <data name="ServerPortInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 10, 5, 5</value>
   </data>
+  <data name="ServerPortInput.MaxLength" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="ServerPortInput.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 23</value>
   </data>
   <data name="ServerPortInput.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;ServerPortInput.Name" xml:space="preserve">
     <value>ServerPortInput</value>
@@ -196,7 +199,7 @@
     <value>226, 42</value>
   </data>
   <data name="panel5.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;panel5.Name" xml:space="preserve">
     <value>panel5</value>
@@ -226,7 +229,7 @@
     <value>125, 26</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>4</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Server port:</value>
@@ -262,7 +265,7 @@
     <value>221, 23</value>
   </data>
   <data name="ServerIPInput.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;ServerIPInput.Name" xml:space="preserve">
     <value>ServerIPInput</value>
@@ -286,7 +289,7 @@
     <value>226, 42</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;panel1.Name" xml:space="preserve">
     <value>panel1</value>
@@ -316,7 +319,7 @@
     <value>109, 26</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Server IP:</value>
@@ -352,7 +355,7 @@
     <value>25, 25</value>
   </data>
   <data name="buttonClose.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="buttonClose.Text" xml:space="preserve">
     <value>X</value>
@@ -385,7 +388,7 @@
     <value>135, 26</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Server navn:</value>
@@ -417,11 +420,14 @@
   <data name="ServerNicknameInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 10, 5, 5</value>
   </data>
+  <data name="ServerNicknameInput.MaxLength" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
   <data name="ServerNicknameInput.Size" type="System.Drawing.Size, System.Drawing">
     <value>221, 23</value>
   </data>
   <data name="ServerNicknameInput.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;ServerNicknameInput.Name" xml:space="preserve">
     <value>ServerNicknameInput</value>
@@ -445,7 +451,7 @@
     <value>226, 42</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;panel2.Name" xml:space="preserve">
     <value>panel2</value>
@@ -472,7 +478,7 @@
     <value>59, 15</value>
   </data>
   <data name="labelInvalidIP.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>0</value>
   </data>
   <data name="labelInvalidIP.Text" xml:space="preserve">
     <value>Forkert IP</value>
@@ -505,7 +511,7 @@
     <value>69, 15</value>
   </data>
   <data name="labelInvalidPort.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>3</value>
   </data>
   <data name="labelInvalidPort.Text" xml:space="preserve">
     <value>Forkert port</value>
@@ -535,13 +541,13 @@
     <value>19, 182</value>
   </data>
   <data name="labelInvalidServerNickname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 15</value>
+    <value>115, 15</value>
   </data>
   <data name="labelInvalidServerNickname.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>6</value>
   </data>
   <data name="labelInvalidServerNickname.Text" xml:space="preserve">
-    <value>Forkert server navn</value>
+    <value>Optaget server navn</value>
   </data>
   <data name="&gt;&gt;labelInvalidServerNickname.Name" xml:space="preserve">
     <value>labelInvalidServerNickname</value>

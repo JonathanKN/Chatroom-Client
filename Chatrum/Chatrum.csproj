@@ -74,6 +74,7 @@
     <Compile Include="LogicControllers\MessageController.cs" />
     <Compile Include="LogicControllers\ServerListController.cs" />
     <Compile Include="LogicControllers\UserListController.cs" />
+    <Compile Include="PreferenceHelper.cs" />
     <Compile Include="SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>

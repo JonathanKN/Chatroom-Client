@@ -55,8 +55,8 @@ namespace Chatrum
             // 
             // comboBoxLanguageSelection
             // 
-            this.comboBoxLanguageSelection.BackColor = System.Drawing.Color.Silver;
             resources.ApplyResources(this.comboBoxLanguageSelection, "comboBoxLanguageSelection");
+            this.comboBoxLanguageSelection.BackColor = System.Drawing.Color.Silver;
             this.comboBoxLanguageSelection.FormattingEnabled = true;
             this.comboBoxLanguageSelection.Items.AddRange(new object[] {
             resources.GetString("comboBoxLanguageSelection.Items"),

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
@@ -10,12 +11,14 @@ namespace Chatrum
         public string IP;
         public short Port;
         public string ServerNickname;
+        private readonly string[] reservedServernames;
 
-        public AddServerPrompt()
+        public AddServerPrompt(string[] reservedServernames)
         {
             Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
 
+            this.reservedServernames = reservedServernames;
             this.AcceptButton = AddServerBtn;
             this.CancelButton = buttonClose;
             labelInvalidIP.Visible = false;
@@ -38,13 +41,22 @@ namespace Chatrum
             labelInvalidPort.Visible = !short.TryParse(ServerPortInput.Text, out Port);
             labelInvalidIP.Visible = !IPAddress.TryParse(ServerIPInput.Text, out _);
 
+            labelInvalidServerNickname.Visible = reservedServernames.Contains(ServerNicknameInput.Text);
+
             if (labelInvalidPort.Visible || labelInvalidIP.Visible || labelInvalidServerNickname.Visible)
             {
                 return;
             }
 
             IP = ServerIPInput.Text;
-            ServerNickname = ServerNicknameInput.Text;
+            if (ServerNicknameInput.Text == string.Empty)
+            {
+                ServerNickname = IP;
+            }
+            else
+            {
+                ServerNickname = ServerNicknameInput.Text;
+            }
 
             this.DialogResult = DialogResult.Yes;
             this.Close();

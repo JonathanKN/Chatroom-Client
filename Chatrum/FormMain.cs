@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
@@ -12,13 +12,14 @@ namespace Chatrum
     public partial class FormMain : Form
     {
         public const int BalloonTimeout = 500;
+        private static bool Disconnecting = false;
 
-        private readonly System.ComponentModel.ComponentResourceManager resources;
+        private readonly string DefaultFormTitle = "Chatrum";
+        private readonly ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
         private ServerEntryInfo connectedServer;
         private string connectedServername;
         private NetworkClient networkClient;
-        private byte selfID;
 
         // UI Logic controllers
         private ServerListController serverListController;
@@ -37,7 +38,7 @@ namespace Chatrum
             DoubleBuffered = true;
 
             // Language logic
-            resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
+            resources = new ComponentResourceManager(typeof(FormMain));
         }
 
         protected override void WndProc(ref Message m)
@@ -50,8 +51,6 @@ namespace Chatrum
         protected override void OnPaint(PaintEventArgs e)
         {
             NativeFunctions.ResizableWindow.OnPaint(this, e);
-
-            //base.OnPaint(e);
         }
 
         /// <summary>
@@ -63,6 +62,7 @@ namespace Chatrum
         private void FormMain_Load(object sender, EventArgs e)
         {
             serverListController = new ServerListController(
+                true,
                 ServerList,
                 (info, name) => ConnectToServer(info, name),
                 toolTipServerEntry
@@ -80,8 +80,8 @@ namespace Chatrum
             backgroundWorkerMessagePull.RunWorkerAsync();
             
             // Form title
-            Text = "Chatrum";
-            labelCustomTitle.Text = "Chatrum";
+            Text = DefaultFormTitle;
+            labelCustomTitle.Text = DefaultFormTitle;
             
             TestIndstillingerStart();
         }
@@ -99,11 +99,16 @@ namespace Chatrum
 
         private void DisconnectServer()
         {
-            UnregisterServerEvents(networkClient);
-            networkClient.Disconnect();
-            networkClient = null;
+            Disconnecting = true;
+            serverListController.UpdateStatusDisconnectAll();
+
+            ServerName.Text = "[Ikke forbundet]";
             connectedServer = null;
             connectedServername = null;
+            UnregisterServerEvents(networkClient);
+            networkClient?.Disconnect();
+            networkClient = null;
+            Disconnecting = false;
         }
 
         /// <summary>
@@ -112,7 +117,6 @@ namespace Chatrum
         /// <param name="servername">Navnet på serveren.</param>
         private void ConnectToServer(string servername)
         {
-            Text = $"Chatrum — {servername}";
             if (!serverListController.TryGetServer(servername, out ServerEntryInfo targetServer))
             {
                 Console.WriteLine($"'{servername}' doesn't exist");
@@ -130,9 +134,7 @@ namespace Chatrum
         /// <param name="servername"></param>
         private void ConnectToServer(ServerEntryInfo targetServer, string servername)
         {
-            // Annuller forbindelses forsøget hvis den allerede er forbundet til serveren
-            // TODO: Man kan ikke forbinde hvis man blev disconnected.
-            // TODO: Implementér custom sammenligning, da den sammenligner referencen, ikke IP og port.
+            // Annuller forbindelses forsøget hvis den allerede er forbundet til serveren.
             if (connectedServer == targetServer)
             {
                 Console.WriteLine("Already connected to server");
@@ -151,12 +153,18 @@ namespace Chatrum
                 targetServer.port);
 
             // Lyt efter de event listeners der er opstillet i Patricks API
+            networkClient.onConnect += (connected) => FinishedConnectingToServer(targetServer, servername, connected);
             RegisterServerEvents(networkClient);
 
-            // TODO: Kald først denne når serveren er forbundet, kan først gøres
-            // når Patrick har implementeret den manglende 'OnConnected' API.
-            // Der findes også en FinishedConnectingToServerTimeout(...), til hvis det sker.
-            FinishedConnectingToServerSuccess(targetServer, servername);
+            ConnectingToServer(targetServer, servername);
+            networkClient.Connect();
+        }
+
+        private void ConnectingToServer(ServerEntryInfo targetServer, string servername)
+        {
+            Text = $"{DefaultFormTitle} — {servername}";
+            ServerName.Text = $"Forbinder til {servername}...";
+            serverListController.UpdateServerConnectedStatus(targetServer, CheckState.Indeterminate);
         }
 
         /// <summary>
@@ -164,30 +172,32 @@ namespace Chatrum
         /// </summary>
         /// <param name="targetServer"></param>
         /// <param name="servername"></param>
-        private void FinishedConnectingToServerSuccess(ServerEntryInfo targetServer, string servername)
+        private void FinishedConnectingToServer(ServerEntryInfo targetServer, string servername, bool success)
         {
-            connectedServer = targetServer;
-            connectedServername = servername;
-
-            ServerName.Text = servername;
-            messageController.ClearMessages();
-
-            // If minified, show balloon message.
-            if (WindowState == FormWindowState.Minimized)
+            this.Invoke((MethodInvoker)delegate
             {
-                notifyIconMain.BalloonTipText = $"Forbandt til {servername}";
-                notifyIconMain.ShowBalloonTip(BalloonTimeout);
-            }
-        }
+                // If minified, show balloon message.
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    notifyIconMain.BalloonTipText = success ? $"Forbandt til {servername}" : $"Kunne ikke forbinde til {servername}";
+                    notifyIconMain.ShowBalloonTip(BalloonTimeout);
+                }
 
-        private void FinishedConnectingToServerTimeout(ServerEntryInfo targetServer, string servername)
-        {
-            // If minified, show balloon message.
-            if (WindowState == FormWindowState.Minimized)
-            {
-                notifyIconMain.BalloonTipText = $"Kunne ikke forbinde til {servername}";
-                notifyIconMain.ShowBalloonTip(BalloonTimeout);
-            }
+                if (!success)
+                {
+                    Text = DefaultFormTitle;
+                    ServerName.Text = "Forbindelse mislykkedes";
+                    serverListController.UpdateServerConnectedStatus(targetServer, CheckState.Unchecked);
+                    return;
+                }
+
+                serverListController.UpdateServerConnectedStatus(targetServer, CheckState.Checked);
+                connectedServer = targetServer;
+                connectedServername = servername;
+
+                ServerName.Text = servername;
+                messageController.ClearMessages();
+            });
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -202,7 +212,7 @@ namespace Chatrum
                     string newName = Properties.Settings.Default.Nickname;
                     if (newName != previousName)
                     {
-                        networkClient.ChangeName(newName);
+                        networkClient?.ChangeName(newName);
                     }
                     break;
                 default:
@@ -213,7 +223,7 @@ namespace Chatrum
 
         private void ServerMenuBtn_Click(object sender, EventArgs e)
         {
-            AddServerPrompt prompt = new AddServerPrompt();
+            AddServerPrompt prompt = new AddServerPrompt(serverListController.GetServerNames());
             switch (prompt.ShowDialog())
             {
                 case DialogResult.Yes:
@@ -313,6 +323,11 @@ namespace Chatrum
                     {
                         connectedServer = null;
                         connectedServername = null;
+                        continue;
+                    }
+
+                    if (Disconnecting)
+                    {
                         continue;
                     }
 
@@ -425,25 +440,56 @@ namespace Chatrum
             Close();
         }
 
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DisconnectServer();
+        }
+
+        private void FormMain_Enter(object sender, EventArgs e)
+        {
+            // Refresh connection with server.
+            networkClient?.PingServer();
+        }
 
         // NETWORK EVENT HANDLING BELOW
 
         private void RegisterServerEvents(NetworkClient networkClient)
         {
+            if (networkClient is null)
+            {
+                return;
+            }
+
             networkClient.onMessage += OnMessage;
-            networkClient.onUserIDReceived += OnUserIDRecieved;
             networkClient.onUserInfoReceived += OnUserInfoRecieved;
             networkClient.onUserLeft += OnUserLeft;
             networkClient.onLogMessage += OnLogMessage;
+            networkClient.onDisconnect += OnDisconnect;
         }
 
         private void UnregisterServerEvents(NetworkClient networkClient)
         {
+            if (networkClient is null)
+            {
+                return;
+            }
+
             networkClient.onMessage -= OnMessage;
-            networkClient.onUserIDReceived -= OnUserIDRecieved;
             networkClient.onUserInfoReceived -= OnUserInfoRecieved;
             networkClient.onUserLeft -= OnUserLeft;
             networkClient.onLogMessage -= OnLogMessage;
+            networkClient.onDisconnect -= OnDisconnect;
+        }
+
+        private void OnDisconnect()
+        {
+            if (connectedServer is null)
+            {
+                networkClient = null;
+                return;
+            }
+
+            DisconnectServer();
         }
 
         private void OnLogMessage((string message, DateTime timeStamp) e)
@@ -465,7 +511,7 @@ namespace Chatrum
                 {
                     sendername = "[Server]";
                 }
-                else if (userID == selfID)
+                else if (userID == networkClient.ClientID)
                 {
                     sendername = Properties.Settings.Default.Nickname;
                 }
@@ -474,13 +520,8 @@ namespace Chatrum
                     sendername = "[Navn ikke fundet]";
                 }
 
-                messageController.ReceivedMessage(userID == selfID, sendername, message, timeStamp);
+                messageController.ReceivedMessage(userID == networkClient.ClientID, sendername, message, timeStamp);
             });
-        }
-
-        public void OnUserIDRecieved(int userID)
-        {
-            selfID = (byte)userID;
         }
 
         public void OnUserInfoRecieved((int userID, string userName) e)

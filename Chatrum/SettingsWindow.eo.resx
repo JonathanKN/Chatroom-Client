@@ -136,6 +136,9 @@
   <data name="labelUsername.Text" xml:space="preserve">
     <value>Kromnomo:</value>
   </data>
+  <data name="buttonColophon.Text" xml:space="preserve">
+    <value>Kolofono</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Indstillinger</value>
   </data>

@@ -329,8 +329,10 @@ namespace Chatrum
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.TextChanged += new System.EventHandler(this.FormMain_TextChanged);
+            this.Enter += new System.EventHandler(this.FormMain_Enter);
             this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

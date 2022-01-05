@@ -12,8 +12,8 @@ namespace Chatrum.LogicControllers
         private readonly SplitContainer splitContainer1Layout;
         private readonly Control onlineListLayout;
 
-        private byte _pendingMessages;
-        private byte pendingMessages
+        private sbyte _pendingMessages;
+        private sbyte pendingMessages
         {
             get => _pendingMessages;
             set
@@ -50,6 +50,7 @@ namespace Chatrum.LogicControllers
             if (isSelf)
             {
                 pendingMessages--;
+
                 // Skriv ikke egen besked igen.
                 return;
             }
@@ -66,7 +67,7 @@ namespace Chatrum.LogicControllers
 
         private void AddMessage(string message, string sender, DateTime date)
         {
-            //messageContainer.SuspendLayout();
+            messageContainer.SuspendLayout();
 
             var messageLabel = new Label
             {
@@ -107,9 +108,10 @@ namespace Chatrum.LogicControllers
 
             messageContainer.Controls.SetChildIndex(messageSender, 0);
             messageContainer.Controls.SetChildIndex(messageLabel, 0);
-            //messageContainer.ResumeLayout();
+            messageContainer.ResumeLayout();
 
             messageContainer.AutoScrollPosition = new Point(splitContainer1Layout.Panel1.Width, int.MaxValue);
+            messageContainer.Refresh();
         }
     }
 }
