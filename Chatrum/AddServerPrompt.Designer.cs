@@ -143,9 +143,11 @@ namespace Chatrum
             // 
             // AddServerPrompt
             // 
+            this.AcceptButton = this.AddServerBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.CancelButton = this.buttonClose;
             this.Controls.Add(this.labelInvalidServerNickname);
             this.Controls.Add(this.labelInvalidPort);
             this.Controls.Add(this.labelInvalidIP);

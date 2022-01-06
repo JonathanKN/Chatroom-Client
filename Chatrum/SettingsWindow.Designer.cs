@@ -48,6 +48,7 @@ namespace Chatrum
             // 
             resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonClose.ForeColor = System.Drawing.Color.Red;
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.UseVisualStyleBackColor = true;
@@ -55,8 +56,8 @@ namespace Chatrum
             // 
             // comboBoxLanguageSelection
             // 
-            resources.ApplyResources(this.comboBoxLanguageSelection, "comboBoxLanguageSelection");
             this.comboBoxLanguageSelection.BackColor = System.Drawing.Color.Silver;
+            resources.ApplyResources(this.comboBoxLanguageSelection, "comboBoxLanguageSelection");
             this.comboBoxLanguageSelection.FormattingEnabled = true;
             this.comboBoxLanguageSelection.Items.AddRange(new object[] {
             resources.GetString("comboBoxLanguageSelection.Items"),
@@ -94,6 +95,7 @@ namespace Chatrum
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.CancelButton = this.buttonClose;
             this.Controls.Add(this.buttonColophon);
             this.Controls.Add(this.NicknameTextBox);
             this.Controls.Add(this.labelUsername);
