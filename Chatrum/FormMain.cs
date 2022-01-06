@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
 using Chatrum.LogicControllers;
+using System.Media;
 
 namespace Chatrum
 {
@@ -73,7 +74,14 @@ namespace Chatrum
                 pictureBoxPendingMessageIcon,
                 notifyIconMain,
                 splitContainer1,
-                OnlineList.Width);
+                OnlineList.Width,
+                ()=> {
+                    SoundPlayer messageSound = new SoundPlayer(Properties.Resources.MessageSound);
+                    if (WindowState == FormWindowState.Minimized && Properties.Settings.Default.MessageSound)
+                    {
+                        messageSound.Play();
+                    }
+                });
 
             userListController = new UserListController(OnlineList);
 
@@ -236,9 +244,16 @@ namespace Chatrum
             }
         }
 
+
         private void MessageBox_KeyDown(object sender, KeyEventArgs key)
         {
-            if (key.KeyCode != Keys.Enter || MessageBox.TextLength == 0 || networkClient is null)
+            if (key.KeyCode != Keys.Enter)
+            {
+                return;
+            }
+            key.Handled = true;
+            key.SuppressKeyPress = true;
+            if (MessageBox.TextLength == 0 || networkClient is null)
             {
                 return;
             }
@@ -331,7 +346,7 @@ namespace Chatrum
                         continue;
                     }
 
-                    networkClient.Update();
+                    networkClient?.Update();
                 }
             }
             catch (Exception)

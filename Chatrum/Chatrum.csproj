@@ -156,5 +156,8 @@
   <ItemGroup>
     <None Include="Resources\PendingMessageIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Windows XP Exclamation Remix.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

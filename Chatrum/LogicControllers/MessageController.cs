@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Chatrum.LogicControllers
 {
@@ -10,7 +11,10 @@ namespace Chatrum.LogicControllers
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
         private readonly SplitContainer splitContainer1Layout;
+        private readonly Action playMessageSound;
         private readonly int onlineListWidth;
+
+        private SoundPlayer messageSound;
 
         private sbyte _pendingMessages;
         private sbyte pendingMessages
@@ -23,15 +27,17 @@ namespace Chatrum.LogicControllers
             }
         }
 
-        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, SplitContainer splitContainer1Layout, int onlineListWidth)
+        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, SplitContainer splitContainer1Layout, int onlineListWidth, Action playMessageSound)
         {
-            // TODO: Forstå hvorfor man skal bruge onlineListLayout og splitcontainer1
+            // TODO: Forstå hvorfor man skal bruge splitcontainer1
             // de burde ikke være vigtige. 
             this.messageContainer = messageContainer;
             this.pendingMessageIcon = pendingMessageIcon;
             this.messageNotifications = messageNotifications;
             this.splitContainer1Layout = splitContainer1Layout;
             this.onlineListWidth = onlineListWidth;
+            this.playMessageSound = playMessageSound;
+
         }
 
         public void MessageSent()
@@ -54,6 +60,7 @@ namespace Chatrum.LogicControllers
                 // Skriv ikke egen besked igen.
                 return;
             }
+            playMessageSound();
 
             AddMessage(message, sendername, date);
             string previousTitle = messageNotifications.BalloonTipTitle;
@@ -80,7 +87,7 @@ namespace Chatrum.LogicControllers
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 10),
                 Width = messageContainer.Width - onlineListWidth - 40
-            };
+            }; 
             messageContainer.Controls.Add(messageLabel);
 
             var messageSender = new FlowLayoutPanel
