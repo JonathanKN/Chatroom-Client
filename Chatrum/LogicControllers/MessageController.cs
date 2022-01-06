@@ -10,7 +10,7 @@ namespace Chatrum.LogicControllers
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
         private readonly SplitContainer splitContainer1Layout;
-        private readonly Control onlineListLayout;
+        private readonly int onlineListWidth;
 
         private sbyte _pendingMessages;
         private sbyte pendingMessages
@@ -23,7 +23,7 @@ namespace Chatrum.LogicControllers
             }
         }
 
-        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, SplitContainer splitContainer1Layout, Control onlineListLayout)
+        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, SplitContainer splitContainer1Layout, int onlineListWidth)
         {
             // TODO: Forstå hvorfor man skal bruge onlineListLayout og splitcontainer1
             // de burde ikke være vigtige. 
@@ -31,7 +31,7 @@ namespace Chatrum.LogicControllers
             this.pendingMessageIcon = pendingMessageIcon;
             this.messageNotifications = messageNotifications;
             this.splitContainer1Layout = splitContainer1Layout;
-            this.onlineListLayout = onlineListLayout;
+            this.onlineListWidth = onlineListWidth;
         }
 
         public void MessageSent()
@@ -79,7 +79,7 @@ namespace Chatrum.LogicControllers
                 Font = new Font("Microsoft Sans Serif", 13),
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 10),
-                Width = messageContainer.Width - onlineListLayout.Width - 40 // TODO: bør ikke være afhængig af onlinelist.
+                Width = messageContainer.Width - onlineListWidth - 40
             };
             messageContainer.Controls.Add(messageLabel);
 

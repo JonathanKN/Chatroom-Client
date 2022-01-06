@@ -73,7 +73,7 @@ namespace Chatrum
                 pictureBoxPendingMessageIcon,
                 notifyIconMain,
                 splitContainer1,
-                OnlineList);
+                OnlineList.Width);
 
             userListController = new UserListController(OnlineList);
 
