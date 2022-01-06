@@ -15,7 +15,7 @@ namespace Chatrum
         public const int BalloonTimeout = 500;
         private static bool Disconnecting = false;
 
-        private readonly string DefaultFormTitle = "Chatrum";
+        private readonly string DefaultFormTitle = "Bonfire";
         private readonly ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
         private ServerEntryInfo connectedServer;
