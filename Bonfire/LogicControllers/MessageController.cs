@@ -10,7 +10,6 @@ namespace Bonfire.LogicControllers
         private readonly FlowLayoutPanel messageContainer;
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
-        private readonly SplitContainer splitContainer1Layout;
         private readonly Action playMessageSound;
         private readonly int onlineListWidth;
 
@@ -27,14 +26,11 @@ namespace Bonfire.LogicControllers
             }
         }
 
-        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, SplitContainer splitContainer1Layout, int onlineListWidth, Action playMessageSound)
+        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, int onlineListWidth, Action playMessageSound)
         {
-            // TODO: Forstå hvorfor man skal bruge splitcontainer1
-            // de burde ikke være vigtige. 
             this.messageContainer = messageContainer;
             this.pendingMessageIcon = pendingMessageIcon;
             this.messageNotifications = messageNotifications;
-            this.splitContainer1Layout = splitContainer1Layout;
             this.onlineListWidth = onlineListWidth;
             this.playMessageSound = playMessageSound;
 
@@ -125,7 +121,7 @@ namespace Bonfire.LogicControllers
             messageContainer.Controls.SetChildIndex(messageLabel, 0);
             messageContainer.ResumeLayout();
 
-            messageContainer.AutoScrollPosition = new Point(splitContainer1Layout.Panel1.Width, int.MaxValue);
+            messageContainer.AutoScrollPosition = new Point(1, int.MaxValue);
             messageContainer.Refresh();
         }
     }

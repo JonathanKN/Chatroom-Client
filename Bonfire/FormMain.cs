@@ -73,7 +73,6 @@ namespace Bonfire
                 MessageContainer,
                 pictureBoxPendingMessageIcon,
                 notifyIconMain,
-                splitContainer1,
                 OnlineList.Width,
                 ()=> {
                     SoundPlayer messageSound = new SoundPlayer(Properties.Resources.MessageSound);
@@ -548,11 +547,9 @@ namespace Bonfire
             (int userID, string userName) = e;
             this.Invoke((MethodInvoker)delegate
             {
-                // TODO: Dette kommer til at skabe en fejl, når brugerens information
-                // bliver opdateret mere end én gang.
                 if (users.TryGetValue(userID, out string oldName))
                 {
-                    userListController.RemovePerson(users[userID]);
+                    userListController.RemovePerson(oldName);
                 }
 
                 users[userID] = userName;
