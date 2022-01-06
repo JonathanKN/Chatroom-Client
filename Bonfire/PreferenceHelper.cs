@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Chatrum
+namespace Bonfire
 {
     public static class PreferenceHelper
     {

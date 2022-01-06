@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
 
-namespace Chatrum.LogicControllers
+namespace Bonfire.LogicControllers
 {
     public class MessageController
     {

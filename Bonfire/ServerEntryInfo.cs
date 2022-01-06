@@ -1,4 +1,4 @@
-﻿namespace Chatrum
+﻿namespace Bonfire
 {
     public class ServerEntryInfo
     {

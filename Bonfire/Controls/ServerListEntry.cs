@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Chatrum
+namespace Bonfire
 {
     public partial class ServerListEntry : UserControl
     {

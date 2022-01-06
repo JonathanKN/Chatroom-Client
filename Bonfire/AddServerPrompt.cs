@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Chatrum
+namespace Bonfire
 {
     public partial class AddServerPrompt : Form
     {

@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
-using Chatrum.LogicControllers;
+using Bonfire.LogicControllers;
 using System.Media;
 
-namespace Chatrum
+namespace Bonfire
 {
     public partial class FormMain : Form
     {

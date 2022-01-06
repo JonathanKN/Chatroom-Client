@@ -1,5 +1,5 @@
 ﻿
-namespace Chatrum
+namespace Bonfire
 {
     partial class FormMain
     {

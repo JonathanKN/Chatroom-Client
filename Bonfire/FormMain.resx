@@ -3374,7 +3374,7 @@
 </value>
   </data>
   <data name="notifyIconMain.Text" xml:space="preserve">
-    <value>Chatrum</value>
+    <value>Bonfire</value>
   </data>
   <data name="åbenToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>142, 22</value>
@@ -5331,7 +5331,7 @@
     <value>825, 471</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Chatrum</value>
+    <value>Bonfire</value>
   </data>
   <data name="&gt;&gt;backgroundWorkerMessagePull.Name" xml:space="preserve">
     <value>backgroundWorkerMessagePull</value>

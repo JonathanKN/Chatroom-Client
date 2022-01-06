@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Chatrum.LogicControllers
+namespace Bonfire.LogicControllers
 {
     public class UserListController
     {
