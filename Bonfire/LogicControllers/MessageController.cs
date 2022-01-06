@@ -75,6 +75,11 @@ namespace Bonfire.LogicControllers
             AddMessage(message, Properties.Settings.Default.Nickname, DateTime.Now);
         }
 
+        public void AddLogMessage(string message)
+        {
+            AddMessage(message, "[Server]", DateTime.Now);
+        }
+
         private void AddMessage(string message, string sender, DateTime date)
         {
             messageContainer.SuspendLayout();

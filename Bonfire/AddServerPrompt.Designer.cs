@@ -99,6 +99,7 @@ namespace Bonfire
             // 
             resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonClose.ForeColor = System.Drawing.Color.Red;
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.UseVisualStyleBackColor = true;

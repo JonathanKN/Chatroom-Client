@@ -34,14 +34,12 @@ namespace Bonfire
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ServerList = new System.Windows.Forms.FlowLayoutPanel();
-            this.ServerMenuBtn = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.MessageContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.OnlineList = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBoxPendingMessageIcon = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.MessageBox = new System.Windows.Forms.TextBox();
             this.ServerNameHeader = new System.Windows.Forms.Panel();
@@ -62,6 +60,11 @@ namespace Bonfire
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
+            this.ServerMenuBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BonfireLogo = new System.Windows.Forms.Panel();
+            this.pictureBoxPendingMessageIcon = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,12 +75,13 @@ namespace Bonfire
             this.splitContainer2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).BeginInit();
             this.panel4.SuspendLayout();
             this.ServerNameHeader.SuspendLayout();
             this.panelTopBorderControls.SuspendLayout();
             this.flowLayoutPanelWindowButtons.SuspendLayout();
             this.contextMenuStripNotifyIcon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -101,12 +105,15 @@ namespace Bonfire
             // splitContainer2
             // 
             resources.ApplyResources(this.splitContainer2, "splitContainer2");
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel5);
+            this.splitContainer2.Panel1.Controls.Add(this.panel1);
+            this.splitContainer2.Panel1.Controls.Add(this.BonfireLogo);
             this.splitContainer2.Panel1.Controls.Add(this.ServerList);
-            this.splitContainer2.Panel1.Controls.Add(this.ServerMenuBtn);
             // 
             // splitContainer2.Panel2
             // 
@@ -118,18 +125,6 @@ namespace Bonfire
             this.ServerList.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ServerList.Name = "ServerList";
             this.ServerList.TabStop = true;
-            // 
-            // ServerMenuBtn
-            // 
-            this.ServerMenuBtn.BackColor = System.Drawing.Color.DarkGray;
-            resources.ApplyResources(this.ServerMenuBtn, "ServerMenuBtn");
-            this.ServerMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ServerMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.ServerMenuBtn.FlatAppearance.BorderSize = 0;
-            this.ServerMenuBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ServerMenuBtn.Name = "ServerMenuBtn";
-            this.ServerMenuBtn.UseVisualStyleBackColor = false;
-            this.ServerMenuBtn.Click += new System.EventHandler(this.ServerMenuBtn_Click);
             // 
             // buttonSettings
             // 
@@ -177,12 +172,6 @@ namespace Bonfire
             this.panel2.Controls.Add(this.panel4);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            // 
-            // pictureBoxPendingMessageIcon
-            // 
-            resources.ApplyResources(this.pictureBoxPendingMessageIcon, "pictureBoxPendingMessageIcon");
-            this.pictureBoxPendingMessageIcon.Name = "pictureBoxPendingMessageIcon";
-            this.pictureBoxPendingMessageIcon.TabStop = false;
             // 
             // panel4
             // 
@@ -321,6 +310,46 @@ namespace Bonfire
             resources.ApplyResources(this.lukToolStripMenuItem, "lukToolStripMenuItem");
             this.lukToolStripMenuItem.Click += new System.EventHandler(this.lukToolStripMenuItem_Click);
             // 
+            // ServerMenuBtn
+            // 
+            this.ServerMenuBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ServerMenuBtn.BackgroundImage = global::Bonfire.Properties.Resources.TilføjServerKnap;
+            resources.ApplyResources(this.ServerMenuBtn, "ServerMenuBtn");
+            this.ServerMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ServerMenuBtn.FlatAppearance.BorderColor = System.Drawing.SystemColors.GrayText;
+            this.ServerMenuBtn.FlatAppearance.BorderSize = 0;
+            this.ServerMenuBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ServerMenuBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ServerMenuBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ServerMenuBtn.Name = "ServerMenuBtn";
+            this.ServerMenuBtn.UseVisualStyleBackColor = false;
+            this.ServerMenuBtn.Click += new System.EventHandler(this.ServerMenuBtn_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Bonfire.Properties.Resources.Bonfire_text;
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
+            // 
+            // BonfireLogo
+            // 
+            this.BonfireLogo.BackgroundImage = global::Bonfire.Properties.Resources.New_Bonfire;
+            resources.ApplyResources(this.BonfireLogo, "BonfireLogo");
+            this.BonfireLogo.Name = "BonfireLogo";
+            // 
+            // pictureBoxPendingMessageIcon
+            // 
+            resources.ApplyResources(this.pictureBoxPendingMessageIcon, "pictureBoxPendingMessageIcon");
+            this.pictureBoxPendingMessageIcon.Name = "pictureBoxPendingMessageIcon";
+            this.pictureBoxPendingMessageIcon.TabStop = false;
+            // 
+            // panel5
+            // 
+            resources.ApplyResources(this.panel5, "panel5");
+            this.panel5.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel5.Controls.Add(this.ServerMenuBtn);
+            this.panel5.Name = "panel5";
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -346,7 +375,6 @@ namespace Bonfire
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ServerNameHeader.ResumeLayout(false);
@@ -355,6 +383,8 @@ namespace Bonfire
             this.panelTopBorderControls.PerformLayout();
             this.flowLayoutPanelWindowButtons.ResumeLayout(false);
             this.contextMenuStripNotifyIcon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPendingMessageIcon)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -391,6 +421,9 @@ namespace Bonfire
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.Label labelCustomTitle;
         private System.Windows.Forms.ToolTip toolTipServerEntry;
+        private System.Windows.Forms.Panel BonfireLogo;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 

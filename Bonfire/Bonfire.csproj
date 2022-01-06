@@ -48,7 +48,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Bonfire %281%29.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Chatroom Client Backend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -161,7 +162,9 @@
     <None Include="Resources\PendingMessageIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Bonfire %281%29.ico" />
+    <None Include="Resources\New Bonfire.png" />
+    <None Include="Resources\Bonfire-text.png" />
+    <None Include="Resources\TilføjServerKnap.png" />
     <Content Include="Resources\Windows XP Exclamation Remix.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

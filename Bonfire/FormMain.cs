@@ -258,9 +258,13 @@ namespace Bonfire
                 return;
             }
 
-            // TODO: man kan sende beskeder selvom man ikke er forbundet.
-            // tænker man kunne lave så den sender en besked som altid siger "Du er ikke forbundet"
-            // eller noget i den stil.
+            if (connectedServer is null)
+            {
+                messageController.AddLogMessage("Du er ikke forbundet til serveren");
+                return;
+            }
+
+
             string messageText = MessageBox.Text;
             MessageBox.Text = string.Empty;
 
