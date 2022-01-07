@@ -70,5 +70,10 @@ namespace Bonfire
         private void ServerListEntry_Load(object sender, EventArgs e)
         {
         }
+
+        private void checkBoxConnected_Click(object sender, EventArgs e)
+        {
+            ServernameLabel_Click(sender, e);
+        }
     }
 }

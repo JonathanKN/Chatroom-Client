@@ -106,6 +106,7 @@ namespace Bonfire
             this.checkBoxConnected.TabIndex = 1;
             this.checkBoxConnected.ThreeState = true;
             this.checkBoxConnected.UseVisualStyleBackColor = true;
+            this.checkBoxConnected.Click += new System.EventHandler(this.checkBoxConnected_Click);
             // 
             // ServerListEntry
             // 

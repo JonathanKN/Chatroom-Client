@@ -13,7 +13,6 @@ namespace Bonfire
     public partial class FormMain : Form
     {
         public const int BalloonTimeout = 500;
-        private static bool Disconnecting = false;
 
         private readonly string DefaultFormTitle = "Bonfire";
         private readonly ComponentResourceManager resources;
@@ -83,21 +82,17 @@ namespace Bonfire
                 });
 
             userListController = new UserListController(OnlineList);
-            
+
+            backgroundWorkerMessagePull.RunWorkerAsync();
+
             // Form title
             Text = DefaultFormTitle;
             labelCustomTitle.Text = DefaultFormTitle;
             
         }
 
-        private void DisconnectServer(bool stopMessageListener=true)
+        private void DisconnectServer()
         {
-            if (stopMessageListener)
-            {
-                backgroundWorkerMessagePull.CancelAsync();
-            }
-
-            Disconnecting = true;
             serverListController.UpdateStatusDisconnectAll();
 
             DisconnectBtn.Visible = false;
@@ -107,7 +102,6 @@ namespace Bonfire
             UnregisterServerEvents(networkClient);
             networkClient?.Disconnect();
             networkClient = null;
-            Disconnecting = false;
         }
 
         /// <summary>
@@ -141,14 +135,11 @@ namespace Bonfire
             }
 
             // Frakobl nuværende server, hvis den er forbundet
-            if (networkClient is null)
+            if (!(networkClient is null))
             {
-                backgroundWorkerMessagePull.RunWorkerAsync();
+                DisconnectServer();
             }
-            else
-            {
-                DisconnectServer(false);
-            }
+
             users.Clear();
             userListController.Clear();
             messageController.ClearMessages();
@@ -341,36 +332,15 @@ namespace Bonfire
                 {
                     while (sw.ElapsedMilliseconds < 1000 / 10)
                     {
-                        if (backgroundWorkerMessagePull.CancellationPending)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-
                         Thread.Sleep(0);
-                    }
-
-                    if (backgroundWorkerMessagePull.CancellationPending)
-                    {
-                        e.Cancel = true;
-                        return;
                     }
 
                     sw.Restart();
 
-                    if (networkClient is null)
+                    this.Invoke((MethodInvoker)delegate
                     {
-                        connectedServer = null;
-                        connectedServername = null;
-                        continue;
-                    }
-
-                    if (Disconnecting)
-                    {
-                        continue;
-                    }
-                    // TODO: det crasher en gang i mellem
-                    networkClient?.Update();
+                        networkClient?.Update();
+                    });
                 }
             }
             catch (Exception)
