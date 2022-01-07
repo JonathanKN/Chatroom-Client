@@ -83,32 +83,24 @@ namespace Bonfire
                 });
 
             userListController = new UserListController(OnlineList);
-
-            backgroundWorkerMessagePull.RunWorkerAsync();
             
             // Form title
             Text = DefaultFormTitle;
             labelCustomTitle.Text = DefaultFormTitle;
             
-            TestIndstillingerStart();
         }
 
-        /// <summary>
-        /// Kaldes når Windows Forms er færdig med at loade.
-        /// TODO: Fjern i det endelige program.
-        /// </summary>
-        private void TestIndstillingerStart()
+        private void DisconnectServer(bool stopMessageListener=true)
         {
-            //serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
-            //serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
-            //ConnectToServer("Esperanto server");
-        }
+            if (stopMessageListener)
+            {
+                backgroundWorkerMessagePull.CancelAsync();
+            }
 
-        private void DisconnectServer()
-        {
             Disconnecting = true;
             serverListController.UpdateStatusDisconnectAll();
 
+            DisconnectBtn.Visible = false;
             ServerName.Text = "[Ikke forbundet]";
             connectedServer = null;
             connectedServername = null;
@@ -149,10 +141,17 @@ namespace Bonfire
             }
 
             // Frakobl nuværende server, hvis den er forbundet
-            if (!(networkClient is null))
+            if (networkClient is null)
             {
-                DisconnectServer();
+                backgroundWorkerMessagePull.RunWorkerAsync();
             }
+            else
+            {
+                DisconnectServer(false);
+            }
+            users.Clear();
+            userListController.Clear();
+            messageController.ClearMessages();
 
             networkClient = new NetworkClient(
                 Properties.Settings.Default.Nickname,
@@ -165,6 +164,7 @@ namespace Bonfire
 
             ConnectingToServer(targetServer, servername);
             networkClient.Connect();
+            DisconnectBtn.Visible = true;
         }
 
         private void ConnectingToServer(ServerEntryInfo targetServer, string servername)
@@ -204,6 +204,8 @@ namespace Bonfire
 
                 ServerName.Text = servername;
                 messageController.ClearMessages();
+                userListController.Clear();
+                users.Clear();
             });
         }
 
@@ -252,6 +254,11 @@ namespace Bonfire
             }
             key.Handled = true;
             key.SuppressKeyPress = true;
+            SendMessage();
+        }
+
+        private void SendMessage()
+        {
             if (MessageBox.TextLength == 0 || networkClient is null)
             {
                 return;
@@ -333,7 +340,21 @@ namespace Bonfire
                 while (true)
                 {
                     while (sw.ElapsedMilliseconds < 1000 / 10)
+                    {
+                        if (backgroundWorkerMessagePull.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+
                         Thread.Sleep(0);
+                    }
+
+                    if (backgroundWorkerMessagePull.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
 
                     sw.Restart();
 
@@ -348,7 +369,7 @@ namespace Bonfire
                     {
                         continue;
                     }
-
+                    // TODO: det crasher en gang i mellem
                     networkClient?.Update();
                 }
             }
@@ -563,13 +584,30 @@ namespace Bonfire
             {
                 if (!users.TryGetValue(userID, out string username))
                 {
-                    // TODO: Sjælden fejl, hvor en hvor disconnecter, før de forbandt.
                     return;
                 }
 
                 userListController.RemovePerson(username);
                 users.Remove(userID);
             });
+        }
+
+        private void SendMessageBtn_Click(object sender, EventArgs e)
+        {
+            SendMessage();
+        }
+
+        private void DisconnectBtn_Click(object sender, EventArgs e)
+        {
+            userListController.Clear();
+            users.Clear();
+            messageController.ClearMessages();
+            DisconnectServer();
+        }
+
+        private void MessageBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

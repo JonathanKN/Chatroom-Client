@@ -20,16 +20,27 @@ namespace Bonfire.LogicControllers
                 Name = $"NameLabel{name}",
                 ForeColor = Color.LightGray,
                 Font = new Font("Microsoft Sans Serif", 13),
-                Margin = new Padding(0, 0, 0, 2),
+                Margin = new Padding(0, 0, 0, 5),
                 AutoSize = true
             };
             listPanel.Controls.Add(person);
         }
 
+        public void Clear()
+        {
+            listPanel.Controls.Clear();
+        }
+
         public void RemovePerson(string name)
         {
-            // TODO: Kommer til at lave en exception hvis navnet ikke findes.
-            listPanel.Controls.Remove(listPanel.Controls.Find($"NameLabel{name}", false)[0]);
+            Control[] controls = listPanel.Controls.Find($"NameLabel{name}", false);
+
+            if (controls.Length == 0)
+            {
+                return;
+            }
+
+            listPanel.Controls.Remove(controls[0]);
         }
     }
 }

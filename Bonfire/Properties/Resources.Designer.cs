@@ -71,6 +71,26 @@ namespace Bonfire.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Exit_icon {
+            get {
+                object obj = ResourceManager.GetObject("Exit icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Exit_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("Exit icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream MessageSound {
@@ -95,6 +115,16 @@ namespace Bonfire.Properties {
         internal static System.Drawing.Bitmap PendingMessageIcon {
             get {
                 object obj = ResourceManager.GetObject("PendingMessageIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sendIkon {
+            get {
+                object obj = ResourceManager.GetObject("sendIkon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

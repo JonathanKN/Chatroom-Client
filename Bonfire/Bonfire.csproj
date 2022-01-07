@@ -165,6 +165,9 @@
     <None Include="Resources\New Bonfire.png" />
     <None Include="Resources\Bonfire-text.png" />
     <None Include="Resources\TilføjServerKnap.png" />
+    <None Include="Resources\sendIkon.png" />
+    <None Include="Resources\Exit icon.png" />
+    <None Include="Resources\Exit icon1.png" />
     <Content Include="Resources\Windows XP Exclamation Remix.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
