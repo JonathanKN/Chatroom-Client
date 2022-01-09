@@ -9,7 +9,7 @@ namespace Bonfire
     public partial class AddServerPrompt : Form
     {
         public string IP;
-        public short Port;
+        public ushort Port;
         public string ServerNickname;
         private readonly string[] reservedServernames;
 
@@ -38,8 +38,8 @@ namespace Bonfire
 
         private void AddServerBtn_Click(object sender, EventArgs e)
         {
-            labelInvalidPort.Visible = !short.TryParse(ServerPortInput.Text, out Port);
-            labelInvalidIP.Visible = !IPAddress.TryParse(ServerIPInput.Text, out _);
+            labelInvalidPort.Visible = !ushort.TryParse(ServerPortInput.Text, out Port);
+            //labelInvalidIP.Visible = !IPAddress.TryParse(ServerIPInput.Text, out _);
 
             labelInvalidServerNickname.Visible = reservedServernames.Contains(ServerNicknameInput.Text);
 
