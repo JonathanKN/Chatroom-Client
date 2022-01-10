@@ -30,7 +30,8 @@ namespace Bonfire
         {
             // Denne "metode" må sådan set ikke bruges til andet end initialisering.
             // Derfor bruger man OnLoad i stedet.
-            Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
+            PreferenceHelper.LoadedLanguage = Properties.Settings.Default.Language;
+            Thread.CurrentThread.CurrentUICulture = PreferenceHelper.LoadedLanguage;
             InitializeComponent();
 
             // Resize logic
@@ -243,6 +244,7 @@ namespace Bonfire
             {
                 return;
             }
+
             key.Handled = true;
             key.SuppressKeyPress = true;
             SendMessage();
@@ -370,7 +372,12 @@ namespace Bonfire
             notifyIconMain.Visible = false;
         }
 
-        private void notifyIconMain_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIconMain_BalloonTipClicked(object sender, EventArgs e)
+        {
+            ShowFormAfterMinimized();
+        }
+
+        private void notifyIconMain_Click(object sender, EventArgs e)
         {
             ShowFormAfterMinimized();
         }
@@ -458,6 +465,28 @@ namespace Bonfire
         {
             // Refresh connection with server.
             networkClient?.PingServer();
+        }
+
+        private void SendMessageBtn_Click(object sender, EventArgs e)
+        {
+            // Handle messagebox before sending.
+            MessageBox_Enter(sender, e);
+
+            // Send messagebox.
+            SendMessage();
+        }
+
+        private void DisconnectBtn_Click(object sender, EventArgs e)
+        {
+            userListController.Clear();
+            users.Clear();
+            messageController.ClearMessages();
+            DisconnectServer();
+        }
+
+        private void MessageBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         // NETWORK EVENT HANDLING BELOW
@@ -560,24 +589,6 @@ namespace Bonfire
                 userListController.RemovePerson(username);
                 users.Remove(userID);
             });
-        }
-
-        private void SendMessageBtn_Click(object sender, EventArgs e)
-        {
-            SendMessage();
-        }
-
-        private void DisconnectBtn_Click(object sender, EventArgs e)
-        {
-            userListController.Clear();
-            users.Clear();
-            messageController.ClearMessages();
-            DisconnectServer();
-        }
-
-        private void MessageBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

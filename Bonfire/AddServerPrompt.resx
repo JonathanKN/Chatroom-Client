@@ -121,9 +121,12 @@
   <data name="AddServerBtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="AddServerBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="AddServerBtn.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 16pt</value>
+    <value>Calibri, 18pt</value>
   </data>
   <data name="AddServerBtn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -155,30 +158,6 @@
   </data>
   <data name="panel5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
-  </data>
-  <data name="ServerPortInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ServerPortInput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
-  </data>
-  <data name="ServerPortInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 10</value>
-  </data>
-  <data name="ServerPortInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 5, 5</value>
-  </data>
-  <data name="ServerPortInput.MaxLength" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="ServerPortInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 23</value>
-  </data>
-  <data name="ServerPortInput.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="ServerPortInput.Text" xml:space="preserve">
-    <value>25565</value>
   </data>
   <data name="&gt;&gt;ServerPortInput.Name" xml:space="preserve">
     <value>ServerPortInput</value>
@@ -216,11 +195,47 @@
   <data name="&gt;&gt;panel5.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="ServerPortInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ServerPortInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="ServerPortInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 10</value>
+  </data>
+  <data name="ServerPortInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 5, 5</value>
+  </data>
+  <data name="ServerPortInput.MaxLength" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ServerPortInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 23</value>
+  </data>
+  <data name="ServerPortInput.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ServerPortInput.Text" xml:space="preserve">
+    <value>25565</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.Name" xml:space="preserve">
+    <value>ServerPortInput</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 16pt</value>
+    <value>Calibri, 18pt</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -229,13 +244,13 @@
     <value>12, 107</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 26</value>
+    <value>122, 29</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Server port:</value>
+    <value>Server port</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -248,108 +263,6 @@
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.Name" xml:space="preserve">
-    <value>ServerIPInput</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 47</value>
-  </data>
-  <data name="panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 0, 0</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 42</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="ServerIPInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ServerIPInput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
-  </data>
-  <data name="ServerIPInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 10</value>
-  </data>
-  <data name="ServerIPInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 5, 5</value>
-  </data>
-  <data name="ServerIPInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 23</value>
-  </data>
-  <data name="ServerIPInput.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.Name" xml:space="preserve">
-    <value>ServerIPInput</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;ServerIPInput.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 16pt</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 18</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 26</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Server IP:</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="buttonClose.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -391,22 +304,22 @@
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 16pt</value>
+    <value>Calibri, 18pt</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 197</value>
+    <value>12, 18</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 26</value>
+    <value>129, 29</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Server navn:</value>
+    <value>Server navn</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -422,42 +335,6 @@
   </data>
   <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;ServerNicknameInput.Name" xml:space="preserve">
-    <value>ServerNicknameInput</value>
-  </data>
-  <data name="&gt;&gt;ServerNicknameInput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ServerNicknameInput.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;ServerNicknameInput.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 227</value>
-  </data>
-  <data name="panel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 0, 0</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 42</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="ServerNicknameInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -492,50 +369,44 @@
   <data name="&gt;&gt;ServerNicknameInput.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="labelInvalidIP.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 47</value>
   </data>
-  <data name="labelInvalidIP.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+  <data name="panel2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 0, 0</value>
   </data>
-  <data name="labelInvalidIP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 4</value>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 42</value>
   </data>
-  <data name="labelInvalidIP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 15</value>
-  </data>
-  <data name="labelInvalidIP.TabIndex" type="System.Int32, mscorlib">
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="labelInvalidIP.Text" xml:space="preserve">
-    <value>Forkert IP</value>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
   </data>
-  <data name="&gt;&gt;labelInvalidIP.Name" xml:space="preserve">
-    <value>labelInvalidIP</value>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelInvalidIP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelInvalidIP.Parent" xml:space="preserve">
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;labelInvalidIP.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="labelInvalidPort.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelInvalidPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>Calibri, 9pt, style=Bold, Italic</value>
   </data>
   <data name="labelInvalidPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelInvalidPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 92</value>
+    <value>16, 95</value>
   </data>
   <data name="labelInvalidPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 15</value>
+    <value>66, 14</value>
   </data>
   <data name="labelInvalidPort.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -559,16 +430,16 @@
     <value>True</value>
   </data>
   <data name="labelInvalidServerNickname.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
+    <value>Calibri, 9.75pt, style=Bold, Italic</value>
   </data>
   <data name="labelInvalidServerNickname.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelInvalidServerNickname.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 182</value>
+    <value>16, 5</value>
   </data>
   <data name="labelInvalidServerNickname.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 15</value>
+    <value>119, 15</value>
   </data>
   <data name="labelInvalidServerNickname.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -587,6 +458,129 @@
   </data>
   <data name="&gt;&gt;labelInvalidServerNickname.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="ServerIPInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ServerIPInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="ServerIPInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 10</value>
+  </data>
+  <data name="ServerIPInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 5, 5</value>
+  </data>
+  <data name="ServerIPInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 23</value>
+  </data>
+  <data name="ServerIPInput.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;ServerIPInput.Name" xml:space="preserve">
+    <value>ServerIPInput</value>
+  </data>
+  <data name="&gt;&gt;ServerIPInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ServerIPInput.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;ServerIPInput.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 227</value>
+  </data>
+  <data name="panel1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 0, 0</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 42</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 18pt</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 197</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 29</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Server IP</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="labelInvalidIP.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelInvalidIP.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 9pt, style=Bold, Italic</value>
+  </data>
+  <data name="labelInvalidIP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelInvalidIP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 184</value>
+  </data>
+  <data name="labelInvalidIP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 14</value>
+  </data>
+  <data name="labelInvalidIP.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelInvalidIP.Text" xml:space="preserve">
+    <value>Forkert IP</value>
+  </data>
+  <data name="&gt;&gt;labelInvalidIP.Name" xml:space="preserve">
+    <value>labelInvalidIP</value>
+  </data>
+  <data name="&gt;&gt;labelInvalidIP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelInvalidIP.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelInvalidIP.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

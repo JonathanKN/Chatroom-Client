@@ -19,7 +19,7 @@ namespace Bonfire.LogicControllers
                 Text = name,
                 Name = $"NameLabel{name}",
                 ForeColor = Color.LightGray,
-                Font = new Font("Microsoft Sans Serif", 13),
+                Font = new Font("Calibri", 13),//new Font("Microsoft Sans Serif", 13),
                 Margin = new Padding(0, 0, 0, 5),
                 AutoSize = true
             };

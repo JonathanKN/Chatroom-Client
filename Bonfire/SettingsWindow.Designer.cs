@@ -35,13 +35,18 @@ namespace Bonfire
             this.comboBoxLanguageSelection = new System.Windows.Forms.ComboBox();
             this.checkBoxMessageSound = new System.Windows.Forms.CheckBox();
             this.labelUsername = new System.Windows.Forms.Label();
-            this.NicknameTextBox = new System.Windows.Forms.TextBox();
             this.buttonColophon = new System.Windows.Forms.Button();
+            this.labelRestartChanges = new System.Windows.Forms.Label();
+            this.buttonApply = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.NicknameTextBox = new System.Windows.Forms.TextBox();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelUILanguage
             // 
             resources.ApplyResources(this.labelUILanguage, "labelUILanguage");
+            this.labelUILanguage.ForeColor = System.Drawing.Color.LightGray;
             this.labelUILanguage.Name = "labelUILanguage";
             // 
             // buttonClose
@@ -68,6 +73,7 @@ namespace Bonfire
             // checkBoxMessageSound
             // 
             resources.ApplyResources(this.checkBoxMessageSound, "checkBoxMessageSound");
+            this.checkBoxMessageSound.ForeColor = System.Drawing.Color.LightGray;
             this.checkBoxMessageSound.Name = "checkBoxMessageSound";
             this.checkBoxMessageSound.UseVisualStyleBackColor = true;
             this.checkBoxMessageSound.CheckedChanged += new System.EventHandler(this.checkBoxMessageSound_CheckedChanged);
@@ -75,29 +81,59 @@ namespace Bonfire
             // labelUsername
             // 
             resources.ApplyResources(this.labelUsername, "labelUsername");
+            this.labelUsername.ForeColor = System.Drawing.Color.LightGray;
             this.labelUsername.Name = "labelUsername";
-            // 
-            // NicknameTextBox
-            // 
-            resources.ApplyResources(this.NicknameTextBox, "NicknameTextBox");
-            this.NicknameTextBox.Name = "NicknameTextBox";
-            this.NicknameTextBox.TextChanged += new System.EventHandler(this.NicknameTextBox_TextChanged);
             // 
             // buttonColophon
             // 
             resources.ApplyResources(this.buttonColophon, "buttonColophon");
+            this.buttonColophon.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonColophon.FlatAppearance.BorderSize = 0;
             this.buttonColophon.Name = "buttonColophon";
-            this.buttonColophon.UseVisualStyleBackColor = true;
+            this.buttonColophon.UseVisualStyleBackColor = false;
             this.buttonColophon.Click += new System.EventHandler(this.buttonColophon_Click);
+            // 
+            // labelRestartChanges
+            // 
+            resources.ApplyResources(this.labelRestartChanges, "labelRestartChanges");
+            this.labelRestartChanges.ForeColor = System.Drawing.Color.Brown;
+            this.labelRestartChanges.Name = "labelRestartChanges";
+            // 
+            // buttonApply
+            // 
+            resources.ApplyResources(this.buttonApply, "buttonApply");
+            this.buttonApply.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonApply.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonApply.FlatAppearance.BorderSize = 0;
+            this.buttonApply.Name = "buttonApply";
+            this.buttonApply.UseVisualStyleBackColor = false;
+            this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.Controls.Add(this.NicknameTextBox);
+            this.panel2.Name = "panel2";
+            // 
+            // NicknameTextBox
+            // 
+            this.NicknameTextBox.BackColor = System.Drawing.Color.Silver;
+            this.NicknameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.NicknameTextBox, "NicknameTextBox");
+            this.NicknameTextBox.Name = "NicknameTextBox";
+            this.NicknameTextBox.TextChanged += new System.EventHandler(this.NicknameTextBox_TextChanged);
             // 
             // SettingsWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.CancelButton = this.buttonClose;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.buttonApply);
+            this.Controls.Add(this.labelRestartChanges);
             this.Controls.Add(this.buttonColophon);
-            this.Controls.Add(this.NicknameTextBox);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.checkBoxMessageSound);
             this.Controls.Add(this.comboBoxLanguageSelection);
@@ -110,6 +146,8 @@ namespace Bonfire
             this.TopMost = true;
             this.Load += new System.EventHandler(this.AddServerPrompt_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddServerPrompt_MouseDown);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,7 +159,10 @@ namespace Bonfire
         private System.Windows.Forms.ComboBox comboBoxLanguageSelection;
         private System.Windows.Forms.CheckBox checkBoxMessageSound;
         private System.Windows.Forms.Label labelUsername;
-        private System.Windows.Forms.TextBox NicknameTextBox;
         private System.Windows.Forms.Button buttonColophon;
+        private System.Windows.Forms.Label labelRestartChanges;
+        private System.Windows.Forms.Button buttonApply;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox NicknameTextBox;
     }
 }

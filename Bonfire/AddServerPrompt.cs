@@ -15,7 +15,7 @@ namespace Bonfire
 
         public AddServerPrompt(string[] reservedServernames)
         {
-            Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
+            Thread.CurrentThread.CurrentUICulture = PreferenceHelper.LoadedLanguage;
             InitializeComponent();
 
             this.reservedServernames = reservedServernames;

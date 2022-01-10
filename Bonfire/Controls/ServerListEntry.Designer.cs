@@ -46,7 +46,7 @@ namespace Bonfire
             this.ServernameLabel.ContextMenuStrip = this.contextMenuStripServerList;
             this.ServernameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ServernameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.ServernameLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServernameLabel.Location = new System.Drawing.Point(0, 0);
             this.ServernameLabel.Margin = new System.Windows.Forms.Padding(0);
             this.ServernameLabel.Name = "ServernameLabel";

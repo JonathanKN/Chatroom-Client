@@ -16,7 +16,7 @@ namespace Bonfire
 
         public SettingsWindow()
         {
-            Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
+            Thread.CurrentThread.CurrentUICulture = PreferenceHelper.LoadedLanguage;
             InitializeComponent();
         }
 
@@ -40,7 +40,7 @@ namespace Bonfire
             comboBoxLanguageSelection.Items.Clear();
             foreach (var language in supportedLanguages)
             {
-                int index = comboBoxLanguageSelection.Items.Add(language.DisplayName);
+                int index = comboBoxLanguageSelection.Items.Add(language.Name);
 
                 if (language.Name == selectedLanguage.Name)
                 {
@@ -55,6 +55,9 @@ namespace Bonfire
 
             // update message sound button
             checkBoxMessageSound.Checked = Properties.Settings.Default.MessageSound;
+
+            // set restart changes
+            labelRestartChanges.Visible = Properties.Settings.Default.Language.Name != PreferenceHelper.LoadedLanguage.Name;
         }
 
         private void AddServerPrompt_MouseDown(object sender, MouseEventArgs e)
@@ -68,7 +71,12 @@ namespace Bonfire
         
         private void UpdateLanguageSetting(CultureInfo cultureInfo)
         {
+            CultureInfo previousInfo = Properties.Settings.Default.Language;
             Properties.Settings.Default.Language = cultureInfo;
+
+            labelRestartChanges.Visible = previousInfo.Name != cultureInfo.Name;
+
+            buttonApply.Enabled = true;
             Properties.Settings.Default.Save();
         }
 
@@ -84,6 +92,7 @@ namespace Bonfire
 
         private void UpdateMessageSoundSetting(bool setting)
         {
+            buttonApply.Enabled = true;
             Properties.Settings.Default.MessageSound = setting;
             Properties.Settings.Default.Save();
         }
@@ -97,6 +106,7 @@ namespace Bonfire
         {
             Properties.Settings.Default.Nickname = NicknameTextBox.Text;
             Properties.Settings.Default.Save();
+            buttonApply.Enabled = true;
         }
 
         private void buttonColophon_Click(object sender, EventArgs e)
@@ -106,6 +116,11 @@ namespace Bonfire
                 "- Brugerflade designet og implementeret af Jonathan, ekstra funktionaliter implementeret af Kresten\n" +
                 "- Backend implementeret af Patrick\n" +
                 "- Server implementeret af Kresten");
+        }
+
+        private void buttonApply_Click(object sender, EventArgs e)
+        {
+            buttonApply.Enabled = false;
         }
     }
 }

@@ -73,10 +73,10 @@ namespace Bonfire.LogicControllers
 
         public void AddLogMessage(string message)
         {
-            AddMessage(message, "[Server]", DateTime.Now);
+            AddMessage(message, "[Server]", DateTime.Now, true);
         }
 
-        private void AddMessage(string message, string sender, DateTime date)
+        private void AddMessage(string message, string sender, DateTime date, bool isServer=false)
         {
             messageContainer.SuspendLayout();
 
@@ -84,7 +84,7 @@ namespace Bonfire.LogicControllers
             {
                 Text = message,
                 ForeColor = Color.LightGray,
-                Font = new Font("Microsoft Sans Serif", 13),
+                Font = new Font("Century Gothic", 13),//new Font("Microsoft Sans Serif", 13),
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 10),
                 Width = messageContainer.Width - onlineListWidth - 40
@@ -99,9 +99,9 @@ namespace Bonfire.LogicControllers
 
             var senderLabel = new Label
             {
-                ForeColor = Color.LightGray,
+                ForeColor = Color.DarkOrange,//Color.LightGray,
                 Text = sender,
-                Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
+                Font = new Font("Calibri", 14, FontStyle.Bold),//new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
                 AutoSize = true
             };
             messageSender.Controls.Add(senderLabel);
@@ -110,7 +110,7 @@ namespace Bonfire.LogicControllers
             {
                 Text = date.ToString(),
                 ForeColor = Color.Gray,
-                Font = new Font("Microsoft Sans Serif", 11),
+                Font = new Font("Calibri", 14, FontStyle.Italic),//new Font("Microsoft Sans Serif", 11),
                 AutoSize = true
             };
             messageSender.Controls.Add(dateLabel);

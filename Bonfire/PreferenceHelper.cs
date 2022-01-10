@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace Bonfire
 {
     public static class PreferenceHelper
     {
+        public static CultureInfo LoadedLanguage;
+
         private static List<(ServerEntryInfo, string)> serverEntries;
 
         private static void ClearThenStoreServerEntries()

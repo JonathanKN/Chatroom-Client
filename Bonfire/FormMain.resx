@@ -255,6 +255,9 @@
   <data name="ServerList.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
   </data>
+  <data name="ServerList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 8.25pt</value>
+  </data>
   <data name="ServerList.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 161</value>
   </data>
@@ -304,7 +307,7 @@
     <value>Flat</value>
   </data>
   <data name="buttonSettings.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
+    <value>Calibri, 15pt</value>
   </data>
   <data name="buttonSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -396,6 +399,9 @@
   <data name="MessageContainer.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>BottomUp</value>
   </data>
+  <data name="MessageContainer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Century Gothic, 9pt</value>
+  </data>
   <data name="MessageContainer.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 75</value>
   </data>
@@ -438,6 +444,9 @@
   <data name="OnlineList.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>TopDown</value>
   </data>
+  <data name="OnlineList.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 8.25pt</value>
+  </data>
   <data name="OnlineList.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 40</value>
   </data>
@@ -469,7 +478,7 @@
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 22pt</value>
+    <value>Calibri, 21.75pt</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -481,7 +490,7 @@
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 36</value>
+    <value>92, 36</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -528,40 +537,40 @@
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="button1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="buttonSendMessageButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="button1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+  <data name="buttonSendMessageButton.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="buttonSendMessageButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="buttonSendMessageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="buttonSendMessageButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>520, 15</value>
   </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="buttonSendMessageButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 37</value>
   </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+  <data name="buttonSendMessageButton.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="button1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="buttonSendMessageButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
+  <data name="&gt;&gt;buttonSendMessageButton.Name" xml:space="preserve">
+    <value>buttonSendMessageButton</value>
   </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+  <data name="&gt;&gt;buttonSendMessageButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;buttonSendMessageButton.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;buttonSendMessageButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="pictureBoxPendingMessageIcon.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -1077,6 +1086,9 @@
   <data name="&gt;&gt;MessageBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="panel4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Calibri, 9pt</value>
+  </data>
   <data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
     <value>32, 16</value>
   </data>
@@ -1177,19 +1189,19 @@
     <value>True</value>
   </data>
   <data name="ServerName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 35pt</value>
+    <value>Calibri, 35.25pt</value>
   </data>
   <data name="ServerName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="ServerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 8</value>
+    <value>10, 7</value>
   </data>
   <data name="ServerName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="ServerName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 54</value>
+    <value>332, 58</value>
   </data>
   <data name="ServerName.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1285,7 +1297,7 @@
     <value>Left</value>
   </data>
   <data name="labelCustomTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 10pt</value>
+    <value>Calibri, 11.25pt</value>
   </data>
   <data name="labelCustomTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1297,7 +1309,7 @@
     <value>3, 3, 0, 0</value>
   </data>
   <data name="labelCustomTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 20</value>
+    <value>211, 21</value>
   </data>
   <data name="labelCustomTitle.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>

@@ -33,7 +33,7 @@ namespace Bonfire
             }
             else
             {
-                ContainerPanel.BackColor = Color.Gray;
+                ContainerPanel.BackColor = Color.FromArgb(255, 150, 150, 150);
             }
         }
 

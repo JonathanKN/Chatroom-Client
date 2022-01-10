@@ -44,7 +44,7 @@ namespace Bonfire
             this.OnlineList = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSendMessageButton = new System.Windows.Forms.Button();
             this.pictureBoxPendingMessageIcon = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.MessageBox = new System.Windows.Forms.TextBox();
@@ -178,6 +178,7 @@ namespace Bonfire
             // 
             resources.ApplyResources(this.MessageContainer, "MessageContainer");
             this.MessageContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.MessageContainer.Cursor = System.Windows.Forms.Cursors.Default;
             this.MessageContainer.Name = "MessageContainer";
             // 
             // panel3
@@ -204,24 +205,24 @@ namespace Bonfire
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.buttonSendMessageButton);
             this.panel2.Controls.Add(this.pictureBoxPendingMessageIcon);
             this.panel2.Controls.Add(this.panel4);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
-            // button1
+            // buttonSendMessageButton
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::Bonfire.Properties.Resources.sendIkon;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.SendMessageBtn_Click);
+            resources.ApplyResources(this.buttonSendMessageButton, "buttonSendMessageButton");
+            this.buttonSendMessageButton.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSendMessageButton.BackgroundImage = global::Bonfire.Properties.Resources.sendIkon;
+            this.buttonSendMessageButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSendMessageButton.FlatAppearance.BorderSize = 0;
+            this.buttonSendMessageButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonSendMessageButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonSendMessageButton.Name = "buttonSendMessageButton";
+            this.buttonSendMessageButton.UseVisualStyleBackColor = false;
+            this.buttonSendMessageButton.Click += new System.EventHandler(this.SendMessageBtn_Click);
             // 
             // pictureBoxPendingMessageIcon
             // 
@@ -333,7 +334,8 @@ namespace Bonfire
             this.notifyIconMain.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             resources.ApplyResources(this.notifyIconMain, "notifyIconMain");
             this.notifyIconMain.ContextMenuStrip = this.contextMenuStripNotifyIcon;
-            this.notifyIconMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconMain_MouseDoubleClick);
+            this.notifyIconMain.BalloonTipClicked += new System.EventHandler(this.notifyIconMain_BalloonTipClicked);
+            this.notifyIconMain.Click += new System.EventHandler(this.notifyIconMain_Click);
             // 
             // contextMenuStripNotifyIcon
             // 
@@ -466,7 +468,7 @@ namespace Bonfire
         private System.Windows.Forms.Panel BonfireLogo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSendMessageButton;
         private System.Windows.Forms.Button DisconnectBtn;
     }
 }
