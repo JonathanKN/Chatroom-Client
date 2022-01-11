@@ -12,14 +12,14 @@ namespace Bonfire.LogicControllers
             listPanel = userListPanel;
         }
 
-        public void AddPerson(string name)
+        public void AddPerson(string name, bool isSelf)
         {
             Label person = new Label
             {
                 Text = name,
                 Name = $"NameLabel{name}",
                 ForeColor = Color.LightGray,
-                Font = new Font("Calibri", 13),//new Font("Microsoft Sans Serif", 13),
+                Font = new Font("Calibri", 13, isSelf ? FontStyle.Bold : FontStyle.Regular),//new Font("Microsoft Sans Serif", 13),
                 Margin = new Padding(0, 0, 0, 5),
                 AutoSize = true
             };

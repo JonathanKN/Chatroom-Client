@@ -1050,6 +1050,9 @@
   <data name="MessageBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
+  <data name="MessageBox.AutoCompleteCustomSource" xml:space="preserve">
+    <value> </value>
+  </data>
   <data name="MessageBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 13pt</value>
   </data>

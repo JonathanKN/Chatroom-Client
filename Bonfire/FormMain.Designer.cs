@@ -241,6 +241,9 @@ namespace Bonfire
             // MessageBox
             // 
             resources.ApplyResources(this.MessageBox, "MessageBox");
+            this.MessageBox.AutoCompleteCustomSource.AddRange(new string[] {
+            resources.GetString("MessageBox.AutoCompleteCustomSource")});
+            this.MessageBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.MessageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
             this.MessageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessageBox.ForeColor = System.Drawing.Color.Gainsboro;

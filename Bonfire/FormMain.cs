@@ -474,6 +474,8 @@ namespace Bonfire
 
             // Send messagebox.
             SendMessage();
+
+            MessageBox_Leave(sender, e);
         }
 
         private void DisconnectBtn_Click(object sender, EventArgs e)
@@ -573,7 +575,7 @@ namespace Bonfire
                 }
 
                 users[userID] = userName;
-                userListController.AddPerson(userName);
+                userListController.AddPerson(userName, userID == networkClient.ClientID);
             });
         }
 
