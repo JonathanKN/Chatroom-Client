@@ -180,6 +180,7 @@ namespace Bonfire
             this.MessageContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
             this.MessageContainer.Cursor = System.Windows.Forms.Cursors.Default;
             this.MessageContainer.Name = "MessageContainer";
+            this.MessageContainer.MouseEnter += new System.EventHandler(this.MessageContainer_MouseEnter);
             // 
             // panel3
             // 
@@ -405,6 +406,7 @@ namespace Bonfire
             this.Controls.Add(this.splitContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.TextChanged += new System.EventHandler(this.FormMain_TextChanged);

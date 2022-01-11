@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
+using Bonfire.Controls;
 
 namespace Bonfire.LogicControllers
 {
@@ -10,10 +11,7 @@ namespace Bonfire.LogicControllers
         private readonly FlowLayoutPanel messageContainer;
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
-        private readonly Action playMessageSound;
         private readonly int onlineListWidth;
-
-        private SoundPlayer messageSound;
 
         private sbyte _pendingMessages;
         private sbyte pendingMessages
@@ -25,15 +23,21 @@ namespace Bonfire.LogicControllers
                 pendingMessageIcon.Visible = _pendingMessages > 0;
             }
         }
+        private int unreadMessages;
 
-        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, int onlineListWidth, Action playMessageSound)
+        public MessageController(FlowLayoutPanel messageContainer, PictureBox pendingMessageIcon, NotifyIcon messageNotifications, int onlineListWidth)
         {
             this.messageContainer = messageContainer;
             this.pendingMessageIcon = pendingMessageIcon;
             this.messageNotifications = messageNotifications;
             this.onlineListWidth = onlineListWidth;
-            this.playMessageSound = playMessageSound;
+        }
 
+        public void MessageRead()
+        {
+            unreadMessages = 0;
+
+            // Update message effect.
         }
 
         public void MessageSent()
@@ -45,9 +49,28 @@ namespace Bonfire.LogicControllers
         {
             messageContainer.Controls.Clear();
             pendingMessages = 0;
+            unreadMessages = 0;
         }
 
-        public void ReceivedMessage(bool isSelf, string sendername, string message, DateTime date)
+        private void ReceivedMessageEffects()
+        {
+            if (FormMain.MainForm.isFormFocused)
+            {
+                return;
+            }
+
+            unreadMessages++;
+            if (Properties.Settings.Default.MessageSound)
+            {
+                SoundPlayer messageSound = new SoundPlayer(Properties.Resources.MessageSound);
+                messageSound.Play();
+            }
+
+            // Flash application.
+            NativeFunctions.FlashTaskbar.FlashWindowUntilFocus(FormMain.MainForm);
+        }
+
+        public void ReceivedMessage(bool isSelf, string sendername, string message, DateTime date, bool logMessage)
         {
             if (isSelf)
             {
@@ -56,30 +79,39 @@ namespace Bonfire.LogicControllers
                 // Skriv ikke egen besked igen.
                 return;
             }
-            playMessageSound();
 
-            AddMessage(message, sendername, date);
-            string previousTitle = messageNotifications.BalloonTipTitle;
-            messageNotifications.BalloonTipTitle = sendername;
-            messageNotifications.BalloonTipText = message;
-            messageNotifications.ShowBalloonTip(FormMain.BalloonTimeout);
-            messageNotifications.BalloonTipTitle = previousTitle;
+            ReceivedMessageEffects();
+
+            AddMessage(message, sendername, date, logMessage);
+            if (!FormMain.MainForm.isFormFocused)
+            {
+                bool previousVisibility = messageNotifications.Visible;
+                messageNotifications.Visible = true;
+
+                messageNotifications.ShowBalloonTip(
+                    FormMain.BalloonTimeout,
+                    sendername,
+                    message,
+                    logMessage ? ToolTipIcon.Info : ToolTipIcon.None);
+                messageNotifications.Visible = previousVisibility;
+            }
         }
 
         public void AddOwnMessage(string message)
         {
-            AddMessage(message, Properties.Settings.Default.Nickname, DateTime.Now);
+            AddMessage(message, Properties.Settings.Default.Nickname, DateTime.Now, false);
         }
 
         public void AddLogMessage(string message)
         {
-            AddMessage(message, "[Server]", DateTime.Now, true);
+            AddMessage(message, FormMain.ServerUsername, DateTime.Now, true);
         }
 
-        private void AddMessage(string message, string sender, DateTime date, bool isServer=false)
+        private void AddMessage(string message, string sender, DateTime date, bool isServer)
         {
             messageContainer.SuspendLayout();
 
+            /*
             var messageLabel = new Label
             {
                 Text = message,
@@ -88,20 +120,32 @@ namespace Bonfire.LogicControllers
                 AutoSize = true,
                 Margin = new Padding(20, 0, 0, 10),
                 Width = messageContainer.Width - onlineListWidth - 40
-            }; 
+            };*/
+            var messageLabel = new RichTextLabel
+            {
+                Text = message,
+                ForeColor = Color.LightGray,
+                Font = new Font("Calibri", 12),
+                Margin = new Padding(20, 0, 0, 10),
+                //Dock = DockStyle.Fill,
+                Width = messageContainer.Width - onlineListWidth - 40,
+                MinimumSize = new Size(messageContainer.Width - 40, 0)
+            };
+            //mainMessageLayout.Controls.Add(messageLabel);
             messageContainer.Controls.Add(messageLabel);
+            //messageContainer.Controls.Add(mainMessageLayout);
 
             var messageSender = new FlowLayoutPanel
             {
                 AutoSize = true,
-                Margin = new Padding(20, 0, 0, 0)
+                Margin = new Padding(15, 0, 0, 0)
             };
 
             var senderLabel = new Label
             {
-                ForeColor = Color.DarkOrange,//Color.LightGray,
                 Text = sender,
-                Font = new Font("Calibri", 14, FontStyle.Bold),//new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
+                ForeColor = isServer ? Color.LightGray : Color.DarkOrange,//Color.LightGray,
+                Font = new Font("Calibri", 13, FontStyle.Bold),//new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
                 AutoSize = true
             };
             messageSender.Controls.Add(senderLabel);
@@ -110,7 +154,7 @@ namespace Bonfire.LogicControllers
             {
                 Text = date.ToString(),
                 ForeColor = Color.Gray,
-                Font = new Font("Calibri", 14, FontStyle.Italic),//new Font("Microsoft Sans Serif", 11),
+                Font = new Font("Calibri", 13, FontStyle.Italic),//new Font("Microsoft Sans Serif", 11),
                 AutoSize = true
             };
             messageSender.Controls.Add(dateLabel);
@@ -118,6 +162,7 @@ namespace Bonfire.LogicControllers
             messageContainer.Controls.Add(messageSender);
 
             messageContainer.Controls.SetChildIndex(messageSender, 0);
+            //messageContainer.Controls.SetChildIndex(mainMessageLayout, 0);
             messageContainer.Controls.SetChildIndex(messageLabel, 0);
             messageContainer.ResumeLayout();
 

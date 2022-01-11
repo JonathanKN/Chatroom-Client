@@ -14,6 +14,9 @@ namespace Bonfire
     {
         public const int BalloonTimeout = 500;
 
+        public static readonly string ServerUsername = "[Server]";
+        public static FormMain MainForm;
+        public bool isFormFocused;
         private readonly string DefaultFormTitle = "Bonfire";
         private readonly ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
@@ -28,6 +31,8 @@ namespace Bonfire
 
         public FormMain()
         {
+            MainForm = this;
+
             // Denne "metode" må sådan set ikke bruges til andet end initialisering.
             // Derfor bruger man OnLoad i stedet.
             PreferenceHelper.LoadedLanguage = Properties.Settings.Default.Language;
@@ -44,6 +49,13 @@ namespace Bonfire
 
         protected override void WndProc(ref Message m)
         {
+            // WM_NCACTIVATE
+            if (m.Msg == 0x0086)
+            {
+                isFormFocused = m.WParam != IntPtr.Zero;
+                messageController.MessageRead();
+            }
+
             base.WndProc(ref m);
 
             NativeFunctions.ResizableWindow.WndProc(this, ref m);
@@ -73,14 +85,8 @@ namespace Bonfire
                 MessageContainer,
                 pictureBoxPendingMessageIcon,
                 notifyIconMain,
-                OnlineList.Width,
-                ()=> {
-                    SoundPlayer messageSound = new SoundPlayer(Properties.Resources.MessageSound);
-                    if (WindowState == FormWindowState.Minimized && Properties.Settings.Default.MessageSound)
-                    {
-                        messageSound.Play();
-                    }
-                });
+                OnlineList.Width
+                );
 
             userListController = new UserListController(OnlineList);
 
@@ -178,8 +184,11 @@ namespace Bonfire
                 // If minified, show balloon message.
                 if (WindowState == FormWindowState.Minimized)
                 {
-                    notifyIconMain.BalloonTipText = success ? $"Forbandt til {servername}" : $"Kunne ikke forbinde til {servername}";
-                    notifyIconMain.ShowBalloonTip(BalloonTimeout);
+                    notifyIconMain.ShowBalloonTip(
+                        BalloonTimeout,
+                        DefaultFormTitle,
+                        success ? $"Forbandt til {servername}" : $"Kunne ikke forbinde til {servername}",
+                        ToolTipIcon.Info);
                 }
 
                 if (!success)
@@ -537,7 +546,7 @@ namespace Bonfire
             (string message, DateTime timeStamp) = e;
             this.Invoke((MethodInvoker)delegate
             {
-                OnMessage((0, message, timeStamp));
+                OnMessageHandler(0, message, timeStamp);
             });
         }
 
@@ -546,22 +555,27 @@ namespace Bonfire
             (int userID, string message, DateTime timeStamp) = e;
             this.Invoke((MethodInvoker)delegate
             {
-                string sendername;
-                if (userID == 0)
-                {
-                    sendername = "[Server]";
-                }
-                else if (userID == networkClient.ClientID)
-                {
-                    sendername = Properties.Settings.Default.Nickname;
-                }
-                else if (!users.TryGetValue(userID, out sendername))
-                {
-                    sendername = "[Navn ikke fundet]";
-                }
-
-                messageController.ReceivedMessage(userID == networkClient.ClientID, sendername, message, timeStamp);
+                OnMessageHandler(userID, message, timeStamp);
             });
+        }
+
+        private void OnMessageHandler(int userID, string message, DateTime timestamp)
+        {
+            string sendername;
+            if (userID == 0)
+            {
+                sendername = ServerUsername;
+            }
+            else if (userID == networkClient.ClientID)
+            {
+                sendername = Properties.Settings.Default.Nickname;
+            }
+            else if (!users.TryGetValue(userID, out sendername))
+            {
+                sendername = "[Navn ikke fundet]";
+            }
+
+            messageController.ReceivedMessage(userID == networkClient.ClientID, sendername, message, timestamp, userID == 0);
         }
 
         public void OnUserInfoRecieved((int userID, string userName) e)
@@ -591,6 +605,11 @@ namespace Bonfire
                 userListController.RemovePerson(username);
                 users.Remove(userID);
             });
+        }
+
+        private void MessageContainer_MouseEnter(object sender, EventArgs e)
+        {
+            //MessageContainer.Focus();
         }
     }
 }

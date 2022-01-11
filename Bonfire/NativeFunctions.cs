@@ -15,6 +15,7 @@ namespace Bonfire
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        // Resizing
         public static class ResizableWindow
         {
             private const int
@@ -72,6 +73,73 @@ namespace Bonfire
                 else if (Left.Contains(cursor)) message.Result = (IntPtr)HTLEFT;
                 else if (Right.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
                 else if (Bottom.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
+            }
+        }
+
+        // Flashing taskbar icon
+        public static class FlashTaskbar
+        {
+            [DllImport("user32.dll")]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
+
+            [StructLayout(LayoutKind.Sequential)]
+            public struct FLASHWINFO
+            {
+                public UInt32 cbSize;
+                public IntPtr hwnd;
+                public UInt32 dwFlags;
+                public UInt32 uCount;
+                public UInt32 dwTimeout;
+            }
+
+            public enum FlashWindow : uint
+            {
+                /// <summary>
+                /// Stop flashing. The system restores the window to its original state.
+                /// </summary>    
+                FLASHW_STOP = 0,
+
+                /// <summary>
+                /// Flash the window caption
+                /// </summary>
+                FLASHW_CAPTION = 1,
+
+                /// <summary>
+                /// Flash the taskbar button.
+                /// </summary>
+                FLASHW_TRAY = 2,
+
+                /// <summary>
+                /// Flash both the window caption and taskbar button.
+                /// This is equivalent to setting the FLASHW_CAPTION | FLASHW_TRAY flags.
+                /// </summary>
+                FLASHW_ALL = 3,
+
+                /// <summary>
+                /// Flash continuously, until the FLASHW_STOP flag is set.
+                /// </summary>
+                FLASHW_TIMER = 4,
+
+                /// <summary>
+                /// Flash continuously until the window comes to the foreground.
+                /// </summary>
+                FLASHW_TIMERNOFG = 12
+            }
+
+            public static bool FlashWindowUntilFocus(Form form)
+            {
+                IntPtr hWnd = form.Handle;
+                FLASHWINFO fInfo = new FLASHWINFO();
+
+                fInfo.cbSize = Convert.ToUInt32(Marshal.SizeOf(fInfo));
+                fInfo.hwnd = hWnd;
+                fInfo.dwFlags = (uint)(FlashWindow.FLASHW_TIMERNOFG | FlashWindow.FLASHW_TRAY);
+                fInfo.uCount = UInt32.MaxValue;
+                fInfo.dwTimeout = 0;
+
+                return FlashWindowEx(ref fInfo);
+
             }
         }
     }

@@ -390,6 +390,27 @@
   <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="NicknameTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="NicknameTextBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="NicknameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 10</value>
+  </data>
+  <data name="NicknameTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 5, 5</value>
+  </data>
+  <data name="NicknameTextBox.MaxLength" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="NicknameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 23</value>
+  </data>
+  <data name="NicknameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
   <data name="&gt;&gt;NicknameTextBox.Name" xml:space="preserve">
     <value>NicknameTextBox</value>
   </data>
@@ -424,39 +445,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="NicknameTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="NicknameTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
-  </data>
-  <data name="NicknameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 10</value>
-  </data>
-  <data name="NicknameTextBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 5, 5</value>
-  </data>
-  <data name="NicknameTextBox.MaxLength" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="NicknameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 23</value>
-  </data>
-  <data name="NicknameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;NicknameTextBox.Name" xml:space="preserve">
-    <value>NicknameTextBox</value>
-  </data>
-  <data name="&gt;&gt;NicknameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NicknameTextBox.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;NicknameTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
