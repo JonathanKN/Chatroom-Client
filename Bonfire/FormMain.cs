@@ -249,10 +249,17 @@ namespace Bonfire
 
         private void MessageBox_KeyDown(object sender, KeyEventArgs key)
         {
+            if (key.Control && key.KeyCode == Keys.Back)
+            {
+                key.SuppressKeyPress = true;
+                SendKeys.Send("^+{LEFT}{BKSP}");
+            }
+
             if (key.KeyCode != Keys.Enter)
             {
                 return;
             }
+
 
             key.Handled = true;
             key.SuppressKeyPress = true;
@@ -261,7 +268,7 @@ namespace Bonfire
 
         private void SendMessage()
         {
-            if (MessageBox.TextLength == 0 || networkClient is null)
+            if (string.IsNullOrWhiteSpace(MessageBox.Text) || networkClient is null)
             {
                 return;
             }
@@ -611,5 +618,7 @@ namespace Bonfire
         {
             //MessageContainer.Focus();
         }
+
+
     }
 }

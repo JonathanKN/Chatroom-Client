@@ -67,6 +67,7 @@ namespace Bonfire
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,12 +107,14 @@ namespace Bonfire
             // 
             // splitContainer2
             // 
+            this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             resources.ApplyResources(this.splitContainer2, "splitContainer2");
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.splitContainer2.Panel1.Controls.Add(this.panel5);
             this.splitContainer2.Panel1.Controls.Add(this.panel1);
             this.splitContainer2.Panel1.Controls.Add(this.BonfireLogo);
@@ -119,12 +122,13 @@ namespace Bonfire
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.splitContainer2.Panel2.Controls.Add(this.buttonSettings);
             // 
             // panel5
             // 
             resources.ApplyResources(this.panel5, "panel5");
-            this.panel5.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.panel5.Controls.Add(this.ServerMenuBtn);
             this.panel5.Name = "panel5";
             // 
@@ -158,7 +162,7 @@ namespace Bonfire
             // ServerList
             // 
             resources.ApplyResources(this.ServerList, "ServerList");
-            this.ServerList.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ServerList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.ServerList.Name = "ServerList";
             this.ServerList.TabStop = true;
             // 
@@ -177,7 +181,7 @@ namespace Bonfire
             // MessageContainer
             // 
             resources.ApplyResources(this.MessageContainer, "MessageContainer");
-            this.MessageContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(74)))), ((int)(((byte)(74)))));
+            this.MessageContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.MessageContainer.Cursor = System.Windows.Forms.Cursors.Default;
             this.MessageContainer.Name = "MessageContainer";
             this.MessageContainer.MouseEnter += new System.EventHandler(this.MessageContainer_MouseEnter);
@@ -185,7 +189,7 @@ namespace Bonfire
             // panel3
             // 
             resources.ApplyResources(this.panel3, "panel3");
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.panel3.Controls.Add(this.OnlineList);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Name = "panel3";
@@ -205,7 +209,7 @@ namespace Bonfire
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.panel2.Controls.Add(this.buttonSendMessageButton);
             this.panel2.Controls.Add(this.pictureBoxPendingMessageIcon);
             this.panel2.Controls.Add(this.panel4);
@@ -234,7 +238,7 @@ namespace Bonfire
             // panel4
             // 
             resources.ApplyResources(this.panel4, "panel4");
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.panel4.Controls.Add(this.MessageBox);
             this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel4.Name = "panel4";
@@ -245,7 +249,8 @@ namespace Bonfire
             this.MessageBox.AutoCompleteCustomSource.AddRange(new string[] {
             resources.GetString("MessageBox.AutoCompleteCustomSource")});
             this.MessageBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.MessageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(115)))), ((int)(((byte)(115)))));
+            this.MessageBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.MessageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.MessageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessageBox.ForeColor = System.Drawing.Color.Gainsboro;
             this.MessageBox.Name = "MessageBox";
@@ -256,7 +261,7 @@ namespace Bonfire
             // 
             // ServerNameHeader
             // 
-            this.ServerNameHeader.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.ServerNameHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.ServerNameHeader.Controls.Add(this.DisconnectBtn);
             this.ServerNameHeader.Controls.Add(this.ServerName);
             resources.ApplyResources(this.ServerNameHeader, "ServerNameHeader");
@@ -398,6 +403,11 @@ namespace Bonfire
             resources.ApplyResources(this.lukToolStripMenuItem, "lukToolStripMenuItem");
             this.lukToolStripMenuItem.Click += new System.EventHandler(this.lukToolStripMenuItem_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -475,6 +485,7 @@ namespace Bonfire
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button buttonSendMessageButton;
         private System.Windows.Forms.Button DisconnectBtn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
 

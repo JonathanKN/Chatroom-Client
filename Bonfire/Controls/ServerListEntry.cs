@@ -29,11 +29,11 @@ namespace Bonfire
             // Recolour background depending on index.
             if (parent.Controls.IndexOf(this) % 2 == 0)
             {
-                ContainerPanel.BackColor = Color.DarkGray;
+                ContainerPanel.BackColor = Color.FromArgb(90, 90, 90);
             }
             else
             {
-                ContainerPanel.BackColor = Color.FromArgb(255, 150, 150, 150);
+                ContainerPanel.BackColor = Color.FromArgb(105, 105, 105);
             }
         }
 

@@ -88,6 +88,7 @@ namespace Bonfire.LogicControllers
             serverEntryUI[info] = listEntry;
 
             PreferenceHelper.StoreServerEntry(info, servername);
+            
         }
 
         private void RemoveServer(ServerEntryInfo serverEntry, string servername)

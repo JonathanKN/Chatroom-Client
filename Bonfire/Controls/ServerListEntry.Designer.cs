@@ -43,6 +43,7 @@ namespace Bonfire
             // 
             // ServernameLabel
             // 
+            this.ServernameLabel.BackColor = System.Drawing.Color.Transparent;
             this.ServernameLabel.ContextMenuStrip = this.contextMenuStripServerList;
             this.ServernameLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ServernameLabel.Dock = System.Windows.Forms.DockStyle.Fill;

@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Media;
 using Bonfire.Controls;
+using System.Runtime.InteropServices;
+
 
 namespace Bonfire.LogicControllers
 {
@@ -12,6 +14,7 @@ namespace Bonfire.LogicControllers
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
         private readonly int onlineListWidth;
+
 
         private sbyte _pendingMessages;
         private sbyte pendingMessages
@@ -125,8 +128,10 @@ namespace Bonfire.LogicControllers
             {
                 Text = message,
                 ForeColor = Color.LightGray,
-                Font = new Font("Calibri", 12),
+                BackColor = Color.FromArgb(50, 50, 50),
+                Font = new Font("Calibri", 13),
                 Margin = new Padding(20, 0, 0, 10),
+                
                 //Dock = DockStyle.Fill,
                 Width = messageContainer.Width - onlineListWidth - 40,
                 MinimumSize = new Size(messageContainer.Width - 40, 0)
@@ -140,6 +145,7 @@ namespace Bonfire.LogicControllers
                 AutoSize = true,
                 Margin = new Padding(15, 0, 0, 0)
             };
+
 
             var senderLabel = new Label
             {
