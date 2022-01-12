@@ -5,22 +5,16 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using Chatroom_Client_Backend;
-using Bonfire.LogicControllers;
+using Chatrum.LogicControllers;
 using System.Media;
-using System.Runtime.InteropServices;
 
-namespace Bonfire
+namespace Chatrum
 {
     public partial class FormMain : Form
     {
-        [DllImport("user32.dll")]
-        static extern bool SetWindowPos(IntPtr hWnd, int X, int Y, int cx, int cy, uint uFlags);
-
         public const int BalloonTimeout = 500;
+        private static bool Disconnecting = false;
 
-        public static readonly string ServerUsername = "[Server]";
-        public static FormMain MainForm;
-        public bool isFormFocused;
         private readonly string DefaultFormTitle = "Bonfire";
         private readonly ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
@@ -35,12 +29,9 @@ namespace Bonfire
 
         public FormMain()
         {
-            MainForm = this;
-
             // Denne "metode" må sådan set ikke bruges til andet end initialisering.
             // Derfor bruger man OnLoad i stedet.
-            PreferenceHelper.LoadedLanguage = Properties.Settings.Default.Language;
-            Thread.CurrentThread.CurrentUICulture = PreferenceHelper.LoadedLanguage;
+            Thread.CurrentThread.CurrentUICulture = Properties.Settings.Default.Language;
             InitializeComponent();
 
             // Resize logic
@@ -53,13 +44,6 @@ namespace Bonfire
 
         protected override void WndProc(ref Message m)
         {
-            // WM_NCACTIVATE
-            if (m.Msg == 0x0086)
-            {
-                isFormFocused = m.WParam != IntPtr.Zero;
-                messageController.MessageRead();
-            }
-
             base.WndProc(ref m);
 
             NativeFunctions.ResizableWindow.WndProc(this, ref m);
@@ -89,34 +73,50 @@ namespace Bonfire
                 MessageContainer,
                 pictureBoxPendingMessageIcon,
                 notifyIconMain,
-                OnlineList.Width
-                );
+                splitContainer1,
+                OnlineList.Width,
+                ()=> {
+                    SoundPlayer messageSound = new SoundPlayer(Properties.Resources.MessageSound);
+                    if (WindowState == FormWindowState.Minimized && Properties.Settings.Default.MessageSound)
+                    {
+                        messageSound.Play();
+                    }
+                });
 
             userListController = new UserListController(OnlineList);
 
             backgroundWorkerMessagePull.RunWorkerAsync();
-
+            
             // Form title
             Text = DefaultFormTitle;
             labelCustomTitle.Text = DefaultFormTitle;
-
-            Process[] processlist = Process.GetProcesses();
-
             
+            TestIndstillingerStart();
+        }
 
+        /// <summary>
+        /// Kaldes når Windows Forms er færdig med at loade.
+        /// TODO: Fjern i det endelige program.
+        /// </summary>
+        private void TestIndstillingerStart()
+        {
+            //serverListController.AddServer(25565, "127.0.0.1", "Esperanto server");
+            //serverListController.AddServer(25565, "10.29.139.215", "Esperanto server2");
+            //ConnectToServer("Esperanto server");
         }
 
         private void DisconnectServer()
         {
+            Disconnecting = true;
             serverListController.UpdateStatusDisconnectAll();
 
-            DisconnectBtn.Visible = false;
             ServerName.Text = "[Ikke forbundet]";
             connectedServer = null;
             connectedServername = null;
             UnregisterServerEvents(networkClient);
             networkClient?.Disconnect();
             networkClient = null;
+            Disconnecting = false;
         }
 
         /// <summary>
@@ -155,10 +155,6 @@ namespace Bonfire
                 DisconnectServer();
             }
 
-            users.Clear();
-            userListController.Clear();
-            messageController.ClearMessages();
-
             networkClient = new NetworkClient(
                 Properties.Settings.Default.Nickname,
                 targetServer.ip,
@@ -170,7 +166,6 @@ namespace Bonfire
 
             ConnectingToServer(targetServer, servername);
             networkClient.Connect();
-            DisconnectBtn.Visible = true;
         }
 
         private void ConnectingToServer(ServerEntryInfo targetServer, string servername)
@@ -192,11 +187,8 @@ namespace Bonfire
                 // If minified, show balloon message.
                 if (WindowState == FormWindowState.Minimized)
                 {
-                    notifyIconMain.ShowBalloonTip(
-                        BalloonTimeout,
-                        DefaultFormTitle,
-                        success ? $"Forbandt til {servername}" : $"Kunne ikke forbinde til {servername}",
-                        ToolTipIcon.Info);
+                    notifyIconMain.BalloonTipText = success ? $"Forbandt til {servername}" : $"Kunne ikke forbinde til {servername}";
+                    notifyIconMain.ShowBalloonTip(BalloonTimeout);
                 }
 
                 if (!success)
@@ -213,8 +205,6 @@ namespace Bonfire
 
                 ServerName.Text = servername;
                 messageController.ClearMessages();
-                userListController.Clear();
-                users.Clear();
             });
         }
 
@@ -257,30 +247,20 @@ namespace Bonfire
 
         private void MessageBox_KeyDown(object sender, KeyEventArgs key)
         {
-            if (key.KeyCode != Keys.Enter || key.Modifiers == Keys.Shift)
+            if (key.KeyCode != Keys.Enter)
             {
                 return;
             }
-
             key.Handled = true;
             key.SuppressKeyPress = true;
-            SendMessage();
-        }
-
-        private void SendMessage()
-        {
-            if (string.IsNullOrWhiteSpace(MessageBox.Text) || networkClient is null)
+            if (MessageBox.TextLength == 0 || networkClient is null)
             {
                 return;
             }
 
-            if (connectedServer is null)
-            {
-                messageController.AddLogMessage("Du er ikke forbundet til serveren");
-                return;
-            }
-
-
+            // TODO: man kan sende beskeder selvom man ikke er forbundet.
+            // tænker man kunne lave så den sender en besked som altid siger "Du er ikke forbundet"
+            // eller noget i den stil.
             string messageText = MessageBox.Text;
             MessageBox.Text = string.Empty;
 
@@ -325,14 +305,6 @@ namespace Bonfire
                 return;
             }
 
-            /*IntPtr handle = this.Handle;
-            if (handle != IntPtr.Zero)
-            {
-                SetWindowPos(handle-2, 0, 0, 0, 0, 0x0001);
-            }*/
-
-
-
             WindowState = FormWindowState.Minimized;
             checkBoxMinimize.Checked = false;
         }
@@ -358,16 +330,23 @@ namespace Bonfire
                 while (true)
                 {
                     while (sw.ElapsedMilliseconds < 1000 / 10)
-                    {
                         Thread.Sleep(0);
-                    }
 
                     sw.Restart();
 
-                    this.Invoke((MethodInvoker)delegate
+                    if (networkClient is null)
                     {
-                        networkClient?.Update();
-                    });
+                        connectedServer = null;
+                        connectedServername = null;
+                        continue;
+                    }
+
+                    if (Disconnecting)
+                    {
+                        continue;
+                    }
+
+                    networkClient?.Update();
                 }
             }
             catch (Exception)
@@ -397,12 +376,7 @@ namespace Bonfire
             notifyIconMain.Visible = false;
         }
 
-        private void notifyIconMain_BalloonTipClicked(object sender, EventArgs e)
-        {
-            ShowFormAfterMinimized();
-        }
-
-        private void notifyIconMain_Click(object sender, EventArgs e)
+        private void notifyIconMain_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ShowFormAfterMinimized();
         }
@@ -492,30 +466,6 @@ namespace Bonfire
             networkClient?.PingServer();
         }
 
-        private void SendMessageBtn_Click(object sender, EventArgs e)
-        {
-            // Handle messagebox before sending.
-            MessageBox_Enter(sender, e);
-
-            // Send messagebox.
-            SendMessage();
-
-            MessageBox_Leave(sender, e);
-        }
-
-        private void DisconnectBtn_Click(object sender, EventArgs e)
-        {
-            userListController.Clear();
-            users.Clear();
-            messageController.ClearMessages();
-            DisconnectServer();
-        }
-
-        private void MessageBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         // NETWORK EVENT HANDLING BELOW
 
         private void RegisterServerEvents(NetworkClient networkClient)
@@ -562,7 +512,7 @@ namespace Bonfire
             (string message, DateTime timeStamp) = e;
             this.Invoke((MethodInvoker)delegate
             {
-                OnMessageHandler(0, message, timeStamp);
+                OnMessage((0, message, timeStamp));
             });
         }
 
@@ -571,27 +521,22 @@ namespace Bonfire
             (int userID, string message, DateTime timeStamp) = e;
             this.Invoke((MethodInvoker)delegate
             {
-                OnMessageHandler(userID, message, timeStamp);
+                string sendername;
+                if (userID == 0)
+                {
+                    sendername = "[Server]";
+                }
+                else if (userID == networkClient.ClientID)
+                {
+                    sendername = Properties.Settings.Default.Nickname;
+                }
+                else if (!users.TryGetValue(userID, out sendername))
+                {
+                    sendername = "[Navn ikke fundet]";
+                }
+
+                messageController.ReceivedMessage(userID == networkClient.ClientID, sendername, message, timeStamp);
             });
-        }
-
-        private void OnMessageHandler(int userID, string message, DateTime timestamp)
-        {
-            string sendername;
-            if (userID == 0)
-            {
-                sendername = ServerUsername;
-            }
-            else if (userID == networkClient.ClientID)
-            {
-                sendername = Properties.Settings.Default.Nickname;
-            }
-            else if (!users.TryGetValue(userID, out sendername))
-            {
-                sendername = "[Navn ikke fundet]";
-            }
-
-            messageController.ReceivedMessage(userID == networkClient.ClientID, sendername, message, timestamp, userID == 0);
         }
 
         public void OnUserInfoRecieved((int userID, string userName) e)
@@ -599,13 +544,15 @@ namespace Bonfire
             (int userID, string userName) = e;
             this.Invoke((MethodInvoker)delegate
             {
+                // TODO: Dette kommer til at skabe en fejl, når brugerens information
+                // bliver opdateret mere end én gang.
                 if (users.TryGetValue(userID, out string oldName))
                 {
-                    userListController.RemovePerson(oldName);
+                    userListController.RemovePerson(users[userID]);
                 }
 
                 users[userID] = userName;
-                userListController.AddPerson(userName, userID == networkClient.ClientID);
+                userListController.AddPerson(userName);
             });
         }
 
@@ -615,17 +562,13 @@ namespace Bonfire
             {
                 if (!users.TryGetValue(userID, out string username))
                 {
+                    // TODO: Sjælden fejl, hvor en hvor disconnecter, før de forbandt.
                     return;
                 }
 
                 userListController.RemovePerson(username);
                 users.Remove(userID);
             });
-        }
-
-        private void MessageContainer_MouseEnter(object sender, EventArgs e)
-        {
-            //MessageContainer.Focus();
         }
     }
 }

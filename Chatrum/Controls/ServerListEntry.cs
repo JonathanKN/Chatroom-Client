@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Bonfire
+namespace Chatrum
 {
     public partial class ServerListEntry : UserControl
     {
@@ -29,11 +29,11 @@ namespace Bonfire
             // Recolour background depending on index.
             if (parent.Controls.IndexOf(this) % 2 == 0)
             {
-                ContainerPanel.BackColor = Color.FromArgb(70, 70, 70);
+                ContainerPanel.BackColor = Color.DarkGray;
             }
             else
             {
-                ContainerPanel.BackColor = Color.FromArgb(80, 80, 80);
+                ContainerPanel.BackColor = Color.Gray;
             }
         }
 
@@ -69,11 +69,6 @@ namespace Bonfire
 
         private void ServerListEntry_Load(object sender, EventArgs e)
         {
-        }
-
-        private void checkBoxConnected_Click(object sender, EventArgs e)
-        {
-            ServernameLabel_Click(sender, e);
         }
     }
 }

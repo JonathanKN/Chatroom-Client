@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="AddServerBtn.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Calibri, 18pt</value>
+    <value>Segoe UI, 18pt</value>
   </data>
   <data name="AddServerBtn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>

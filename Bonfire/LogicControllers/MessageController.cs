@@ -128,9 +128,10 @@ namespace Bonfire.LogicControllers
             {
                 Text = message,
                 ForeColor = Color.LightGray,
-                BackColor = Color.FromArgb(50, 50, 50),
-                Font = new Font("Calibri", 13),
+                BackColor = Color.FromArgb(45, 45, 45),
+                Font = new Font("Segoe UI", 13),
                 Margin = new Padding(20, 0, 0, 10),
+                ReadOnly = true,
                 
                 //Dock = DockStyle.Fill,
                 Width = messageContainer.Width - onlineListWidth - 40,
