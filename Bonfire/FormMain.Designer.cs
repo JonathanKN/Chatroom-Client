@@ -47,6 +47,7 @@ namespace Bonfire
             this.buttonSendMessageButton = new System.Windows.Forms.Button();
             this.pictureBoxPendingMessageIcon = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.MessageBox = new System.Windows.Forms.RichTextBox();
             this.ServerNameHeader = new System.Windows.Forms.Panel();
             this.DisconnectBtn = new System.Windows.Forms.Button();
             this.ServerName = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@ namespace Bonfire
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MessageBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,6 +90,7 @@ namespace Bonfire
             // splitContainer1
             // 
             resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -243,6 +244,18 @@ namespace Bonfire
             this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel4.Name = "panel4";
             // 
+            // MessageBox
+            // 
+            resources.ApplyResources(this.MessageBox, "MessageBox");
+            this.MessageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.MessageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MessageBox.ForeColor = System.Drawing.Color.Gainsboro;
+            this.MessageBox.Name = "MessageBox";
+            this.MessageBox.TextChanged += new System.EventHandler(this.MessageBox_TextChanged);
+            this.MessageBox.Enter += new System.EventHandler(this.MessageBox_Enter);
+            this.MessageBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageBox_KeyDown);
+            this.MessageBox.Leave += new System.EventHandler(this.MessageBox_Leave);
+            // 
             // ServerNameHeader
             // 
             this.ServerNameHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
@@ -275,7 +288,7 @@ namespace Bonfire
             // panelTopBorderControls
             // 
             resources.ApplyResources(this.panelTopBorderControls, "panelTopBorderControls");
-            this.panelTopBorderControls.BackColor = System.Drawing.SystemColors.Control;
+            this.panelTopBorderControls.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panelTopBorderControls.Controls.Add(this.labelCustomTitle);
             this.panelTopBorderControls.Controls.Add(this.flowLayoutPanelWindowButtons);
             this.panelTopBorderControls.Name = "panelTopBorderControls";
@@ -391,18 +404,6 @@ namespace Bonfire
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
-            // 
-            // MessageBox
-            // 
-            resources.ApplyResources(this.MessageBox, "MessageBox");
-            this.MessageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.MessageBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MessageBox.ForeColor = System.Drawing.Color.Gainsboro;
-            this.MessageBox.Name = "MessageBox";
-            this.MessageBox.TextChanged += new System.EventHandler(this.MessageBox_TextChanged);
-            this.MessageBox.Enter += new System.EventHandler(this.MessageBox_Enter);
-            this.MessageBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageBox_KeyDown);
-            this.MessageBox.Leave += new System.EventHandler(this.MessageBox_Leave);
             // 
             // FormMain
             // 

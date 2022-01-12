@@ -159,30 +159,6 @@
   <data name="panel5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="ServerPortInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ServerPortInput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
-  </data>
-  <data name="ServerPortInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 10</value>
-  </data>
-  <data name="ServerPortInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 5, 5</value>
-  </data>
-  <data name="ServerPortInput.MaxLength" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="ServerPortInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 23</value>
-  </data>
-  <data name="ServerPortInput.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="ServerPortInput.Text" xml:space="preserve">
-    <value>25565</value>
-  </data>
   <data name="&gt;&gt;ServerPortInput.Name" xml:space="preserve">
     <value>ServerPortInput</value>
   </data>
@@ -218,6 +194,42 @@
   </data>
   <data name="&gt;&gt;panel5.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="ServerPortInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ServerPortInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="ServerPortInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 10</value>
+  </data>
+  <data name="ServerPortInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 5, 5</value>
+  </data>
+  <data name="ServerPortInput.MaxLength" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ServerPortInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 23</value>
+  </data>
+  <data name="ServerPortInput.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ServerPortInput.Text" xml:space="preserve">
+    <value>25565</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.Name" xml:space="preserve">
+    <value>ServerPortInput</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.Parent" xml:space="preserve">
+    <value>panel5</value>
+  </data>
+  <data name="&gt;&gt;ServerPortInput.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -324,27 +336,6 @@
   <data name="panel2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="ServerNicknameInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="ServerNicknameInput.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 15pt</value>
-  </data>
-  <data name="ServerNicknameInput.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 10</value>
-  </data>
-  <data name="ServerNicknameInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 10, 5, 5</value>
-  </data>
-  <data name="ServerNicknameInput.MaxLength" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="ServerNicknameInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 23</value>
-  </data>
-  <data name="ServerNicknameInput.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
   <data name="&gt;&gt;ServerNicknameInput.Name" xml:space="preserve">
     <value>ServerNicknameInput</value>
   </data>
@@ -380,6 +371,39 @@
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="ServerNicknameInput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ServerNicknameInput.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 15pt</value>
+  </data>
+  <data name="ServerNicknameInput.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 10</value>
+  </data>
+  <data name="ServerNicknameInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 10, 5, 5</value>
+  </data>
+  <data name="ServerNicknameInput.MaxLength" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="ServerNicknameInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 23</value>
+  </data>
+  <data name="ServerNicknameInput.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;ServerNicknameInput.Name" xml:space="preserve">
+    <value>ServerNicknameInput</value>
+  </data>
+  <data name="&gt;&gt;ServerNicknameInput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ServerNicknameInput.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;ServerNicknameInput.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="labelInvalidPort.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

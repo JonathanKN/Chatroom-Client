@@ -152,7 +152,7 @@ namespace Bonfire
             this.AcceptButton = this.AddServerBtn;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.CancelButton = this.buttonClose;
             this.Controls.Add(this.labelInvalidServerNickname);
             this.Controls.Add(this.labelInvalidPort);

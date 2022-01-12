@@ -135,6 +135,9 @@
   <data name="splitContainer2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="splitContainer2.IsSplitterFixed" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="splitContainer2.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -178,7 +181,7 @@
     <value>0</value>
   </data>
   <data name="panel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 327</value>
+    <value>12, 329</value>
   </data>
   <data name="panel5.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 47</value>
@@ -265,7 +268,7 @@
     <value>3, 3, 14, 3</value>
   </data>
   <data name="ServerList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 168</value>
+    <value>195, 170</value>
   </data>
   <data name="ServerList.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -352,7 +355,10 @@
     <value>220, 446</value>
   </data>
   <data name="splitContainer2.SplitterDistance" type="System.Int32, mscorlib">
-    <value>378</value>
+    <value>380</value>
+  </data>
+  <data name="splitContainer2.SplitterWidth" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="splitContainer2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -400,13 +406,13 @@
     <value>Century Gothic, 9pt</value>
   </data>
   <data name="MessageContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 65</value>
+    <value>0, 62</value>
   </data>
   <data name="MessageContainer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="MessageContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 312</value>
+    <value>430, 315</value>
   </data>
   <data name="MessageContainer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -451,7 +457,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="OnlineList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 256</value>
+    <value>148, 259</value>
   </data>
   <data name="OnlineList.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -511,13 +517,13 @@
     <value>Right</value>
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 65</value>
+    <value>430, 62</value>
   </data>
   <data name="panel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 312</value>
+    <value>173, 315</value>
   </data>
   <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1192,7 +1198,7 @@
     <value>NoControl</value>
   </data>
   <data name="ServerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, -1</value>
+    <value>0, -1</value>
   </data>
   <data name="ServerName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1228,7 +1234,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="ServerNameHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>603, 65</value>
+    <value>603, 62</value>
   </data>
   <data name="ServerNameHeader.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>

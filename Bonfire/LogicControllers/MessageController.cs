@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Media;
+using System.Windows.Forms;
 using Bonfire.Controls;
-using System.Runtime.InteropServices;
-
 
 namespace Bonfire.LogicControllers
 {
@@ -124,23 +122,18 @@ namespace Bonfire.LogicControllers
                 Margin = new Padding(20, 0, 0, 10),
                 Width = messageContainer.Width - onlineListWidth - 40
             };*/
-            var messageLabel = new RichTextLabel
+            var messageLabel = new RichTextLabel(messageContainer)
             {
                 Text = message,
                 ForeColor = Color.LightGray,
                 BackColor = Color.FromArgb(45, 45, 45),
                 Font = new Font("Segoe UI", 13),
                 Margin = new Padding(20, 0, 0, 10),
-                ReadOnly = true,
-                Cursor = Cursors.Arrow,
-                
                 //Dock = DockStyle.Fill,
                 Width = messageContainer.Width - onlineListWidth - 40,
                 MinimumSize = new Size(messageContainer.Width - 40, 0)
             };
-            //mainMessageLayout.Controls.Add(messageLabel);
             messageContainer.Controls.Add(messageLabel);
-            //messageContainer.Controls.Add(mainMessageLayout);
 
             var messageSender = new FlowLayoutPanel
             {

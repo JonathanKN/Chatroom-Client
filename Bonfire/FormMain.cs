@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using Chatroom_Client_Backend;
 using Bonfire.LogicControllers;
-using System.Media;
-using System.Runtime.InteropServices;
+using Chatroom_Client_Backend;
 
 namespace Bonfire
 {
