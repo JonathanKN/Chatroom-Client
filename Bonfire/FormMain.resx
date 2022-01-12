@@ -400,13 +400,13 @@
     <value>Century Gothic, 9pt</value>
   </data>
   <data name="MessageContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 75</value>
+    <value>0, 65</value>
   </data>
   <data name="MessageContainer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="MessageContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 302</value>
+    <value>430, 312</value>
   </data>
   <data name="MessageContainer.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -451,7 +451,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="OnlineList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 246</value>
+    <value>148, 256</value>
   </data>
   <data name="OnlineList.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -511,13 +511,13 @@
     <value>Right</value>
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 75</value>
+    <value>430, 65</value>
   </data>
   <data name="panel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 302</value>
+    <value>173, 312</value>
   </data>
   <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1156,7 +1156,7 @@
     <value>NoControl</value>
   </data>
   <data name="DisconnectBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>531, 11</value>
+    <value>531, 7</value>
   </data>
   <data name="DisconnectBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 51</value>
@@ -1186,19 +1186,19 @@
     <value>True</value>
   </data>
   <data name="ServerName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 35.25pt</value>
+    <value>Segoe UI, 32pt</value>
   </data>
   <data name="ServerName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="ServerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 7</value>
+    <value>10, -1</value>
   </data>
   <data name="ServerName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="ServerName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>362, 62</value>
+    <value>326, 59</value>
   </data>
   <data name="ServerName.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1228,7 +1228,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="ServerNameHeader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>603, 75</value>
+    <value>603, 65</value>
   </data>
   <data name="ServerNameHeader.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
