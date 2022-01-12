@@ -241,8 +241,9 @@ namespace Bonfire
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.panel4.Controls.Add(this.MessageBox);
-            this.panel4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel4.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.panel4.Name = "panel4";
+            this.panel4.Click += new System.EventHandler(this.panel4_Click);
             // 
             // MessageBox
             // 

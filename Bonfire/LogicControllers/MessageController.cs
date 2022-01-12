@@ -12,7 +12,7 @@ namespace Bonfire.LogicControllers
         private readonly PictureBox pendingMessageIcon;
         private readonly NotifyIcon messageNotifications;
         private readonly int onlineListWidth;
-
+        private (string, RichTextLabel, DateTime) recentMessage;
 
         private sbyte _pendingMessages;
         private sbyte pendingMessages
@@ -110,6 +110,15 @@ namespace Bonfire.LogicControllers
 
         private void AddMessage(string message, string sender, DateTime date, bool isServer)
         {
+            if (recentMessage.Item1 == sender
+                && recentMessage.Item3 > date.Subtract(TimeSpan.FromMinutes(2)))
+            {
+                recentMessage.Item2.AppendText("\n" + message);
+                messageContainer.AutoScrollPosition = new Point(1, int.MaxValue);
+                messageContainer.Refresh();
+                return;
+            }
+
             messageContainer.SuspendLayout();
 
             /*
@@ -131,23 +140,22 @@ namespace Bonfire.LogicControllers
                 Margin = new Padding(20, 0, 0, 10),
                 //Dock = DockStyle.Fill,
                 Width = messageContainer.Width - onlineListWidth - 40,
-                MinimumSize = new Size(messageContainer.Width - 40, 0)
+                MinimumSize = new Size(messageContainer.Width - 40, 0),
             };
             messageContainer.Controls.Add(messageLabel);
 
             var messageSender = new FlowLayoutPanel
             {
                 AutoSize = true,
-                Margin = new Padding(15, 0, 0, 0)
+                Margin = new Padding(15, 0, 0, 0),
             };
-
 
             var senderLabel = new Label
             {
                 Text = sender,
                 ForeColor = isServer ? Color.LightGray : Color.DarkOrange,//Color.LightGray,
                 Font = new Font("Calibri", 13, FontStyle.Bold),//new Font("Microsoft Sans Serif", 14, FontStyle.Bold),
-                AutoSize = true
+                AutoSize = true,
             };
             messageSender.Controls.Add(senderLabel);
 
@@ -156,7 +164,7 @@ namespace Bonfire.LogicControllers
                 Text = date.ToString(),
                 ForeColor = Color.Gray,
                 Font = new Font("Calibri", 13, FontStyle.Italic),//new Font("Microsoft Sans Serif", 11),
-                AutoSize = true
+                AutoSize = true,
             };
             messageSender.Controls.Add(dateLabel);
 
@@ -169,6 +177,8 @@ namespace Bonfire.LogicControllers
 
             messageContainer.AutoScrollPosition = new Point(1, int.MaxValue);
             messageContainer.Refresh();
+
+            recentMessage = (sender, messageLabel, date);
         }
     }
 }

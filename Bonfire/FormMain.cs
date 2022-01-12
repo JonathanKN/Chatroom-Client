@@ -515,6 +515,16 @@ namespace Bonfire
 
         }
 
+        private void MessageContainer_MouseEnter(object sender, EventArgs e)
+        {
+            //MessageContainer.Focus();
+        }
+
+        private void panel4_Click(object sender, EventArgs e)
+        {
+            MessageBox_Enter(sender, e);
+        }
+
         // NETWORK EVENT HANDLING BELOW
 
         private void RegisterServerEvents(NetworkClient networkClient)
@@ -620,11 +630,6 @@ namespace Bonfire
                 userListController.RemovePerson(username);
                 users.Remove(userID);
             });
-        }
-
-        private void MessageContainer_MouseEnter(object sender, EventArgs e)
-        {
-            //MessageContainer.Focus();
         }
     }
 }
