@@ -132,6 +132,7 @@ namespace Bonfire.LogicControllers
                 Font = new Font("Segoe UI", 13),
                 Margin = new Padding(20, 0, 0, 10),
                 ReadOnly = true,
+                Cursor = Cursors.Arrow,
                 
                 //Dock = DockStyle.Fill,
                 Width = messageContainer.Width - onlineListWidth - 40,
