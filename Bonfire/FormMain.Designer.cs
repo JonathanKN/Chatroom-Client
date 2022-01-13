@@ -354,26 +354,26 @@ namespace Bonfire
             this.toolStripMenuItemConnectedServer,
             this.toolStripSeparator1,
             this.lukToolStripMenuItem});
-            this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
-            resources.ApplyResources(this.contextMenuStripNotifyIcon, "contextMenuStripNotifyIcon");
-            this.contextMenuStripNotifyIcon.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripNotifyIcon_Opening);
-            // 
-            // åbenToolStripMenuItem
-            // 
-            this.åbenToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.åbenToolStripMenuItem.Name = "åbenToolStripMenuItem";
-            resources.ApplyResources(this.åbenToolStripMenuItem, "åbenToolStripMenuItem");
-            this.åbenToolStripMenuItem.Click += new System.EventHandler(this.åbenToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.ForeColor = System.Drawing.Color.Black;
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
-            // 
-            // toolStripMenuItemConnectedServer
-            // 
-            this.toolStripMenuItemConnectedServer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.contextMenuStripNotifyIcon.Name = "contextMenuStripNotifyIcon";
+			resources.ApplyResources(this.contextMenuStripNotifyIcon, "contextMenuStripNotifyIcon");
+			this.contextMenuStripNotifyIcon.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripNotifyIcon_Opening);
+			// 
+			// åbenToolStripMenuItem
+			// 
+			this.åbenToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+			this.åbenToolStripMenuItem.Name = "åbenToolStripMenuItem";
+			resources.ApplyResources(this.åbenToolStripMenuItem, "åbenToolStripMenuItem");
+			this.åbenToolStripMenuItem.Click += new System.EventHandler(this.åbenToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.ForeColor = System.Drawing.Color.Black;
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+			// 
+			// toolStripMenuItemConnectedServer
+			// 
+			this.toolStripMenuItemConnectedServer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2});
             this.toolStripMenuItemConnectedServer.ForeColor = System.Drawing.Color.Black;
             this.toolStripMenuItemConnectedServer.Name = "toolStripMenuItemConnectedServer";
