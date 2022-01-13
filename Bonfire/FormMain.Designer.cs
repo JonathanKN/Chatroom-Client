@@ -342,7 +342,7 @@ namespace Bonfire
             resources.ApplyResources(this.notifyIconMain, "notifyIconMain");
             this.notifyIconMain.ContextMenuStrip = this.contextMenuStripNotifyIcon;
             this.notifyIconMain.BalloonTipClicked += new System.EventHandler(this.notifyIconMain_BalloonTipClicked);
-            this.notifyIconMain.Click += new System.EventHandler(this.notifyIconMain_Click);
+            this.notifyIconMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconMain_MouseClick);
             // 
             // contextMenuStripNotifyIcon
             // 
@@ -403,6 +403,7 @@ namespace Bonfire
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
@@ -412,6 +413,7 @@ namespace Bonfire
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelTopBorderControls);
             this.Controls.Add(this.splitContainer1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
@@ -419,7 +421,6 @@ namespace Bonfire
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.TextChanged += new System.EventHandler(this.FormMain_TextChanged);
             this.Enter += new System.EventHandler(this.FormMain_Enter);
-            this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
