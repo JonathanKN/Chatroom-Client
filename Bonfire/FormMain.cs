@@ -270,25 +270,12 @@ namespace Bonfire
                 return;
             }
 
-            int targetUserID = 0;
+
             string messageText = MessageBox.Text;
             MessageBox.Text = string.Empty;
 
-            if (messageText.ToLower().StartsWith("/pm "))
-            {
-                foreach (var user in users.OrderByDescending(u => u.Value.Length))
-                {
-                    if (messageText.Substring(4, user.Value.Length) == user.Value)
-                    {
-                        targetUserID = user.Key;
-                        messageText = messageText.Remove(0, 4 + user.Value.Length);
-                        break;
-                    }
-                }
-            }
-
             messageController.AddOwnMessage(messageText);
-            networkClient.SendMessage(messageText, targetUserID);
+            networkClient.SendMessage(messageText);
             messageController.MessageSent();
         }
 
