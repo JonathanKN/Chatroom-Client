@@ -55,6 +55,7 @@ namespace Bonfire
 			this.AddServerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(50)))), ((int)(((byte)(53)))));
 			this.AddServerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.AddServerBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(50)))), ((int)(((byte)(53)))));
+			this.AddServerBtn.ForeColor = System.Drawing.SystemColors.ActiveBorder;
 			this.AddServerBtn.Name = "AddServerBtn";
 			this.AddServerBtn.UseVisualStyleBackColor = false;
 			this.AddServerBtn.Click += new System.EventHandler(this.AddServerBtn_Click);
