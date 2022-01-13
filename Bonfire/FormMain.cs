@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using Bonfire.LogicControllers;
@@ -12,15 +11,12 @@ namespace Bonfire
 {
     public partial class FormMain : Form
     {
-        [DllImport("user32.dll")]
-        static extern bool SetWindowPos(IntPtr hWnd, int X, int Y, int cx, int cy, uint uFlags);
-
         public const int BalloonTimeout = 500;
 
         public static readonly string ServerUsername = "[Server]";
+        private static readonly string DefaultFormTitle = "Bonfire";
         public static FormMain MainForm;
         public bool isFormFocused;
-        private readonly string DefaultFormTitle = "Bonfire";
         private readonly ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
         private ServerEntryInfo connectedServer;
@@ -98,11 +94,6 @@ namespace Bonfire
             // Form title
             Text = DefaultFormTitle;
             labelCustomTitle.Text = DefaultFormTitle;
-
-            Process[] processlist = Process.GetProcesses();
-
-            
-
         }
 
         private void DisconnectServer()
@@ -308,7 +299,9 @@ namespace Bonfire
 
         private void checkBoxClose_CheckedChanged(object sender, EventArgs e)
         {
-            this.Close();
+            // this.Close();
+            this.Hide();
+            notifyIconMain.Visible = true;
         }
 
         private void checkBoxResizeFull_CheckedChanged(object sender, EventArgs e)
@@ -323,14 +316,6 @@ namespace Bonfire
                 // prevent recursion.
                 return;
             }
-
-            /*IntPtr handle = this.Handle;
-            if (handle != IntPtr.Zero)
-            {
-                SetWindowPos(handle-2, 0, 0, 0, 0, 0x0001);
-            }*/
-
-
 
             WindowState = FormWindowState.Minimized;
             checkBoxMinimize.Checked = false;
@@ -347,7 +332,7 @@ namespace Bonfire
             NativeFunctions.SendMessage(Handle, NativeFunctions.WM_NCLBUTTONDOWN, NativeFunctions.HT_CAPTION, 0);
         }
 
-        private void backgroundWorkerMessagePull_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void backgroundWorkerMessagePull_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -380,28 +365,14 @@ namespace Bonfire
             checkBoxResizeFull.Checked = !checkBoxResizeFull.Checked;
         }
 
-        private void FormMain_Resize(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                Hide();
-                notifyIconMain.Visible = true;
-            }
-        }
-
         private void ShowFormAfterMinimized()
         {
-            Show();
             this.WindowState = FormWindowState.Normal;
+            Show();
             notifyIconMain.Visible = false;
         }
 
         private void notifyIconMain_BalloonTipClicked(object sender, EventArgs e)
-        {
-            ShowFormAfterMinimized();
-        }
-
-        private void notifyIconMain_Click(object sender, EventArgs e)
         {
             ShowFormAfterMinimized();
         }
@@ -523,6 +494,14 @@ namespace Bonfire
         private void panel4_Click(object sender, EventArgs e)
         {
             MessageBox_Enter(sender, e);
+        }
+
+        private void notifyIconMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ShowFormAfterMinimized();
+            }
         }
 
         // NETWORK EVENT HANDLING BELOW

@@ -31,12 +31,12 @@ namespace Bonfire.Controls
         {
             AutoWordSelection = true;
             AutoWordSelection = false;
-            HideCaret(this.Handle);
+            HideCaret(Handle);
         }
 
         protected override void OnEnter(EventArgs e)
         {
-            HideCaret(this.Handle);
+            HideCaret(Handle);
         }
 
         protected override void WndProc(ref Message m)
