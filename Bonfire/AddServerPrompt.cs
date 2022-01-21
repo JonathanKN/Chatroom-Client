@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,6 +12,10 @@ namespace Bonfire
         public string ServerNickname;
         private readonly string[] reservedServernames;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddServerPrompt"/> class.
+        /// </summary>
+        /// <param name="reservedServernames"></param>
         public AddServerPrompt(string[] reservedServernames)
         {
             Thread.CurrentThread.CurrentUICulture = PreferenceHelper.LoadedLanguage;

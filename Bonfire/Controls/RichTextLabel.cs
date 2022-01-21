@@ -45,7 +45,8 @@ namespace Bonfire.Controls
             if (m.Msg == 0x0020)
             {
                 Cursor.Current = this.Cursor;
-            }else
+            }
+            else
             {
                 base.WndProc(ref m);
             }

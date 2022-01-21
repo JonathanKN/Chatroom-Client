@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
@@ -9,11 +8,15 @@ namespace Bonfire
     public partial class SettingsWindow : Form
     {
         private CultureInfo[] supportedLanguages;
+
         /// <summary>
         /// Ignores calls to <c>UpdatedIndex</c> during population.
         /// </summary>
         private bool populatingCombobox;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SettingsWindow"/> class.
+        /// </summary>
         public SettingsWindow()
         {
             Thread.CurrentThread.CurrentUICulture = PreferenceHelper.LoadedLanguage;
@@ -32,7 +35,7 @@ namespace Bonfire
             supportedLanguages = new CultureInfo[]
             {
                 new CultureInfo("da"), // default
-                new CultureInfo("eo")
+                new CultureInfo("eo"),
             };
 
             populatingCombobox = true;
@@ -68,7 +71,7 @@ namespace Bonfire
                 NativeFunctions.SendMessage(Handle, NativeFunctions.WM_NCLBUTTONDOWN, NativeFunctions.HT_CAPTION, 0);
             }
         }
-        
+
         private void UpdateLanguageSetting(CultureInfo cultureInfo)
         {
             CultureInfo previousInfo = Properties.Settings.Default.Language;

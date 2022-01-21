@@ -28,6 +28,9 @@ namespace Bonfire
         private MessageController messageController;
         private UserListController userListController;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormMain"/> class.
+        /// </summary>
         public FormMain()
         {
             MainForm = this;
@@ -212,7 +215,7 @@ namespace Bonfire
         {
             string previousName = Properties.Settings.Default.Nickname;
             SettingsWindow settings = new SettingsWindow();
-            
+
             switch (settings.ShowDialog())
             {
                 case DialogResult.Yes:

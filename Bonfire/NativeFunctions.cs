@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Bonfire
 {
+    /// <summary>
+    /// Class containing native interoping functions.
+    /// NOTE: Warnings are disabled (via .editorconfig) for this file.
+    /// </summary>
     public static class NativeFunctions
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -124,7 +129,7 @@ namespace Bonfire
                 /// <summary>
                 /// Flash continuously until the window comes to the foreground.
                 /// </summary>
-                FLASHW_TIMERNOFG = 12
+                FLASHW_TIMERNOFG = 12,
             }
 
             public static bool FlashWindowUntilFocus(Form form)
@@ -139,7 +144,6 @@ namespace Bonfire
                 fInfo.dwTimeout = 0;
 
                 return FlashWindowEx(ref fInfo);
-
             }
         }
     }

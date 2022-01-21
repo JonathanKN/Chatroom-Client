@@ -30,7 +30,7 @@ namespace Bonfire
             ClearThenStoreServerEntries();
         }
 
-        public static void RemoveServerEntry(string name, bool updateSettings=true)
+        public static void RemoveServerEntry(string name, bool updateSettings = true)
         {
             bool found = false;
             int index = -1;

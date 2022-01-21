@@ -8,3 +8,12 @@ dotnet_diagnostic.SA1101.severity = silent
 
 # SA1300: Element should begin with upper-case letter
 dotnet_diagnostic.SA1300.severity = silent
+
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity = silent
+
+# SA1614: Element parameter documentation should have text
+dotnet_diagnostic.SA1614.severity = silent
+
+[{NativeFunctions.cs}]
+dotnet_analyzer_diagnostic.severity = none

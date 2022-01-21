@@ -74,7 +74,7 @@ namespace Bonfire.LogicControllers
             ServerEntryInfo info = new ServerEntryInfo
             {
                 port = port,
-                ip = ip
+                ip = ip,
             };
             servers.Add(servername, info);
 
@@ -88,7 +88,7 @@ namespace Bonfire.LogicControllers
             serverEntryUI[info] = listEntry;
 
             PreferenceHelper.StoreServerEntry(info, servername);
-            
+
         }
 
         private void RemoveServer(ServerEntryInfo serverEntry, string servername)
