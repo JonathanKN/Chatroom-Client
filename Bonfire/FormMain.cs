@@ -80,8 +80,17 @@ namespace Bonfire
                 true,
                 ServerList,
                 (info, name) => ConnectToServer(info, name),
+                () =>
+                {
+                    userListController.Clear();
+                    users.Clear();
+                    messageController.ClearMessages();
+                    DisconnectServer();
+                },
                 toolTipServerEntry
                 );
+
+
 
             messageController = new MessageController(
                 MessageContainer,
@@ -282,6 +291,14 @@ namespace Bonfire
             messageController.MessageSent();
         }
 
+        private void DisconnectBtn_Click(object sender, EventArgs e)
+        {
+            userListController.Clear();
+            users.Clear();
+            messageController.ClearMessages();
+            DisconnectServer();
+        }
+
         private void MessageBox_Enter(object sender, EventArgs e)
         {
             // If text is default, empty box.
@@ -476,13 +493,14 @@ namespace Bonfire
             MessageBox_Leave(sender, e);
         }
 
-        private void DisconnectBtn_Click(object sender, EventArgs e)
+        // TODO: Fjern
+        /*private void DisconnectBtn_Click(object sender, EventArgs e)
         {
             userListController.Clear();
             users.Clear();
             messageController.ClearMessages();
             DisconnectServer();
-        }
+        }*/
 
         private void MessageBox_TextChanged(object sender, EventArgs e)
         {

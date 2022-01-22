@@ -27,13 +27,6 @@ namespace Bonfire.Controls
             MouseUp += RichTextLabel_Mouse;
         }
 
-        private void RichTextLabel_Mouse(object sender, MouseEventArgs e)
-        {
-            AutoWordSelection = true;
-            AutoWordSelection = false;
-            HideCaret(Handle);
-        }
-
         protected override void OnEnter(EventArgs e)
         {
             HideCaret(Handle);
@@ -54,6 +47,13 @@ namespace Bonfire.Controls
 
         [DllImport("user32.dll")]
         private static extern int HideCaret(IntPtr hwnd);
+
+        private void RichTextLabel_Mouse(object sender, MouseEventArgs e)
+        {
+            AutoWordSelection = true;
+            AutoWordSelection = false;
+            HideCaret(Handle);
+        }
 
         private void RichTextLabel_MouseWheel(object sender, MouseEventArgs e)
         {

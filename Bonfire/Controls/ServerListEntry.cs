@@ -9,6 +9,7 @@ namespace Bonfire
         public event Action SwitchToServer;
         public event Action RemoveServer;
         public event Action CopyServer;
+        public event Action Disconnect;
 
         public ServerListEntry(int width, string servername, FlowLayoutPanel parent)
         {
@@ -21,7 +22,7 @@ namespace Bonfire
 
         public void UpdateConnectedState(CheckState connectionState)
         {
-            checkBoxConnected.CheckState = connectionState;
+            //checkBoxConnected.CheckState = connectionState;
         }
 
         private void UpdateAppearenceByParent(FlowLayoutPanel parent)
@@ -74,6 +75,11 @@ namespace Bonfire
         private void checkBoxConnected_Click(object sender, EventArgs e)
         {
             ServernameLabel_Click(sender, e);
+        }
+
+        private void DisconnectBtn_Click(object sender, EventArgs e)
+        {
+            Disconnect?.Invoke();
         }
     }
 }

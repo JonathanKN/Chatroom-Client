@@ -11,13 +11,15 @@ namespace Bonfire.LogicControllers
         private readonly Dictionary<ServerEntryInfo, ServerListEntry> serverEntryUI = new Dictionary<ServerEntryInfo, ServerListEntry>();
         private readonly FlowLayoutPanel listPanel;
         private readonly Action<string> serverEntryClicked;
+        private readonly Action disconnect;
         private readonly ToolTip serverEntryTooltip;
 
-        public ServerListController(bool populateWithPreferences, FlowLayoutPanel serverListPanel, Action<ServerEntryInfo, string> serverEntryClicked, ToolTip serverEntryTooltip)
+        public ServerListController(bool populateWithPreferences, FlowLayoutPanel serverListPanel, Action<ServerEntryInfo, string> serverEntryClicked, Action disconnect, ToolTip serverEntryTooltip)
         {
             listPanel = serverListPanel;
             this.serverEntryClicked = (servername) => serverEntryClicked(servers[servername], servername);
             this.serverEntryTooltip = serverEntryTooltip;
+            this.disconnect = disconnect;
 
             if (populateWithPreferences)
             {
@@ -83,6 +85,10 @@ namespace Bonfire.LogicControllers
             listEntry.CopyServer += () =>
             {
                 Clipboard.SetText($"{ip}:{port}");
+            };
+            listEntry.Disconnect += () =>
+            {
+                disconnect?.Invoke();
             };
 
             serverEntryUI[info] = listEntry;
