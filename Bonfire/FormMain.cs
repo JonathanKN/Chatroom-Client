@@ -354,6 +354,7 @@ namespace Bonfire
 
         private void backgroundWorkerMessagePull_DoWork(object sender, DoWorkEventArgs e)
         {
+            const int UpdateInterval = 100;
             try
             {
                 Stopwatch sw = new Stopwatch();
@@ -361,14 +362,11 @@ namespace Bonfire
 
                 while (true)
                 {
-                    while (sw.ElapsedMilliseconds < 1000 / 10)
-                    {
-                        Thread.Sleep(0);
-                    }
+                    Thread.Sleep((int)Math.Max(UpdateInterval - sw.ElapsedMilliseconds, 0));
 
                     sw.Restart();
 
-                    this.Invoke((MethodInvoker)delegate
+                    Invoke((MethodInvoker)delegate
                     {
                         networkClient?.Update();
                     });
