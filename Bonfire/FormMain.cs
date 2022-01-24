@@ -112,7 +112,7 @@ namespace Bonfire
         {
             serverListController.UpdateStatusDisconnectAll();
 
-            DisconnectBtn.Visible = false;
+            //DisconnectBtn.Visible = false;
             ServerName.Text = "[Ikke forbundet]";
             connectedServer = null;
             connectedServername = null;
@@ -172,14 +172,15 @@ namespace Bonfire
 
             ConnectingToServer(targetServer, servername);
             networkClient.Connect();
-            DisconnectBtn.Visible = true;
+            //DisconnectBtn.Visible = true;
+
         }
 
         private void ConnectingToServer(ServerEntryInfo targetServer, string servername)
         {
             Text = $"{DefaultFormTitle} — {servername}";
             ServerName.Text = $"Forbinder til {servername}...";
-            serverListController.UpdateServerConnectedStatus(targetServer, CheckState.Indeterminate);
+            serverListController.UpdateServerConnectedStatus(targetServer, false);
         }
 
         /// <summary>
@@ -205,11 +206,11 @@ namespace Bonfire
                 {
                     Text = DefaultFormTitle;
                     ServerName.Text = "Forbindelse mislykkedes";
-                    serverListController.UpdateServerConnectedStatus(targetServer, CheckState.Unchecked);
+                    serverListController.UpdateServerConnectedStatus(targetServer, false);
                     return;
                 }
 
-                serverListController.UpdateServerConnectedStatus(targetServer, CheckState.Checked);
+                serverListController.UpdateServerConnectedStatus(targetServer, true);
                 connectedServer = targetServer;
                 connectedServername = servername;
 
@@ -319,9 +320,9 @@ namespace Bonfire
 
         private void checkBoxClose_CheckedChanged(object sender, EventArgs e)
         {
-            // this.Close();
-            this.Hide();
-            notifyIconMain.Visible = true;
+            this.Close();
+            /*this.Hide();
+            notifyIconMain.Visible = true;*/
         }
 
         private void checkBoxResizeFull_CheckedChanged(object sender, EventArgs e)
@@ -628,6 +629,22 @@ namespace Bonfire
                 userListController.RemovePerson(username);
                 users.Remove(userID);
             });
+        }
+
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ResizeBtn_Click(object sender, EventArgs e)
+        {
+            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+            checkBoxMinimize.Checked = false;
         }
     }
 }

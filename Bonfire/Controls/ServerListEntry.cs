@@ -7,8 +7,11 @@ namespace Bonfire
     public partial class ServerListEntry : UserControl
     {
         public event Action SwitchToServer;
+
         public event Action RemoveServer;
+
         public event Action CopyServer;
+
         public event Action Disconnect;
 
         public ServerListEntry(int width, string servername, FlowLayoutPanel parent)
@@ -16,13 +19,15 @@ namespace Bonfire
             InitializeComponent();
             this.Width = width;
             this.ServernameLabel.Text = servername;
+            this.Name = servername;
             parent.ControlRemoved += SiblingControlRemovedOrAdded;
             parent.ControlAdded += SiblingControlRemovedOrAdded;
         }
 
-        public void UpdateConnectedState(CheckState connectionState)
+        public void UpdateConnectedState(bool connectionState)
         {
             //checkBoxConnected.CheckState = connectionState;
+            DisconnectBtn.Visible = connectionState;
         }
 
         private void UpdateAppearenceByParent(FlowLayoutPanel parent)
@@ -60,12 +65,12 @@ namespace Bonfire
 
         private void ServernameLabel_MouseEnter(object sender, EventArgs e)
         {
-            ContainerPanel.BackColor = Color.FromArgb(ContainerPanel.BackColor.R - 20, ContainerPanel.BackColor.R - 20, ContainerPanel.BackColor.R - 20);
+            ContainerPanel.BackColor = Color.FromArgb(ContainerPanel.BackColor.R - 20, ContainerPanel.BackColor.G - 20, ContainerPanel.BackColor.B - 20);
         }
 
         private void ServernameLabel_MouseLeave(object sender, EventArgs e)
         {
-            ContainerPanel.BackColor = Color.FromArgb(ContainerPanel.BackColor.R + 20, ContainerPanel.BackColor.R + 20, ContainerPanel.BackColor.R + 20);
+            ContainerPanel.BackColor = Color.FromArgb(ContainerPanel.BackColor.R + 20, ContainerPanel.BackColor.G + 20, ContainerPanel.BackColor.B + 20);
         }
 
         private void ServerListEntry_Load(object sender, EventArgs e)

@@ -135,7 +135,7 @@ namespace Bonfire.LogicControllers
             {
                 Text = message,
                 ForeColor = Color.LightGray,
-                BackColor = Color.FromArgb(45, 45, 45),
+                BackColor = Color.FromArgb(38, 43, 45),
                 Font = new Font("Segoe UI", 13),
                 Margin = new Padding(20, 0, 0, 10),
                 //Dock = DockStyle.Fill,

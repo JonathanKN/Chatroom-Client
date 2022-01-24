@@ -43,7 +43,7 @@ namespace Bonfire.LogicControllers
             return servers.TryGetValue(servername, out server);
         }
 
-        public void UpdateServerConnectedStatus(ServerEntryInfo serverInfo, CheckState connected)
+        public void UpdateServerConnectedStatus(ServerEntryInfo serverInfo, bool connected)
         {
             UpdateStatusDisconnectAll();
             if (!serverEntryUI.TryGetValue(serverInfo, out ServerListEntry value))
@@ -59,7 +59,7 @@ namespace Bonfire.LogicControllers
         {
             foreach (var item in serverEntryUI)
             {
-                item.Value.UpdateConnectedState(CheckState.Unchecked);
+                item.Value.UpdateConnectedState(false);
             }
         }
 
