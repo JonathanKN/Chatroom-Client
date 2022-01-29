@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace Bonfire
 {
+    /// <summary>
+    /// A form used for adding new servers.
+    /// </summary>
     public partial class AddServerPrompt : Form
     {
-        public string IP;
-        public ushort Port;
-        public string ServerNickname;
         private readonly string[] reservedServernames;
 
         /// <summary>
@@ -29,6 +29,21 @@ namespace Bonfire
             labelInvalidServerNickname.Visible = false;
         }
 
+        /// <summary>
+        /// Gets the entered IP/hostname value.
+        /// </summary>
+        public string IP { get; private set; }
+
+        /// <summary>
+        /// Gets the entered port value.
+        /// </summary>
+        public ushort Port { get; private set; }
+
+        /// <summary>
+        /// Gets the server nickname.
+        /// </summary>
+        public string ServerNickname { get; private set; }
+
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -36,13 +51,12 @@ namespace Bonfire
 
         private void AddServerPrompt_Load(object sender, EventArgs e)
         {
-
         }
 
         private void AddServerBtn_Click(object sender, EventArgs e)
         {
-            labelInvalidPort.Visible = !ushort.TryParse(ServerPortInput.Text, out Port);
-            //labelInvalidIP.Visible = !IPAddress.TryParse(ServerIPInput.Text, out _);
+            labelInvalidPort.Visible = !ushort.TryParse(ServerPortInput.Text, out ushort port);
+            Port = port;
 
             labelInvalidServerNickname.Visible = reservedServernames.Contains(ServerNicknameInput.Text);
 

@@ -9,14 +9,15 @@ using Chatroom_Client_Backend;
 
 namespace Bonfire
 {
+    /// <summary>
+    /// The main form.
+    /// </summary>
     public partial class FormMain : Form
     {
         public const int BalloonTimeout = 500;
 
         public static readonly string ServerUsername = "[Server]";
         private static readonly string DefaultFormTitle = "Bonfire";
-        public static FormMain MainForm;
-        public bool isFormFocused;
         private readonly ComponentResourceManager resources;
         private readonly Dictionary<int, string> users = new Dictionary<int, string>();
         private ServerEntryInfo connectedServer;
@@ -49,12 +50,22 @@ namespace Bonfire
             resources = new ComponentResourceManager(typeof(FormMain));
         }
 
+        /// <summary>
+        /// Gets the main form instance.
+        /// </summary>
+        public static FormMain MainForm { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether the main form is focused.
+        /// </summary>
+        public bool IsFormFocused { get; private set; }
+
         protected override void WndProc(ref Message m)
         {
             // WM_NCACTIVATE
             if (m.Msg == 0x0086)
             {
-                isFormFocused = m.WParam != IntPtr.Zero;
+                IsFormFocused = m.WParam != IntPtr.Zero;
                 messageController.MessageRead();
             }
 
@@ -87,17 +98,13 @@ namespace Bonfire
                     messageController.ClearMessages();
                     DisconnectServer();
                 },
-                toolTipServerEntry
-                );
-
-
+                toolTipServerEntry);
 
             messageController = new MessageController(
                 MessageContainer,
                 pictureBoxPendingMessageIcon,
                 notifyIconMain,
-                OnlineList.Width
-                );
+                OnlineList.Width);
 
             userListController = new UserListController(OnlineList);
 
@@ -163,8 +170,8 @@ namespace Bonfire
 
             networkClient = new NetworkClient(
                 Properties.Settings.Default.Nickname,
-                targetServer.ip,
-                targetServer.port);
+                targetServer.IP,
+                targetServer.Port);
 
             // Lyt efter de event listeners der er opstillet i Patricks API
             networkClient.onConnect += (connected) => FinishedConnectingToServer(targetServer, servername, connected);
@@ -172,8 +179,7 @@ namespace Bonfire
 
             ConnectingToServer(targetServer, servername);
             networkClient.Connect();
-            //DisconnectBtn.Visible = true;
-
+            // DisconnectBtn.Visible = true;
         }
 
         private void ConnectingToServer(ServerEntryInfo targetServer, string servername)
@@ -235,6 +241,7 @@ namespace Bonfire
                     {
                         networkClient?.ChangeName(newName);
                     }
+
                     break;
                 default:
                     // Anything other than yes
@@ -248,7 +255,7 @@ namespace Bonfire
             switch (prompt.ShowDialog())
             {
                 case DialogResult.Yes:
-                    //Connect to new server
+                    // Connect to new server
                     serverListController.AddServer(prompt.Port, prompt.IP, prompt.ServerNickname);
                     break;
                 default:
@@ -256,7 +263,6 @@ namespace Bonfire
                     break;
             }
         }
-
 
         private void MessageBox_KeyDown(object sender, KeyEventArgs key)
         {
@@ -282,7 +288,6 @@ namespace Bonfire
                 messageController.AddLogMessage("Du er ikke forbundet til serveren");
                 return;
             }
-
 
             string messageText = MessageBox.Text;
             MessageBox.Text = string.Empty;
@@ -321,25 +326,6 @@ namespace Bonfire
         private void checkBoxClose_CheckedChanged(object sender, EventArgs e)
         {
             this.Close();
-            /*this.Hide();
-            notifyIconMain.Visible = true;*/
-        }
-
-        private void checkBoxResizeFull_CheckedChanged(object sender, EventArgs e)
-        {
-            WindowState = checkBoxResizeFull.Checked ? FormWindowState.Maximized : FormWindowState.Normal;
-        }
-
-        private void checkBoxMinimize_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!checkBoxMinimize.Checked)
-            {
-                // prevent recursion.
-                return;
-            }
-
-            WindowState = FormWindowState.Minimized;
-            checkBoxMinimize.Checked = false;
         }
 
         private void panelTopBorderControls_MouseDown(object sender, MouseEventArgs e)
@@ -379,14 +365,9 @@ namespace Bonfire
             }
         }
 
-        private void panelTopBorderControls_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            checkBoxResizeFull.Checked = !checkBoxResizeFull.Checked;
-        }
-
         private void ShowFormAfterMinimized()
         {
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
             Show();
             notifyIconMain.Visible = false;
         }
@@ -411,12 +392,10 @@ namespace Bonfire
 
         private void toolStripComboBoxSelectedServer_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void toolStripMenuItemConnectedServer_Click(object sender, EventArgs e)
         {
-
         }
 
         private void toolStripMenuItemConnectedServer_DropDownOpening(object sender, EventArgs e)
@@ -503,12 +482,11 @@ namespace Bonfire
 
         private void MessageBox_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void MessageContainer_MouseEnter(object sender, EventArgs e)
         {
-            //MessageContainer.Focus();
+            // MessageContainer.Focus();
         }
 
         private void panel4_Click(object sender, EventArgs e)
@@ -524,8 +502,34 @@ namespace Bonfire
             }
         }
 
-        // NETWORK EVENT HANDLING BELOW
+        private void notifyIconMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            notifyIconMain_MouseClick(sender, e);
+        }
 
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonResize_Click(object sender, EventArgs e)
+        {
+            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
+        }
+
+        private void buttonMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void buttonCloseToTray_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+            Hide();
+            notifyIconMain.Visible = true;
+        }
+
+        #region NETWORK EVENTHANDLING
         private void RegisterServerEvents(NetworkClient networkClient)
         {
             if (networkClient is null)
@@ -565,24 +569,6 @@ namespace Bonfire
             DisconnectServer();
         }
 
-        private void OnLogMessage((string message, DateTime timeStamp) e)
-        {
-            (string message, DateTime timeStamp) = e;
-            this.Invoke((MethodInvoker)delegate
-            {
-                OnMessageHandler(0, message, timeStamp);
-            });
-        }
-
-        public void OnMessage((int userID, string message, DateTime timeStamp) e)
-        {
-            (int userID, string message, DateTime timeStamp) = e;
-            this.Invoke((MethodInvoker)delegate
-            {
-                OnMessageHandler(userID, message, timeStamp);
-            });
-        }
-
         private void OnMessageHandler(int userID, string message, DateTime timestamp)
         {
             string sendername;
@@ -600,6 +586,24 @@ namespace Bonfire
             }
 
             messageController.ReceivedMessage(userID == networkClient.ClientID, sendername, message, timestamp, userID == 0);
+        }
+
+        private void OnLogMessage((string message, DateTime timeStamp) e)
+        {
+            (string message, DateTime timeStamp) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                OnMessageHandler(0, message, timeStamp);
+            });
+        }
+
+        public void OnMessage((int userID, string message, DateTime timeStamp) e)
+        {
+            (int userID, string message, DateTime timeStamp) = e;
+            this.Invoke((MethodInvoker)delegate
+            {
+                OnMessageHandler(userID, message, timeStamp);
+            });
         }
 
         public void OnUserInfoRecieved((int userID, string userName) e)
@@ -630,21 +634,6 @@ namespace Bonfire
                 users.Remove(userID);
             });
         }
-
-        private void CloseBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void ResizeBtn_Click(object sender, EventArgs e)
-        {
-            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-            checkBoxMinimize.Checked = false;
-        }
+        #endregion
     }
 }

@@ -9,7 +9,7 @@ namespace Bonfire
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        internal static void Main()
         {
             try
             {

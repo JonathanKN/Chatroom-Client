@@ -32,7 +32,7 @@ namespace Bonfire.LogicControllers
         {
             foreach (var item in entries)
             {
-                AddServer(item.Item1.port, item.Item1.ip, item.Item2);
+                AddServer(item.Item1.Port, item.Item1.IP, item.Item2);
             }
         }
 
@@ -75,8 +75,8 @@ namespace Bonfire.LogicControllers
 
             ServerEntryInfo info = new ServerEntryInfo
             {
-                port = port,
-                ip = ip,
+                Port = port,
+                IP = ip,
             };
             servers.Add(servername, info);
 
@@ -94,7 +94,6 @@ namespace Bonfire.LogicControllers
             serverEntryUI[info] = listEntry;
 
             PreferenceHelper.StoreServerEntry(info, servername);
-
         }
 
         private void RemoveServer(ServerEntryInfo serverEntry, string servername)

@@ -40,12 +40,14 @@ namespace Bonfire
 
             populatingCombobox = true;
             var selectedLanguage = Properties.Settings.Default.Language;
+
             comboBoxLanguageSelection.Items.Clear();
             foreach (var language in supportedLanguages)
             {
                 int index = comboBoxLanguageSelection.Items.Add(language.Name);
 
-                if (language.Name == selectedLanguage.Name)
+                if (language.Name == selectedLanguage.Name ||
+                    (language.Name == "da" && selectedLanguage.Name == string.Empty))
                 {
                     comboBoxLanguageSelection.SelectedIndex = index;
                 }

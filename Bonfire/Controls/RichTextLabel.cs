@@ -5,10 +5,18 @@ using System.Windows.Forms;
 
 namespace Bonfire.Controls
 {
+    /// <summary>
+    /// Used as an alternative to basic labels.
+    /// Allows link and text highlighting by inherting from <c>RichTextBox</c>.
+    /// </summary>
     public class RichTextLabel : RichTextBox
     {
         private FlowLayoutPanel messagePanel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RichTextLabel"/> class.
+        /// </summary>
+        /// <param name="messagePanel"></param>
         public RichTextLabel(FlowLayoutPanel messagePanel)
         {
             this.messagePanel = messagePanel;
@@ -65,8 +73,8 @@ namespace Bonfire.Controls
 
         private void RichTextLabel_ContentsResized(object sender, ContentsResizedEventArgs e)
         {
-            //base.Size = new Size(e.NewRectangle.Width, e.NewRectangle.Height + 5);
-            base.Height = e.NewRectangle.Height + 5;
+            // Size = new Size(e.NewRectangle.Width, e.NewRectangle.Height + 5);
+            Height = e.NewRectangle.Height + 5;
         }
     }
 }

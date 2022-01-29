@@ -17,3 +17,6 @@ dotnet_diagnostic.SA1614.severity = silent
 
 [{NativeFunctions.cs}]
 dotnet_analyzer_diagnostic.severity = none
+
+# SA1124: Do not use regions
+dotnet_diagnostic.SA1124.severity = silent

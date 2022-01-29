@@ -52,13 +52,12 @@ namespace Bonfire
             this.DisconnectBtn = new System.Windows.Forms.Button();
             this.ServerName = new System.Windows.Forms.Label();
             this.panelTopBorderControls = new System.Windows.Forms.Panel();
-            this.checkBoxMinimize = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.checkBoxResizeFull = new System.Windows.Forms.CheckBox();
-            this.ResizeBtn = new System.Windows.Forms.Button();
-            this.checkBoxClose = new System.Windows.Forms.CheckBox();
-            this.CloseBtn = new System.Windows.Forms.Button();
             this.labelCustomTitle = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonCloseToTray = new System.Windows.Forms.Button();
+            this.buttonMinimize = new System.Windows.Forms.Button();
+            this.ResizeBtn = new System.Windows.Forms.Button();
+            this.CloseBtn = new System.Windows.Forms.Button();
             this.backgroundWorkerMessagePull = new System.ComponentModel.BackgroundWorker();
             this.notifyIconMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripNotifyIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -70,7 +69,6 @@ namespace Bonfire
             this.lukToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipServerEntry = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,8 +84,8 @@ namespace Bonfire
             this.panel4.SuspendLayout();
             this.ServerNameHeader.SuspendLayout();
             this.panelTopBorderControls.SuspendLayout();
-            this.contextMenuStripNotifyIcon.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.contextMenuStripNotifyIcon.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -293,36 +291,41 @@ namespace Bonfire
             // 
             resources.ApplyResources(this.panelTopBorderControls, "panelTopBorderControls");
             this.panelTopBorderControls.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panelTopBorderControls.Controls.Add(this.checkBoxMinimize);
-            this.panelTopBorderControls.Controls.Add(this.checkBoxResizeFull);
-            this.panelTopBorderControls.Controls.Add(this.checkBoxClose);
             this.panelTopBorderControls.Controls.Add(this.labelCustomTitle);
             this.panelTopBorderControls.Controls.Add(this.flowLayoutPanel1);
             this.panelTopBorderControls.Name = "panelTopBorderControls";
-            this.panelTopBorderControls.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDoubleClick);
             this.panelTopBorderControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBorderControls_MouseDown);
             // 
-            // checkBoxMinimize
+            // labelCustomTitle
             // 
-            resources.ApplyResources(this.checkBoxMinimize, "checkBoxMinimize");
-            this.checkBoxMinimize.Name = "checkBoxMinimize";
-            this.checkBoxMinimize.UseVisualStyleBackColor = true;
-            this.checkBoxMinimize.CheckedChanged += new System.EventHandler(this.checkBoxMinimize_CheckedChanged);
+            resources.ApplyResources(this.labelCustomTitle, "labelCustomTitle");
+            this.labelCustomTitle.Name = "labelCustomTitle";
+            this.labelCustomTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCustomTitle_MouseDown);
             // 
-            // button3
+            // flowLayoutPanel1
             // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.flowLayoutPanel1.Controls.Add(this.buttonCloseToTray);
+            this.flowLayoutPanel1.Controls.Add(this.buttonMinimize);
+            this.flowLayoutPanel1.Controls.Add(this.ResizeBtn);
+            this.flowLayoutPanel1.Controls.Add(this.CloseBtn);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
-            // checkBoxResizeFull
+            // buttonCloseToTray
             // 
-            resources.ApplyResources(this.checkBoxResizeFull, "checkBoxResizeFull");
-            this.checkBoxResizeFull.Name = "checkBoxResizeFull";
-            this.checkBoxResizeFull.UseVisualStyleBackColor = true;
-            this.checkBoxResizeFull.CheckedChanged += new System.EventHandler(this.checkBoxResizeFull_CheckedChanged);
+            resources.ApplyResources(this.buttonCloseToTray, "buttonCloseToTray");
+            this.buttonCloseToTray.FlatAppearance.BorderSize = 0;
+            this.buttonCloseToTray.Name = "buttonCloseToTray";
+            this.buttonCloseToTray.UseVisualStyleBackColor = true;
+            this.buttonCloseToTray.Click += new System.EventHandler(this.buttonCloseToTray_Click);
+            // 
+            // buttonMinimize
+            // 
+            resources.ApplyResources(this.buttonMinimize, "buttonMinimize");
+            this.buttonMinimize.FlatAppearance.BorderSize = 0;
+            this.buttonMinimize.Name = "buttonMinimize";
+            this.buttonMinimize.UseVisualStyleBackColor = true;
+            this.buttonMinimize.Click += new System.EventHandler(this.buttonMinimize_Click);
             // 
             // ResizeBtn
             // 
@@ -330,14 +333,7 @@ namespace Bonfire
             this.ResizeBtn.FlatAppearance.BorderSize = 0;
             this.ResizeBtn.Name = "ResizeBtn";
             this.ResizeBtn.UseVisualStyleBackColor = true;
-            this.ResizeBtn.Click += new System.EventHandler(this.ResizeBtn_Click);
-            // 
-            // checkBoxClose
-            // 
-            resources.ApplyResources(this.checkBoxClose, "checkBoxClose");
-            this.checkBoxClose.Name = "checkBoxClose";
-            this.checkBoxClose.UseVisualStyleBackColor = true;
-            this.checkBoxClose.CheckedChanged += new System.EventHandler(this.checkBoxClose_CheckedChanged);
+            this.ResizeBtn.Click += new System.EventHandler(this.buttonResize_Click);
             // 
             // CloseBtn
             // 
@@ -347,12 +343,6 @@ namespace Bonfire
             this.CloseBtn.Name = "CloseBtn";
             this.CloseBtn.UseVisualStyleBackColor = true;
             this.CloseBtn.Click += new System.EventHandler(this.CloseBtn_Click);
-            // 
-            // labelCustomTitle
-            // 
-            resources.ApplyResources(this.labelCustomTitle, "labelCustomTitle");
-            this.labelCustomTitle.Name = "labelCustomTitle";
-            this.labelCustomTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCustomTitle_MouseDown);
             // 
             // backgroundWorkerMessagePull
             // 
@@ -365,6 +355,7 @@ namespace Bonfire
             resources.ApplyResources(this.notifyIconMain, "notifyIconMain");
             this.notifyIconMain.ContextMenuStrip = this.contextMenuStripNotifyIcon;
             this.notifyIconMain.BalloonTipClicked += new System.EventHandler(this.notifyIconMain_BalloonTipClicked);
+            this.notifyIconMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.notifyIconMain_MouseDown);
             // 
             // contextMenuStripNotifyIcon
             // 
@@ -429,14 +420,6 @@ namespace Bonfire
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.ResizeBtn);
-            this.flowLayoutPanel1.Controls.Add(this.CloseBtn);
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -470,8 +453,8 @@ namespace Bonfire
             this.ServerNameHeader.PerformLayout();
             this.panelTopBorderControls.ResumeLayout(false);
             this.panelTopBorderControls.PerformLayout();
-            this.contextMenuStripNotifyIcon.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.contextMenuStripNotifyIcon.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -490,9 +473,6 @@ namespace Bonfire
 		private System.Windows.Forms.Button ServerMenuBtn;
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private System.Windows.Forms.Panel panelTopBorderControls;
-		private System.Windows.Forms.CheckBox checkBoxClose;
-		private System.Windows.Forms.CheckBox checkBoxResizeFull;
-		private System.Windows.Forms.CheckBox checkBoxMinimize;
 		private System.Windows.Forms.Button buttonSettings;
 		private System.ComponentModel.BackgroundWorker backgroundWorkerMessagePull;
 		private System.Windows.Forms.PictureBox pictureBoxPendingMessageIcon;
@@ -513,10 +493,11 @@ namespace Bonfire
 		private System.Windows.Forms.Button DisconnectBtn;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.RichTextBox MessageBox;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button buttonMinimize;
 		private System.Windows.Forms.Button ResizeBtn;
 		private System.Windows.Forms.Button CloseBtn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button buttonCloseToTray;
     }
 }
 

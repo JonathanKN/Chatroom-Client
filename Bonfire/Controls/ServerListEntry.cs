@@ -4,16 +4,17 @@ using System.Windows.Forms;
 
 namespace Bonfire
 {
+    /// <summary>
+    /// Custom user control that displays a particular server entry and provides events for user interaction to be handled in <c>ServerListController</c>.
+    /// </summary>
     public partial class ServerListEntry : UserControl
     {
-        public event Action SwitchToServer;
-
-        public event Action RemoveServer;
-
-        public event Action CopyServer;
-
-        public event Action Disconnect;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ServerListEntry"/> class.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="servername"></param>
+        /// <param name="parent"></param>
         public ServerListEntry(int width, string servername, FlowLayoutPanel parent)
         {
             InitializeComponent();
@@ -24,9 +25,17 @@ namespace Bonfire
             parent.ControlAdded += SiblingControlRemovedOrAdded;
         }
 
+        public event Action SwitchToServer;
+
+        public event Action RemoveServer;
+
+        public event Action CopyServer;
+
+        public event Action Disconnect;
+
         public void UpdateConnectedState(bool connectionState)
         {
-            //checkBoxConnected.CheckState = connectionState;
+            // checkBoxConnected.CheckState = connectionState;
             DisconnectBtn.Visible = connectionState;
         }
 
