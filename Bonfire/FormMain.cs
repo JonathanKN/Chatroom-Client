@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 using Bonfire.LogicControllers;
-using Chatroom_Client_Backend;
+using Chatroom.NetworkClient;
 
 namespace Bonfire
 {
@@ -174,7 +174,7 @@ namespace Bonfire
                 targetServer.Port);
 
             // Lyt efter de event listeners der er opstillet i Patricks API
-            networkClient.onConnect += (connected) => FinishedConnectingToServer(targetServer, servername, connected);
+            networkClient.OnConnect += (connected) => FinishedConnectingToServer(targetServer, servername, connected);
             RegisterServerEvents(networkClient);
 
             ConnectingToServer(targetServer, servername);
@@ -537,11 +537,11 @@ namespace Bonfire
                 return;
             }
 
-            networkClient.onMessage += OnMessage;
-            networkClient.onUserInfoReceived += OnUserInfoRecieved;
-            networkClient.onUserLeft += OnUserLeft;
-            networkClient.onLogMessage += OnLogMessage;
-            networkClient.onDisconnect += OnDisconnect;
+            networkClient.OnMessage += OnMessage;
+            networkClient.OnUserInfoReceived += OnUserInfoRecieved;
+            networkClient.OnUserLeft += OnUserLeft;
+            networkClient.OnLogMessage += OnLogMessage;
+            networkClient.OnDisconnect += OnDisconnect;
         }
 
         private void UnregisterServerEvents(NetworkClient networkClient)
@@ -551,11 +551,11 @@ namespace Bonfire
                 return;
             }
 
-            networkClient.onMessage -= OnMessage;
-            networkClient.onUserInfoReceived -= OnUserInfoRecieved;
-            networkClient.onUserLeft -= OnUserLeft;
-            networkClient.onLogMessage -= OnLogMessage;
-            networkClient.onDisconnect -= OnDisconnect;
+            networkClient.OnMessage -= OnMessage;
+            networkClient.OnUserInfoReceived -= OnUserInfoRecieved;
+            networkClient.OnUserLeft -= OnUserLeft;
+            networkClient.OnLogMessage -= OnLogMessage;
+            networkClient.OnDisconnect -= OnDisconnect;
         }
 
         private void OnDisconnect()
